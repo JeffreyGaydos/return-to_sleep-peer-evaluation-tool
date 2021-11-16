@@ -6,4 +6,8 @@ class User < ApplicationRecord
     validates :password_confirmation, presence: true, length: { minimum: 6 }
 
     has_secure_password
+
+    #uncomment once we have those models present
+    #has_and_belongs_to_many :courses 
+    #has_and_belongs_to_many :teams
 end
