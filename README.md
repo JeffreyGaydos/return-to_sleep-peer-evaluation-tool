@@ -1,7 +1,13 @@
-# return-to_sleep-peer-evaluation-tool
-Final project for 3901
+# return-to_sleep Peer Evaluation Tool
+Final project for 3901. A peer evaluation tool based on past ways of evaluating team members for 3901.
 
-How to Run:
+## How to Run:
+* Clone repo
+* Run "bundle"
+* Run "yarn install --check-files" to get necessary node_modules
+* Ensure you have ruby 2.7.0 installed. If not, use this to do so: https://gist.github.com/esteedqueen/b605cdf78b0060299322033b6a60afc3
+* Ensure that a recent version of rails is installed (tested on rails 6.0.4.1)
+* [CHANGE: may be deployed using Heroku]Run "rails server", then go to https://localhost/3000 to view the site
 
 ## Requirements Completed:
 * Seperate admin interface:
