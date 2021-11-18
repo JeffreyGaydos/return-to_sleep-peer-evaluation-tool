@@ -11,7 +11,7 @@ class AdminTest < ActiveSupport::TestCase
     assert_not bad_admin.valid?
   end
 
-  test "admin does not have invalid valid user" do
+  test "admin must have a user" do
     assert_not @admin.valid?
   end
 
