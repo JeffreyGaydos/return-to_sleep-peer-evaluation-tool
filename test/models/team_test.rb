@@ -4,6 +4,7 @@ class TeamTest < ActiveSupport::TestCase
 
   def setup
     @team = Team.new(name: "team name")
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   end
 
   test "Default value for needs_eval if not given needs to be false" do
@@ -32,8 +33,21 @@ class TeamTest < ActiveSupport::TestCase
     assert_not @team.valid?
   end
 
-  test "Users associated with team must be valid" do
-    @team.users
+  test "Team does not need to have associated users" do
+    assert @team.valid?
+  end
+
+  test "Team's users can be valid users" do
+    @user.save()
+    @team.users << @user
+    assert @team.valid?
+  end
+
+  test "Team's users cannot be invalid users" do
+    user = User.new(name: "Example User", email: "", password: "foobar", password_confirmation: "foobar") #invalid user
+    user.save()
+    @team.users << user
+    assert_not @team.valid?
   end
 
 end

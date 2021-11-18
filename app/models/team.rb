@@ -14,7 +14,10 @@ class Team < ApplicationRecord
   # Relations
   # has_and_belongs_to_many :users # many to many users
   # belongs_to :course # In Rails 5, whenever we define a belongs_to association,
-                      # it is required to have the associated record present by default after this change.
-  has_and_belongs_to_many :users
+  # it is required to have the associated record present by default after this change.
+
+  #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
+  has_many :teams_users
+  has_many :users, through: :teams_users
 
 end
