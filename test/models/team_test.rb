@@ -32,4 +32,8 @@ class TeamTest < ActiveSupport::TestCase
     assert_not @team.valid?
   end
 
+  test "Users associated with team must be valid" do
+    @team.users
+  end
+
 end
