@@ -1,0 +1,25 @@
+<%# For login, sign-up, and password reset screens %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Peer Evaluation Tool - <%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'authentication', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'authentication', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+  <footer>
+    <p>Created by Stephen Chou, Jeffrey Gaydos, Will Schneider, and Jeremy Yao
+    <p class="right">For CSE 3901, Autumn 2021</p>
+  </footer>
+</html>

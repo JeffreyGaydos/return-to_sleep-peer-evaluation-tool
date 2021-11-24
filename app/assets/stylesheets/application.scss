@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+$theme-color-1: #252574;
+$text-color-1: #FFFFFF;
+$theme-color-2: #e2e2e2;
+$text-color-2: #252574;
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $theme-color-1;
+    color: $text-color-1;
+    height: min-content;
+    p {
+        display: inline-block;
+        margin: 0;
+    }
+    p.right {
+        float: right;
+    }
+}
+
+header {
+    padding: 10px;
+    background-color: $theme-color-2;
+    h1 {
+        color: $text-color-2;
+        display: inline-block;
+        margin: 0;
+    }
+    ul {
+        margin-top: 0px;
+        float: right;
+        vertical-align: middle;
+    }
+    button {
+        margin-top: -5px;
+    }
+}

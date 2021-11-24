@@ -1,7 +1,13 @@
+<%# For the home page, before you even have an account %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PeerEvalTool</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Peer Evaluation Tool - <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +16,24 @@
   </head>
 
   <body>
+    <header>
+      <h1>Peer Evaluation Tool</h1>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><button type="button" class=" btn btn-outline-dark">Sign Up</button></a>
+        </li>
+      </ul>
+    </header>
     <%= yield %>
   </body>
+  <footer>
+    <p>Created by Stephen Chou, Jeffrey Gaydos, Will Schneider, and Jeremy Yao
+    <p class="right">For CSE 3901, Autumn 2021</p>
+  </footer>
 </html>
