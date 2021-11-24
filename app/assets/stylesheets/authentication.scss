@@ -36,6 +36,10 @@ a {
     text-decoration: none !important;
 }
 
+body {
+    margin: 0px !important;
+}
+
 button:hover a {
     color: white;
     transition: all 0.3s;
@@ -45,10 +49,10 @@ div.psuedo-body {
     position: absolute;
     width: 100%;
     height: 100%;
+    min-height: 700px;
     background-image: url('FreeBlueBackgroundEdit.jpg') !important;
 }
 
 button.back-button {
-    display: inline-block;
     float: right;
 }

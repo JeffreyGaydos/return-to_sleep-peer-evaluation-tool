@@ -51,12 +51,15 @@ body {
 
 header {
     padding: 10px;
-    background-color: $theme-color-2;
+    background-color: white;
     height: min-content;
     h1 {
         color: $text-color-2;
         display: inline-block;
         margin: 0;
+    }
+    h1:hover a{
+        color: $theme-color-1;
     }
     ul {
         margin-top: 0px;
