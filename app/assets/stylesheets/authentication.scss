@@ -1,0 +1,36 @@
+@import 'application.scss';
+
+div.custom-jumbo {
+    margin: 10% 25%;
+    height: max-content;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid $theme-color-1;
+    padding: 30px;
+    
+    input {
+        border: 2px solid $theme-color-1-trans !important;
+    }
+    
+    input:focus {
+        border: 2px solid $theme-color-1 !important;
+    }
+
+    button {
+        color: $theme-color-1;
+        border: 1px solid $theme-color-1;
+    }
+
+    button:hover {
+        background-color: $theme-color-1;
+        color: white;
+    }
+
+    h1, label {
+        color: $theme-color-1;
+    }
+}
+
+body {
+    background-image: url('FreeBlueBackgroundEdit.jpg');
+}

@@ -1,1 +1,5 @@
 <% provide(:title, "Home") %>
+
+<div id="readme-container">
+    <%= markdown(File.open('README.md') { |t| t.read }) %>
+</div>
