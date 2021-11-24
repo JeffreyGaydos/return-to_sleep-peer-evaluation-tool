@@ -35,6 +35,15 @@ footer {
     }
 }
 
+.nav-link {
+    color: $theme-color-1 !important;
+    border: 1px solid $theme-color-2 !important;
+}
+
+.nav-link:hover {
+    border: 1px solid $theme-color-1 !important;
+}
+
 header {
     padding: 10px;
     background-color: $theme-color-2;
@@ -48,7 +57,17 @@ header {
         float: right;
         vertical-align: middle;
     }
-    button {
-        margin-top: -5px;
+    .sign-up {
+        border: 1px solid $theme-color-1 !important;
+    }
+    .sign-up:hover {
+        border-color: $theme-color-1 !important;
+        color: $text-color-1 !important;
+        background-color: $theme-color-1 !important;
+    }
+    div {
+        background-color: $theme-color-1;
+        width: 100%;
+        height: 3px;
     }
 }
