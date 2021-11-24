@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    belongs_to :admin, optional: true
     #The following 2 lines are required to set up the many_to_many relationship between Courses and Users
     #uncomment once we have those models present
     # has_many :courses_users
