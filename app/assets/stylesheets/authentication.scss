@@ -23,7 +23,7 @@ div.custom-jumbo {
 
     button:hover {
         background-color: $theme-color-1;
-        color: white;
+        color: white !important;
     }
 
     h1, label {
@@ -31,6 +31,24 @@ div.custom-jumbo {
     }
 }
 
-body {
-    background-image: url('FreeBlueBackgroundEdit.jpg');
+a {
+    color: $theme-color-1;
+    text-decoration: none !important;
+}
+
+button:hover a {
+    color: white;
+    transition: all 0.3s;
+}
+
+div.psuedo-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('FreeBlueBackgroundEdit.jpg') !important;
+}
+
+button.back-button {
+    display: inline-block;
+    float: right;
 }
