@@ -11,9 +11,12 @@
     <div class="mb-3">
         <label for="pwd" class="form-label">Password:</label>
         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        <%= link_to "Forgot Password", "/reset_password" %>
+        <br>
+        <%= link_to "Create New Account", "/sign_up" %>
     </div>
     <button type="submit" class="btn">Submit</button>
     </form>
-    <button class="btn back-button"><%= link_to "Back", "/" %></button>
+    <%= button_to "Back", "/", class: "btn back-button", method: :get %>
     </div>
 </div>

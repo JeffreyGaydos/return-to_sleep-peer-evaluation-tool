@@ -24,6 +24,6 @@
 
             <%= f.submit "Create Account", class: "btn"%>
         <% end %>
-    <button class="btn back-button"><%= link_to "Back", "/" %></button>
+        <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
     </div>
 </div>

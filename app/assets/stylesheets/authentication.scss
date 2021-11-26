@@ -39,6 +39,12 @@ div.custom-jumbo {
     }
 }
 
+@media screen and (max-width: 750px) {
+    div.custom-jumbo {
+        margin: 10% 5%;
+    }
+}
+
 a {
     color: $theme-color-1;
     text-decoration: none !important;
@@ -46,9 +52,10 @@ a {
 
 body {
     margin: 0px !important;
+    padding-bottom: 100px;
 }
 
-div.psuedo-body {
+body.auth {
     position: absolute;
     width: 100%;
     height: max-content;
@@ -57,7 +64,7 @@ div.psuedo-body {
     background-repeat: repeat !important;
 }
 
-button.back-button {
+input.back-button {
     float: right;
     margin-top: -38px;
 }

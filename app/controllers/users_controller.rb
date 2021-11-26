@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        render(:layout => 'internal.html.erb')
+        render(:layout => 'authentication.html.erb')
     end
 
     def create
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         if @user.save
             #success
         else
-            render('new', :layout => 'internal.html.erb')
+            render('new', :layout => 'authentication.html.erb')
         end
     end
 
