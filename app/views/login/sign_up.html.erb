@@ -3,25 +3,21 @@
 <div class="psuedo-body">
     <div class="custom-jumbo">
     <h1>Let's get you started:</h1>
-    <form action="/action_page.php">
-    <div class="mb-3 mt-3">
-        <label for="name" class="form-label">Name:</label>
-        <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
-    </div>
-    <div class="mb-3 mt-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-    </div>
-    <div class="mb-3">
-        <label for="pwd" class="form-label">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-    </div>
-    <div class="mb-3">
-        <label for="pwd" class="form-label">Re-Enter Password:</label>
-        <input type="password" class="form-control" id="r-pwd" placeholder="Enter password" name="r-pswd">
-    </div>
-    <button type="submit" class="btn">Submit</button>
+        <%= form_with(model: @user, local: true) do |f| %>
+            <%= f.label :name%>
+            <%= f.text_field :name%>
+            
+            <%= f.label :email%>
+            <%= f.email_field :email%>
+
+            <%= f.label :password%>
+            <%= f.password_field :password%>
+
+            <%= f.label :password_confirmation, "Re-Enter Password"%>
+            <%= f.password_field :password_confirmation%>
+
+            <%= f.submit "Create Account", class: "btn"%>
+        <% end %>
     <button class="btn back-button"><%= link_to "Back", "/" %></button>
-    </form>
     </div>
 </div>

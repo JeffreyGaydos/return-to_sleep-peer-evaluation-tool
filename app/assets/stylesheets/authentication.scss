@@ -8,22 +8,30 @@ div.custom-jumbo {
     border: 2px solid $theme-color-1;
     padding: 30px;
     
-    input {
+    input:not(.btn) {
         border: 2px solid $theme-color-1-trans !important;
+        width: 100%;
+        display: block;
+        margin: 0px 0px 25px 0px;
     }
     
     input:focus {
         border: 2px solid $theme-color-1 !important;
     }
 
-    button {
+    input.btn, button {
         color: $theme-color-1;
         border: 1px solid $theme-color-1;
     }
 
-    button:hover {
+    input.btn:hover, button:hover {
         background-color: $theme-color-1;
         color: white !important;
+    }
+
+    input.btn:hover, button:hover a {
+        color: white;
+        transition: all 0.3s;
     }
 
     h1, label {
@@ -40,11 +48,6 @@ body {
     margin: 0px !important;
 }
 
-button:hover a {
-    color: white;
-    transition: all 0.3s;
-}
-
 div.psuedo-body {
     position: absolute;
     width: 100%;
@@ -55,4 +58,5 @@ div.psuedo-body {
 
 button.back-button {
     float: right;
+    margin-top: -38px;
 }
