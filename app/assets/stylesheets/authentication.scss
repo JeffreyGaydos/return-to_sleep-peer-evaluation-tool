@@ -9,7 +9,7 @@ div.custom-jumbo {
     padding: 30px;
     
     input:not(.btn) {
-        border: 2px solid $theme-color-1-trans !important;
+        border: 2px solid $theme-color-1-trans;
         width: 100%;
         display: block;
         margin: 0px 0px 25px 0px;
@@ -51,9 +51,10 @@ body {
 div.psuedo-body {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: max-content;
     min-height: 700px;
     background-image: url('FreeBlueBackgroundEdit.jpg') !important;
+    background-repeat: repeat !important;
 }
 
 button.back-button {
