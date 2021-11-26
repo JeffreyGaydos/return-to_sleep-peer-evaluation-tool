@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 2021_11_18_203559) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "peer_evals", force: :cascade do |t|
+    t.integer "score"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.integer "team_id"
