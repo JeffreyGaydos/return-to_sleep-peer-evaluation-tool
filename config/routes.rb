@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get '/reset_password', to: 'login#reset_password'
   get '/sign_up', to: 'login#sign_up'
   get '/about', to: 'home_page#about'
-  get '/', to: 'home_page#init'
+  root 'home_page#init'
 end

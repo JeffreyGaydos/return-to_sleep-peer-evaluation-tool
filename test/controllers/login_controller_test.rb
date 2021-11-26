@@ -1,9 +1,26 @@
 require 'test_helper'
 
 class LoginControllerTest < ActionDispatch::IntegrationTest
-  test "should get init" do
-    get login_init_url
+  def setup
+    @base_title = "Peer Evaluation Tool - "
+  end
+
+  test "should get login init" do
+    get "/login"
     assert_response :success
+    assert_select "title", "#{@base_title}Login"
+  end
+
+  test "should get sign up" do
+    get "/sign_up"
+    assert_response :success
+    assert_select "title", "#{@base_title}Sign Up"
+  end
+  
+  test "should get reset password" do
+    get "/reset_password"
+    assert_response :success
+    assert_select "title", "#{@base_title}Reset Password"
   end
 
 end
