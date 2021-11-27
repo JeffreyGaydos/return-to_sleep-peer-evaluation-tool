@@ -16,8 +16,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       post "/users", params: { user: { name: "", email: "", password: "", password_confirmation: ""}}
     end
-    
+  end
+
+  test "invalid sign-up should trigger error messages" do
+    get "/sign_up"
+    post "/users", params: { user: { name: "", email: "", password: "", password_confirmation: ""}}
     assert_select "#error-explanation"
+  end
+
+  test "valid sign-up should create a new user" do
+    get "/sign_up"
+    assert_difference 'User.count', 1 do
+      post "/users", params: { user: { name: "Jeffrey Gaydos", email: "jg@osu.edu", password: "SomethingC00l", password_confirmation: "SomethingC00l"}}
+    end
   end
 
 end

@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.7'
 #markdown compiler...
 gem "redcarpet"
 
+#to test template presence
+gem 'rails-controller-testing'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
