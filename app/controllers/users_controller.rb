@@ -20,19 +20,19 @@ class UsersController < ApplicationController
         end
     end
 
-    def new_admin
-        @user = User.new
-        render(:layout => 'authentication.html.erb')
-    end
+    # def new_admin
+    #     @user = User.new
+    #     render(:layout => 'authentication.html.erb')
+    # end
 
-    def create_admin
-        @user = User.new(user_params)
-        if @user.save
-            redirect_to '/admins/new'
-        else
-            render('new_admin', :layout => 'authentication.html.erb')
-        end
-    end
+    # def create_admin
+    #     @user = User.new(user_params)
+    #     if @user.save
+    #         redirect_to '/admins/new'
+    #     else
+    #         render('new_admin', :layout => 'authentication.html.erb')
+    #     end
+    # end
 
     private
         def user_params
