@@ -1,0 +1,30 @@
+<%#
+    Essentially the sign up page
+    linked directly to the user object through helper functions
+%>
+<% provide(:title, "Instructors' Sign Up") %>
+
+<div class="psuedo-body">
+    <div class="custom-jumbo">
+    <h1>Let's get you started:</h1>
+        <%= form_with(model: @user, local: true, url: "/sign_up/instructors") do |f| %>
+            <%= render 'shared/error_messages' %>
+
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+            
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control" %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control" %>
+
+            <%= f.label :password_confirmation, "Re-Enter Password" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+
+            <%= f.submit "Next", class: "btn" %>
+            <%= link_to "Student? Use this sign-up form instead.", "/sign_up" %>
+        <% end %>
+        <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
+    </div>
+</div>

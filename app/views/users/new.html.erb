@@ -23,6 +23,7 @@
             <%= f.password_field :password_confirmation, class: "form-control"%>
 
             <%= f.submit "Create Account", class: "btn"%>
+            <%= link_to "Course Instructor? Use this sign-up form instead.", "/sign_up/instructors" %>
         <% end %>
         <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
     </div>

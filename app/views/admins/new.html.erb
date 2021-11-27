@@ -1,0 +1,17 @@
+<% provide(:title, "Instructors' Sign Up") %>
+
+<div class="psuedo-body">
+    <div class="custom-jumbo">
+    <h1>University Identification:</h1>
+        <%= form_with(model: @admin, local: true) do |f| %>
+            <%= render 'shared/admin_error_messages' %>
+
+            <%= f.label :institution_id, "Institution ID" %>
+            <%= f.text_field :name, class: "form-control" %>
+
+            <%= f.submit "Create Admin Account", class: "btn" %>
+            <%= link_to "Student? Use this sign-up form instead.", "/sign_up" %>
+        <% end %>
+        <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
+    </div>
+</div>
