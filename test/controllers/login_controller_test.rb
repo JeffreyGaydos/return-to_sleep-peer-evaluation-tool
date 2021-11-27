@@ -10,12 +10,6 @@ class LoginControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "#{@base_title}Login"
   end
-
-  test "should get sign up" do
-    get "/sign_up"
-    assert_response :success
-    assert_select "title", "#{@base_title}Sign Up"
-  end
   
   test "should get reset password" do
     get "/reset_password"
