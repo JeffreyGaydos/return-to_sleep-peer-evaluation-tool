@@ -39,6 +39,7 @@ class AdminsController < ApplicationController
     def create_admin #creating the user for this admin
         @user = User.new(user_params)
         if @user.save
+            @user.update_attribute(:admin_id, -1) #denotes that someone attempted to become an admin, but did not authenticate with their institution
             redirect_to "/sign_up/institution_auth?user_id=#{@user[:id]}"
         else
             render('new_admin', :layout => 'authentication.html.erb')

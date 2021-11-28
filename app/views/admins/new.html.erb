@@ -3,7 +3,7 @@
 <div class="psuedo-body">
     <div class="custom-jumbo">
     <h1>University Identification:</h1>
-        <%= form_with(model: @admin, local: true, url: "/sign_up/institution_auth?user_id=#{request.params[:user_id]}") do |f| %>
+        <%= form_with(model: @admin, local: true, url: "/sign_up/institution_auth?user_id=#{@current_user[:id] if logged_in?}#{request.params[:user_id] if !logged_in?}") do |f| %>
             <%= render 'shared/admin_error_messages' %>
 
             <p>NOTE: You can complete this step later by logging in and clicking the "Institution Authentication" link</p>
@@ -11,9 +11,13 @@
             <%= f.label :institution_id %>
             <%= f.text_field :institution_id, class: "form-control" %>
 
-            <%= f.submit "Create Admin Account", class: "btn" %>
-            <%= link_to "Student? Use this sign-up form instead.", "/sign_up" %>
+            <%= f.submit "Authenticate", class: "btn" %>
+            <% if !logged_in? %>
+                <%= link_to "Student? Use this sign-up form instead.", "/sign_up" %>
+            <% end %>
         <% end %>
-        <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
+        <% if !logged_in? %>
+            <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
+        <% end %>
     </div>
 </div>

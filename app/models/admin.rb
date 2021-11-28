@@ -1,7 +1,7 @@
 class Admin < ApplicationRecord
     validates :user_id, presence: true, uniqueness: true
     validates :institution_id, presence: true
-    has_one :user, validate: true, required: true
+    has_one :user, validate: false, required: true #we don't validate users here because we allow an admin_id of -1 to exist, denoting inauthorized institution
     belongs_to :institution, validate: true, required: true
 
     after_create :update_user

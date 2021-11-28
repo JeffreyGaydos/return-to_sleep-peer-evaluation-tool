@@ -1,5 +1,5 @@
 <header>
-    <h1><%= link_to "Peer Evaluation Tool [ADMINS]", "/" %></h1>
+    <h1><%= link_to "Peer Evaluation Tool", "/" %></h1>
     <ul class="nav small">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"></a>
@@ -7,12 +7,42 @@
                 <li>
                     <a class="nav-link" href="/about">About</a>  
                 </li>
+                <% if @admin_rights == -1 %>
+                    <li>
+                        <a class="nav-link important-link" href="/sign_up/institution_auth?user=<%= @current_user[:id] %>">Authenticate with your University</a>  
+                    </li>
+                <% else %>
+                    <li>
+                        <a class="nav-link" href="/about">My Courses</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/about">My Students</a>
+                    </li>
+                <% end %>
+                <li>
+                    <a class="nav-link" href="/about">Logout</a>
+                </li>
             </ul>
         </li>
     </ul>
     <ul class="nav large">
         <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
+        </li>
+        <% if @admin_rights == -1 %>
+            <li>
+                <a class="nav-link important-link" href="/sign_up/institution_auth?user=<%= @current_user[:id] %>">Authenticate with your University</a>  
+            </li>
+        <% else %>
+            <li>
+                <a class="nav-link" href="/about">My Courses</a>  
+            </li>
+            <li>
+                <a class="nav-link" href="/about">My Students</a>
+            </li>
+        <% end %>
+        <li>
+            <a class="nav-link sign-up" href="/about">Logout</a>
         </li>
     </ul>
     <div></div>

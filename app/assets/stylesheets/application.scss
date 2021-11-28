@@ -90,6 +90,15 @@ header {
     .nav.small {
         display: none !important;
     }
+
+    .important-link {
+        background-color: $theme-color-1;
+        color: white !important;
+    }
+
+    .important-link:hover {
+        background-color: black;
+    }
 }
 
 @media screen and (max-width: 750px) {
