@@ -1,4 +1,7 @@
 class TeamControllerStudentController < ApplicationController
-  def view
+  def team_view
+  end
+
+  def team_list
   end
 end

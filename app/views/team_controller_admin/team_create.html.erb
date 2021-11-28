@@ -1,2 +1,28 @@
-<h1>TeamControllerAdmin#team_create</h1>
-<p>Find me in app/views/team_controller_admin/team_create.html.erb</p>
+<% provide(:title, 'Create Teams') %>
+<% team_name_input_id = "team_name_input" %>
+<% select_student_id = "select_student" %>
+
+<h1>Create Teams</h1>
+<div class="form-group">
+  <label for=<%= team_name_input_id %>> Team Name:</label>
+  <input class="form-control" id=<%= team_name_input_id %> type="text">
+</div>
+<div class="form-group">
+  <label for=<%= select_student_id %>>Select a student to add:</label>
+  <select class="form-control" <%= select_student_id %>>
+<!--    TODO: Iterate through all students of a class and list them as options-->
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+
+  <button type="button" class="btn btn-success">Add to team</button>
+<!--  TODO: Add some tooltip or some message -->
+  <div class="alert alert-success">
+    <strong>Awesome!</strong> Successfully added <strong>name</strong>.
+  </div>
+  <div class="alert alert-danger">
+    <strong>Oh no!</strong> Unable to add <strong>name</strong>.
+  </div>
+</div>

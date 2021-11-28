@@ -4,4 +4,7 @@ class TeamControllerAdminController < ApplicationController
 
   def team_create
   end
+
+  def team_view
+  end
 end

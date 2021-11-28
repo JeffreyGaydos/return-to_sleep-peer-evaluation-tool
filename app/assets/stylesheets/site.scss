@@ -1,0 +1,36 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* universal */
+
+body {
+  padding-top: 4em;
+}
+
+section {
+  overflow: auto;
+
+}
+textarea {
+  resize: vertical;
+}
+.center {
+  text-align: center;
+
+}
+.center h1 {
+  margin-bottom: 4em;
+
+}
+
+
+
+/* header */
+// We're sticking with defaults for the time being.
+header
+{
+
+}
+
+footer {
+}

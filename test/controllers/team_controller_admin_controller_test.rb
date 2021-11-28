@@ -2,12 +2,17 @@ require 'test_helper'
 
 class TeamControllerAdminControllerTest < ActionDispatch::IntegrationTest
   test "should get team_list" do
-    get team_controller_admin_team_list_url
+    get instructor_team_list_path
     assert_response :success
   end
 
   test "should get team_create" do
-    get team_controller_admin_team_create_url
+    get instructor_team_create_path
+    assert_response :success
+  end
+
+  test "should get team_view" do
+    get instructor_team_view_path
     assert_response :success
   end
 
