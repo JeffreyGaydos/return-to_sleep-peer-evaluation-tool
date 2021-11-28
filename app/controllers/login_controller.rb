@@ -17,6 +17,8 @@ class LoginController < ApplicationController
   end
 
   def destroy
+    log_out
+    redirect_to '/'
   end
 
   def reset_password

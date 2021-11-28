@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home_page#init'
   get '/login', to: 'login#init'
   post '/login', to: 'login#create'
-  delete '/login', to: 'login#delete'
+  delete '/login', to: 'login#destroy'
   get '/reset_password', to: 'login#reset_password'
   get '/sign_up', to: 'users#new'
   get '/sign_up/instructors', to: 'admins#new_admin'
