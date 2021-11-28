@@ -6,7 +6,10 @@ class LoginController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      #nothing yet, successfully logged in...
+      #valid credentials:
+      log_in user
+      redirect_to user
+      #render(user, :layout => 'internal.html.erb')
     else
       flash.now[:danger] = "Invalid email & password combination"
       render('init', :layout => 'authentication.html.erb')
