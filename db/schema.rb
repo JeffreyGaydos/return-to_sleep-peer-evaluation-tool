@@ -10,12 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_205607) do
+ActiveRecord::Schema.define(version: 2021_11_18_203559) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "peer_evals", force: :cascade do |t|
+    t.integer "score"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.integer "team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.boolean "needs_eval"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "course_id"
+  end
+
+  create_table "teams_users", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_teams_users_on_team_id"
+    t.index ["user_id"], name: "index_teams_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,4 +57,6 @@ ActiveRecord::Schema.define(version: 2021_11_16_205607) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "teams_users", "teams"
+  add_foreign_key "teams_users", "users"
 end

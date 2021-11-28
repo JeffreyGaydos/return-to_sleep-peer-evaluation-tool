@@ -7,7 +7,13 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    belongs_to :admin, optional: true
+    #The following 2 lines are required to set up the many_to_many relationship between Courses and Users
     #uncomment once we have those models present
-    #has_and_belongs_to_many :courses 
-    #has_and_belongs_to_many :teams
+    # has_many :courses_users
+    # has_many :courses, through: :courses_users
+
+    #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
+    has_many :teams_users
+    has_many :teams, through: :teams_users
 end
