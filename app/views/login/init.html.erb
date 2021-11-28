@@ -1,3 +1,4 @@
+<% if !logged_in? %>
 <% provide(:title, "Login") %>
 
 <div class="psuedo-body">
@@ -24,3 +25,7 @@
     <%= button_to "Back", "/", class: "btn back-button", method: :get %>
     </div>
 </div>
+
+<% else %>
+    <%= render "/shared/permission_denied" %>
+<% end %>

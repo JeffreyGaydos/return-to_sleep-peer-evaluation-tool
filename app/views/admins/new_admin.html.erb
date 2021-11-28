@@ -2,6 +2,8 @@
     Essentially the sign up page
     linked directly to the user object through helper functions
 %>
+<% if !logged_in? %>
+
 <% provide(:title, "Instructors' Sign Up") %>
 
 <div class="psuedo-body">
@@ -28,3 +30,6 @@
         <%= button_to "Login Instead", "/login", class: "btn back-button", method: :get %>
     </div>
 </div>
+<% else %>
+    <%= render "/shared/permission_denied" %>
+<% end %>

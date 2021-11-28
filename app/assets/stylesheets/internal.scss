@@ -1,2 +1,39 @@
 @import 'application.scss';
 //Currently unused
+
+img.locked {
+    position: relative;
+    margin: auto;
+    width: 40vh;
+    padding-top: 20px;
+}
+
+h1.locked, p.locked {
+    color: white;
+    padding: 50px;
+}
+
+a.locked {
+    color: white;
+    display: block;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: min-content;
+    padding: 10px;
+    margin: auto;
+    transition: all 0.3s;
+}
+
+a.locked:hover {
+    background-color: white;
+    color: $theme-color-1;
+}
+
+div.lock-body {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url('FreeBlueBackgroundEdit.jpg') !important;
+}
