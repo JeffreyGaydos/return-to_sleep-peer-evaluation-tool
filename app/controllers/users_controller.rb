@@ -13,9 +13,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            log_in @user
+            user_id = log_in @user
             flash[:success] = "Account Created successfully. Welcome to return to_sleep's Peer Evaluation Tool!"
-            render('show', :layout => 'internal.html.erb')
+            #render('show', :layout => 'internal.html.erb')
+            redirect_to "/users/#{user_id}"
         else
             render('new', :layout => 'authentication.html.erb')
         end

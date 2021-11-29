@@ -1,4 +1,4 @@
-<% if logged_in? && @current_user[:id] == params[:id].to_i %>
+<% if session[:user_id] == params[:id].to_i %>
 <%# Hyper-basic profile page, just for debugging atm %>
 <%= @user.name %>
 <%= @user.email %>
