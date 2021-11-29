@@ -2,7 +2,9 @@ class TeamControllerAdminController < ApplicationController
 
   # Renders the team_listing page for a specific course as an admin.
   def team_list
-    @admin_current_course = "!!! TEMP!!!!"
+    @current_course_id = 1;
+    @current_course_name = "[Insert Course name here]"
+    @course_teams
     # @admin_team_listings - Team...
     # Get an array of all of the teams asssociated with @admin_current_course
     # Display all of them and given options for editing and deleting.
