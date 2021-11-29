@@ -1,0 +1,85 @@
+@import 'application.scss';
+
+//Credential Blocking Partial:
+img.locked {
+    position: relative;
+    margin: auto;
+    width: 40vh;
+    padding-top: 20px;
+}
+
+h1.locked, p.locked {
+    color: white;
+    padding: 50px;
+}
+
+a.locked {
+    color: white;
+    display: block;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: min-content;
+    padding: 10px;
+    margin: auto;
+    transition: all 0.3s;
+}
+
+a.locked:hover {
+    background-color: white;
+    color: $theme-color-1;
+}
+
+div.lock-body {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url('FreeBlueBackgroundEdit.jpg') !important;
+}
+
+//Profile Page for Users
+img.prof-pic {
+    box-shadow: 0px 0px 5px black;
+    border-radius: 100%;
+    width: 100px;
+    margin: 10px;
+}
+
+h1.name {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+div.left-pannel {
+    width: 25%;
+    min-width: 360px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.right-pannel {
+    margin: auto;
+    width: calc(50% - 50px);
+    display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+    div.right-pannel {
+        width: max-content;
+        display: block;
+        margin: auto;
+        text-align: center;
+        
+        ul {
+            text-align: left !important;
+        }
+    }
+
+    div.left-pannel {
+        width: min-content;
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+}

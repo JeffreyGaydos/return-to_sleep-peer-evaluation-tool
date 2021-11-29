@@ -1,4 +1,4 @@
-<%# For the home page, before you even have an account %>
+<%# For When the user is "inside" of the application, after they have been authenticated %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,10 +10,8 @@
     <title>Peer Evaluation Tool - <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render 'layouts/shim' %>
 
+    <%= stylesheet_link_tag 'internal', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -25,6 +23,9 @@
       <% end %>
     <% else %>
       <%= render "shared/external_header" %>
+    <% end %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
     <%= yield %>
   </body>

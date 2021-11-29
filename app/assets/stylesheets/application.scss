@@ -1,0 +1,135 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$theme-color-1: #252574;
+$theme-color-1-trans: rgba(37, 37, 116, 0.25);
+$text-color-1: #FFFFFF;
+$theme-color-2: #e2e2e2;
+$text-color-2: #252574;
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $theme-color-1;
+    color: $text-color-1;
+    height: min-content;
+    p {
+        display: inline-block;
+        margin: 0;
+    }
+    p.right {
+        float: right;
+    }
+}
+
+body {
+    margin-bottom: 100px;
+}
+
+.nav-link {
+    color: $theme-color-1 !important;
+    border: 1px solid rgba(1, 1, 1, 0) !important;
+}
+
+.nav-link:hover {
+    border: 1px solid $theme-color-1 !important;
+}
+
+header {
+    padding: 10px;
+    background-color: white;
+    height: min-content;
+    h1 {
+        color: $text-color-2;
+        display: inline-block;
+        margin: 0;
+    }
+    h1:hover a{
+        color: $theme-color-1;
+    }
+    ul {
+        margin-top: 0px;
+        float: right;
+        vertical-align: middle;
+        a {
+            border-radius: 5px;
+        }
+    }
+    .sign-up {
+        border: 1px solid $theme-color-1 !important;
+    }
+    .sign-up:hover {
+        border-color: $theme-color-1 !important;
+        color: $text-color-1 !important;
+        background-color: $theme-color-1 !important;
+    }
+    div {
+        background-color: $theme-color-1;
+        width: 100%;
+        height: 3px;
+    }
+
+    .nav.large {
+        display: flex !important;
+    }
+
+    .nav.small {
+        display: none !important;
+    }
+
+    .important-link {
+        background-color: $theme-color-1;
+        color: white !important;
+    }
+
+    .important-link:hover {
+        background-color: black;
+    }
+}
+
+div.divider {
+    background-color: $theme-color-2;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 15px;
+}
+
+div.content {
+    margin: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    footer {
+        p.right {
+            float: left;
+        }
+    }
+
+    header {
+        ul.nav.small {
+            display: block !important;
+        }
+
+        .nav.large {
+            display: none !important;
+        }
+    }
+
+    .dropdown-menu {
+        padding: 0 !important;
+    }
+}
