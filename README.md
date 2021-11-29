@@ -28,3 +28,7 @@ Markdown Compilation for home page:
 Tutorial code emulated primarily for User model and authentication systems:
 * Ruby on Rails Tutorial, 6th Edition - Michael Hartl
 
+## Things we would have liked to add, time permitting:
+* Profile images
+* Public profiles
+* Greater security and email validation, especially for institution validation

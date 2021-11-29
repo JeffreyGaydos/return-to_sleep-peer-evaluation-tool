@@ -1,7 +1,23 @@
 <% if session[:user_id] == params[:id].to_i %>
 <%# Hyper-basic profile page, just for debugging atm %>
-<%= @user.name %>
-<%= @user.email %>
+<div class="content">
+    <div class="left-pannel">
+        <table aria-role="presentation">
+            <td>
+                <%= image_tag "ProfilePic.png", alt: "Default Profile Picture", class: "prof-pic" %>
+            </td>
+            <td>
+                <h1 class="name"><%= @user.name %></h1>
+            </td>
+        </table>
+        <p class="email">Associated Email: <%= @user.email %></p>
+    </div>
+    <% if User.find_by(id: session[:user_id])[:admin_id] %>
+        <%= render "shared/admin_account" %>
+    <% else %>
+        <%= render "shared/student_account" %>
+    <% end %>
+</div>
 <% else %>
     <%= render "/shared/permission_denied" %>
 <% end %>
