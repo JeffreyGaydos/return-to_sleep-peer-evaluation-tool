@@ -22,8 +22,13 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
 * Students can add and drop classes at will
 * Deployed on Heroku
 ## Resources Used:
-Model has_one relation validation code from user "amasses":
-* https://apidock.com/rails/ActiveRecord/Validations/ClassMethods/validates_associated
+Markdown Compilation for home page:
+* https://web-crunch.com/posts/how-to-add-markdown-support-to-ruby-on-rails
 
 Tutorial code emulated primarily for User model and authentication systems:
 * Ruby on Rails Tutorial, 6th Edition - Michael Hartl
+
+## Things we would have liked to add, time permitting:
+* Profile images
+* Public profiles
+* Greater security and email validation, especially for institution validation

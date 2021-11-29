@@ -1,0 +1,70 @@
+@import 'application.scss';
+
+div.custom-jumbo {
+    margin: 10% 25%;
+    height: max-content;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid $theme-color-1;
+    padding: 30px;
+    
+    input:not(.btn) {
+        border: 2px solid $theme-color-1-trans;
+        width: 100%;
+        display: block;
+        margin: 0px 0px 25px 0px;
+    }
+    
+    input:focus {
+        border: 2px solid $theme-color-1 !important;
+    }
+
+    input.btn, button {
+        color: $theme-color-1;
+        border: 1px solid $theme-color-1;
+    }
+
+    input.btn:hover, button:hover {
+        background-color: $theme-color-1;
+        color: white !important;
+    }
+
+    input.btn:hover, button:hover a {
+        color: white;
+        transition: all 0.3s;
+    }
+
+    h1, label {
+        color: $theme-color-1;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    div.custom-jumbo {
+        margin: 10% 5%;
+    }
+}
+
+a {
+    color: $theme-color-1;
+    text-decoration: none !important;
+}
+
+body {
+    margin: 0px !important;
+    padding-bottom: 100px;
+}
+
+body.auth {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    min-height: 700px;
+    background-image: url('FreeBlueBackgroundEdit.jpg') !important;
+    background-repeat: repeat !important;
+}
+
+input.back-button {
+    float: right;
+    margin-top: -38px;
+}

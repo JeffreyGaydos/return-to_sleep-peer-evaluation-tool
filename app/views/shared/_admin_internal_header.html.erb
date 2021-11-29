@@ -1,0 +1,55 @@
+<header>
+    <h1><%= link_to "Peer Evaluation Tool", "/" %></h1>
+    <ul class="nav small">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="nav-link" href="/about">About</a>  
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">Account</a>
+                </li>
+                <% if @admin_rights == -1 %>
+                    <li>
+                        <a class="nav-link important-link" href="/sign_up/institution_auth?user=<%= @current_user[:id] %>">Authenticate with your University</a>  
+                    </li>
+                <% else %>
+                    <li>
+                        <a class="nav-link" href="/about">Courses</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/about">Students</a>
+                    </li>
+                <% end %>
+                <li>
+                    <%= link_to "Logout", "/logout", class: "nav-link sign-up" %>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav large">
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/about">Account</a>
+        </li>
+        <% if @admin_rights == -1 %>
+            <li>
+                <a class="nav-link important-link" href="/sign_up/institution_auth?user=<%= @current_user[:id] %>">Authenticate with your University</a>  
+            </li>
+        <% else %>
+            <li>
+                <a class="nav-link" href="/about">Courses</a>  
+            </li>
+            <li>
+                <a class="nav-link" href="/about">Students</a>
+            </li>
+        <% end %>
+        <li>
+            <%= link_to "Logout", "/logout", class: "nav-link sign-up" %>
+        </li>
+    </ul>
+    <div></div>
+</header>

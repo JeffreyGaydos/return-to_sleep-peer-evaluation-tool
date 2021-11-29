@@ -24,6 +24,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#markdown compiler...
+gem "redcarpet"
+
+#to test template presence
+gem 'rails-controller-testing'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -54,3 +60,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootstrap-sass',   '3.4.1' # Don't know if we'll need these below
+gem 'rails-controller-testing'
