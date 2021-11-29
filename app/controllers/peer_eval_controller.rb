@@ -1,0 +1,2 @@
+class PeerEvalController < ApplicationController
+end

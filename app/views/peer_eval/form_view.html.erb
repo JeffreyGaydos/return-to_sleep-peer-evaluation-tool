@@ -1,0 +1,15 @@
+<% provide(:title, 'Form view View (Student)') %>
+
+<div>
+ <% form_with(model: @peer_eval, local: true) do |f| %>
+  
+  <%= f.label :score %>
+  <%# <%= f.score :score %> %>
+
+  <%= f.text_field :comment %>
+  <%# <%= f.comment :comment %> %>
+
+  <%= f.submit "Submit peer evaluation" %>
+
+ <% end %>
+</div> 

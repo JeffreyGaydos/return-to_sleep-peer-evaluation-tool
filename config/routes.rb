@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get '/student/team_view', to: 'team_controller_student#team_view'
   get '/student/team_list', to: 'team_controller_student#team_list'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'student/form_view', to: 'peer_eval#form_view'
 end
