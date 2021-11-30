@@ -1,0 +1,22 @@
+<% provide(:title, 'Team View (Admin)') %>
+<div class="container">
+<h1>Team: <%= @team.name %></h1>
+
+  <br/>
+    <p>Team Members</p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Member Name</th>
+        <th>Action</th>
+      </tr>
+  <!--    </thead>-->
+  <!--    <tbody>-->
+  <!--    <tr>-->
+  <!--      <td>Member</td>-->
+  <!--      <td><%#= link_to "Kick", "#"%></td>-->
+  <!--    </tr>-->
+  <!--    </tbody>-->
+    </table>
+    <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
+</div>
