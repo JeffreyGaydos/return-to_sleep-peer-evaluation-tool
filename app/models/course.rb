@@ -7,5 +7,5 @@ class Course < ApplicationRecord
     has_many :course_admin
     has_many :admins, through: :course_admin
 
-    has_many :teams, optional: true
+    has_many :teams
 end
