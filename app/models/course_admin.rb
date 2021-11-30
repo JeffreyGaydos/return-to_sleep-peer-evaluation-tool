@@ -1,5 +1,5 @@
 class CourseAdmin < ApplicationRecord
-  belongs_to :admin, validate: false
+  belongs_to :admin, validate: true
   belongs_to :course, validate: true
 
   validates_uniqueness_of :admin_id, :scope => [:course_id]
