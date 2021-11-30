@@ -18,9 +18,15 @@
       <%= f.text_field :name, {:class => 'form-control'} %>
     </p>
     <p>
+      <%= f.label :course_id%>
+      <br>
+      <%= f.number_field :course_id, {:class => 'form-control'} %>
+<!--      Commented line below fills in class number instead-->
+<!--      <input class="form-control" type="number" value=<%#= @team.course.class_number %> name="team[course_id]" id="team_course_id">-->
+    </p>
+    <p>
       <%= f.submit ({:class => 'btn btn-primary'}) %>
       <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
     </p>
-
   <% end %>
 </div>

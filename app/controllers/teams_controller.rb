@@ -26,8 +26,10 @@ class TeamsController < ApplicationController
     end
   end
 
+  # Returns a hash that initalizes a Team object
   private def get_teams_params
-    params.require(:team).permit(:name)
+    hash = params.require(:team).permit(:name, :course_id) # Course_id may be the course number.
+    # return {:name => hash[:name], :course_id => Course.find_by_class_number(hash[:course_id]).id}
   end
 
   # /teams/id #
@@ -52,6 +54,7 @@ class TeamsController < ApplicationController
     #
     @teams = Team.all
 
+    # @teams = @current_user.team.all
     #@admin_rights = TRUE #Put here for debugging
     if @admin_rights
       render 'team_admin/index'
