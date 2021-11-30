@@ -11,7 +11,9 @@
             </td>
         </table>
         <p class="email">Associated Email: <%= @user.email %></p>
-        <%= link_to "Delete Account", "/delete_account?user=#{session[:user_id]}", class: "btn-danger", method: :delete %>
+        <%= link_to "Delete Account", "/delete_account?user=#{session[:user_id]}", class: "btn btn-outline-danger"%>
+        <%= link_to "Reset Password", "/reset_password?user=#{session[:user_id]}", class: "btn btn-outline reset-password" %>
+        <div class="divider-both"></div>
     </div>
     <% if User.find_by(id: session[:user_id])[:admin_id] %>
         <%= render "shared/admin_account" %>

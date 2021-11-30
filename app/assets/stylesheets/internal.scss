@@ -84,6 +84,16 @@ div.right-pannel {
     }
 }
 
+.btn.reset-password {
+    color: $theme-color-1;
+    border: 1px solid $theme-color-1;
+}
+
+.btn.reset-password:hover {
+    color: white;
+    background-color: $theme-color-1;
+}
+
 //Delete account page
 div.da-container {
     margin: auto;
@@ -100,7 +110,7 @@ span.email {
     color: $theme-color-1;
 }
 
-button.cancel {
+.cancel {
     border-color: $theme-color-1;
     color: $theme-color-1;
     position: relative;
@@ -108,7 +118,7 @@ button.cancel {
     margin: 30px 0px;
 }
 
-button.cancel:hover {
+.cancel:hover {
     border-color: $theme-color-1;
     color: white;
     background-color: $theme-color-1;
@@ -121,7 +131,7 @@ button.cancel:hover {
 }
 
 @media screen and (max-width: 800px) {
-    button.cancel {
+    .cancel {
         display: block;
         margin: auto;
         left: 0;

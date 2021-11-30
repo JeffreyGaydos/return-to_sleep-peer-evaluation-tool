@@ -3,7 +3,7 @@
     <div class="da-container">
         <h3>Are you sure you want to delete the account associated with the eamil <span class="email"><%= User.find_by(id: session[:user_id])[:email]%></span>?</h1>
         <%= form_with(model: @user, local: true, url: "/users/#{session[:user_id]}", method: :delete) do |f| %>
-            <button class="btn btn-outline-secondary cancel">Cancel</button>
+            <%= link_to "Cancel", "/users/#{session[:user_id]}", class: "btn btn-outline-secondary cancel"%>
             <%= f.submit "Delete Account", class: "btn btn-outline-danger delete-account"%>
         <% end %>
     </div>
