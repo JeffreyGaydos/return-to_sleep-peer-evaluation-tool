@@ -5,18 +5,22 @@
 
 <!--  If the user entered invalid stuff for teams, render error messages-->
   <%= form_for :team, url:teams_path do |f| %>
-
     <%if not @team.errors.blank? %>
       <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
       <% @team.errors.full_messages.each do |msg| %>
         <div class="alert alert-danger"> <%=msg %></div>
       <%end %>
     <%end %>
-<!--    Always rendered forms-->
+    <!--    Always rendered forms-->
     <p>
       <%= f.label :name%>
       <br>
       <%= f.text_field :name, {:class => 'form-control'} %>
+    </p>
+    <p>
+      <%= f.label :course_id%>
+      <br>
+      <%= f.number_field :course_id, {:class => 'form-control'} %>
     </p>
     <p>
       <%= f.submit ({:class => 'btn btn-primary'}) %>
