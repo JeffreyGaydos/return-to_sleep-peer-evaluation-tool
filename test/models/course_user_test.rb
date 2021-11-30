@@ -30,4 +30,16 @@ class CourseUserTest < ActiveSupport::TestCase
     course_user2 = CourseUser.new(course: @course2, user: @user)
     assert course_user2.valid?
   end
+
+  test "Dissallow invalid users in relation" do
+    bad_user = User.new(name: "", email: "", password: "", password_confirmation: "")
+    bad_course_user = CourseUser.new(course: @course, user: bad_user)
+    assert_not bad_course_user.valid?
+  end
+
+  test "Dissallow invalid courses in relation" do
+    bad_course = Course.new()
+    bad_course_user = CourseUser.new(course: bad_course, user: @user)
+    assert_not bad_course_user.valid?
+  end
 end
