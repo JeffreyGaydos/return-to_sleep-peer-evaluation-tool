@@ -5,12 +5,7 @@ class PeerEval < ApplicationRecord
 
   # define database relationships
   belongs_to :user
-
-=begin
-  Uncomment when created
-
   belongs_to :team
   belongs_to :project
-=end
   
 end

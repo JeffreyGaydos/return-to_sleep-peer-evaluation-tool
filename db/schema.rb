@@ -52,8 +52,14 @@ ActiveRecord::Schema.define(version: 2021_11_30_000520) do
   create_table "peer_evals", force: :cascade do |t|
     t.integer "score"
     t.string "comment"
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_peer_evals_on_project_id"
+    t.index ["team_id"], name: "index_peer_evals_on_team_id"
+    t.index ["user_id"], name: "index_peer_evals_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|

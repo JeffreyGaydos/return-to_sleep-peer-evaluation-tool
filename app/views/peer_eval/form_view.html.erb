@@ -10,7 +10,7 @@
   <%= f.text_field :comment %>
 
   <%= f.label :evaluated_peer %>
-  <%= f.collection_select :peer_id, @users, :id, :name %>
+  <%= f.collection_select :evaluated_user_id, @users, :id, :name %>
 
   <%= f.submit "Submit peer evaluation" %>
 
