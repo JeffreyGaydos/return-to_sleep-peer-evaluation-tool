@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/about', to: 'home_page#about'
   resources :users
   resources :admins
+  resources :courses
   resources :institutions
   get '/instructor/team_list', to: 'team_controller_admin#team_list'
   get '/instructor/team_create', to: 'team_controller_admin#team_create'
