@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   get '/sign_up/institution_auth', to: 'admins#new'
   post '/sign_up/institution_auth', to: 'admins#create'
   get '/about', to: 'home_page#about'
+
   resources :users
   resources :admins
   resources :courses
   resources :institutions
+
   get '/instructor/team_list', to: 'team_controller_admin#team_list'
   get '/instructor/team_create', to: 'team_controller_admin#team_create'
   get '/instructor/team_view', to: 'team_controller_admin#team_view'
