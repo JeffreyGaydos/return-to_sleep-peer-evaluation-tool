@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :institutions
+  get 'delete_account', to: 'users#delete_account'
+  delete 'delete_account', to: 'users#delete_confirmed'
 
   resources :teams
 

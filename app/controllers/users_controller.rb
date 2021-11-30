@@ -22,6 +22,21 @@ class UsersController < ApplicationController
         end
     end
 
+    def delete_account
+        render(:layout => 'internal.html.erb')
+    end
+
+    def delete_confirmed
+        log_out
+        User.find_by(id: params[:user].to_i).destroy(params[:user].to_i)
+    end
+
+    def destroy
+        User.find(params[:id]).destroy
+        flash[:success] = "Your account has been successfully deleted"
+        redirect_to "/"
+    end
+
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)
