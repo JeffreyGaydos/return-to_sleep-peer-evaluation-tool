@@ -1,9 +1,8 @@
 <% provide(:title, 'Team View (Student)') %>
-
-<h1>Team blackball </h1>
-<br>
 <div class="container">
-  <p>Team Members</p>
+<h1>Team: <%= @team.name %></h1>
+<br>
+  <h2>Team Members</h2>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -12,14 +11,12 @@
     </thead>
     <tbody>
     <tr>
-      <td>Your mom</td>
+      <td>Add here</td>
     </tr>
     </tbody>
   </table>
-</div>
 <hr/>
-<div class="container">
-  <p>Peer evaluations and scores</p>
+  <h2>Peer evaluations and scores</h2>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -29,9 +26,10 @@
     </thead>
     <tbody>
     <tr>
-      <td>Your mom</td>
-      <td>6.9</td>
+      <td>Placeholder</td>
+      <td>Placeholder</td>
     </tr>
     </tbody>
   </table>
+  <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
 </div>

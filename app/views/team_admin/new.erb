@@ -1,0 +1,26 @@
+<% provide(:title, 'Create Teams') %>
+
+<div class="container">
+  <h1>Create Teams</h1>
+
+<!--  If the user entered invalid stuff for teams, render error messages-->
+  <%= form_for :team, url:teams_path do |f| %>
+
+    <%if not @team.errors.blank? %>
+      <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
+      <% @team.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"> <%=msg %></div>
+      <%end %>
+    <%end %>
+<!--    Always rendered forms-->
+    <p>
+      <%= f.label :name%>
+      <br>
+      <%= f.text_field :name, {:class => 'form-control'} %>
+    </p>
+    <p>
+      <%= f.submit ({:class => 'btn btn-primary'}) %>
+      <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
+    </p>
+  <% end %>
+</div>
