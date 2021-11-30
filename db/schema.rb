@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_225125) do
+ActiveRecord::Schema.define(version: 2021_11_30_000520) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "institution_id"
+  end
+
+  create_table "course_admins", force: :cascade do |t|
+    t.integer "admin_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_course_admins_on_admin_id"
+    t.index ["course_id"], name: "index_course_admins_on_course_id"
+  end
+
+  create_table "course_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_users_on_course_id"
+    t.index ["user_id"], name: "index_course_users_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.integer "class_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "institutions", force: :cascade do |t|
@@ -65,6 +89,10 @@ ActiveRecord::Schema.define(version: 2021_11_27_225125) do
     t.integer "admin_id"
   end
 
+  add_foreign_key "course_admins", "admins"
+  add_foreign_key "course_admins", "courses"
+  add_foreign_key "course_users", "courses"
+  add_foreign_key "course_users", "users"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
 end
