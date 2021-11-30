@@ -3,7 +3,7 @@
 <h1>Teams Listing (Admin)</h1>
 <div class="container">
   <h2>Teams</h2>
-  <p>Here are all of the teams for course XXXXX</p>
+  <p>Here are all of the teams for course <%= @admin_current_course%></p>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -16,7 +16,8 @@
     <tr>
       <td>Your mom</td>
       <td>69</td>
-      <td>Edit/Delete</td>
+      <td><%= link_to "Edit", '/instructor/team_view' %>/<%= link_to "Delete", 'team_controller_admin#team_delete' %>
+      </td>
     </tr>
     </tbody>
   </table>

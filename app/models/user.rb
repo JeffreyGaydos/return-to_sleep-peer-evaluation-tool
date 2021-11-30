@@ -14,6 +14,6 @@ class User < ApplicationRecord
     # has_many :courses, through: :courses_users
 
     #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
-    has_many :teams_users
-    has_many :teams, through: :teams_users
+    has_many :teams_user
+    has_many :teams, through: :teams_user
 end
