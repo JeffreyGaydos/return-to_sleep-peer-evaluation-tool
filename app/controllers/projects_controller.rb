@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   # Returns a hash that initalizes a Team object
   private def get_project_params
     hash = params.require(:project).permit(:name)
-    return {team_id: params[:team_id], name: hash[:name]}
+    {team_id: params[:team_id], name: hash[:name]}
   end
 
   # Show a specific project page #
@@ -50,13 +50,44 @@ class ProjectsController < ApplicationController
     #
     # @projects_for_team = Project.find
 
-    # @teams = @current_user.team.all
     @admin_rights = TRUE #Put here for debugging
+    team_id = params[:team_id]
+    @team = Team.find_by(id: team_id)
 
-    # if @admin_rights
-    #   render 'team_admin/index'
-    # else
-    #   render 'team_student/index'
-    # end
+    #Get all projects associated with team
+  end
+
+  # EDIT STUF ######
+
+  # Renders the edit page
+  def edit
+    @admin_rights = TRUE #Put here for debugging
+    if @admin_rights
+      @project = Project.find(params[:id])
+    else
+      render 'shared/denied'
+    end
+  end
+
+
+  # Gets called when we want to patch
+  def update
+    @project = Project.find(params[:id])
+
+    if @project.update(get_project_params)
+      redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
+    else
+      render 'projects/edit'
+    end
+  end
+
+  ######### Destroy/Delete action. Removes the Team member from the db ############
+
+  # Removes team member from database
+  def destroy
+    @project= Project.find(params[:id])
+    @project.destroy
+
+    redirect_to team_projects_path
   end
 end
