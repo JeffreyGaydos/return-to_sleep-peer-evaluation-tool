@@ -3,7 +3,8 @@ require 'test_helper'
 class TeamTest < ActiveSupport::TestCase
 
   def setup
-    @team = Team.new(name: "team name")
+    @course = Course.new(class_number: 3901)
+    @team = Team.new(name: "team name", course: @course)
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   end
 

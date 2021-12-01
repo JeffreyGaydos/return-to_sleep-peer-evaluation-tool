@@ -12,7 +12,7 @@ class CourseAdminTest < ActiveSupport::TestCase
     @admin = Admin.new(user: @user, user_id: 1, institution: @institution, institution_id: 1)
     @user2 = User.new(name: "Example User2", email: "user2@example.com", password: "foobar", password_confirmation: "foobar")
     @user2.save
-    @admin2 = Admin.new(user: @user2, user_id: 1, institution: @institution, institution_id: 1)
+    @admin2 = Admin.new(user: @user2, user_id: 2, institution: @institution, institution_id: 1)
 
     @course_admin = CourseAdmin.new(course: @course, admin: @admin)
   end

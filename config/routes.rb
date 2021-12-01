@@ -22,4 +22,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'student/form_view', to: 'peer_eval#form_view'
   post 'student/form_view', to: 'peer_eval#create'
+
+  resources :teams
+
+  # For acessing specific users that are part of a team.
+  resources :teams do
+    resources :teams_user
+  end
 end

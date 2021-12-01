@@ -2,8 +2,9 @@ require 'test_helper'
 
 class TeamsUserTest < ActiveSupport::TestCase
   def setup
-    @team = Team.new(name: "team1")
-    @team2 = Team.new(name: "team2")
+    @course = Course.new(class_number: 3901)
+    @team = Team.new(name: "team1", course: @course)
+    @team2 = Team.new(name: "team2", course: @course)
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
     @user2 = User.new(name: "Example User2", email: "user2@example.com", password: "foobar", password_confirmation: "foobar")
     @teams_user = TeamsUser.new(team: @team, user: @user)

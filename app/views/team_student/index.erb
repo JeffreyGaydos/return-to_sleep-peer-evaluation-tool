@@ -1,25 +1,26 @@
 <% provide(:title, 'Team List (Student)') %>
-
-<h1>Teams Listing (Student)</h1>
 <div class="container">
+<h1>Teams Listing (Student)</h1>
   <h2>Teams</h2>
   <p>Here are all of the teams you are a part of!</p>
   <table class="table table-striped">
     <thead>
     <tr>
       <th>Team Name</th>
-      <th>Number of Members</th>
-      <th>Course</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Your mom</td>
-      <td>69</td>
-      <td>CSE 42069</td>
-      <td><%= link_to "View", "/student/team_view" %></td>
-    </tr>
+    <% @teams.each  do |team| %>
+      <tr>
+        <td>
+          <%=team.name %></td>
+        </td>
+        <td>
+          <%= link_to "View", team_path(team), :class => 'text-primary' %>
+        </td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 </div>
