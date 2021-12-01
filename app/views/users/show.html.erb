@@ -16,9 +16,9 @@
         <div class="divider-both"></div>
     </div>
     <% if User.find_by(id: session[:user_id])[:admin_id] %>
-        <%= render "shared/admin_account" %>
+        <%= render "shared/admin_account", locals: {managed_courses: @managed_courses, managed_teams: @managed_teams, co_admins: @co_admins} %>
     <% else %>
-        <%= render "shared/student_account" %>
+        <%= render "shared/student_account", locals: {courses: @courses, teams: @teams, admins: @admins} %>
     <% end %>
 </div>
 <% else %>
