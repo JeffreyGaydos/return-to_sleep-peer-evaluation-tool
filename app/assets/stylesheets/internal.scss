@@ -83,3 +83,68 @@ div.right-pannel {
         text-align: center;
     }
 }
+
+.btn.reset-password {
+    color: $theme-color-1;
+    border: 1px solid $theme-color-1;
+}
+
+.btn.reset-password:hover {
+    color: white;
+    background-color: $theme-color-1;
+}
+
+//Delete account page
+div.da-container {
+    margin: auto;
+    width: 40vw;
+    padding: 1%;
+    height: max-content;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    top: 25%;
+}
+
+span.email {
+    color: $theme-color-1;
+}
+
+.cancel {
+    border-color: $theme-color-1;
+    color: $theme-color-1;
+    position: relative;
+    left: -5vw;
+    margin: 30px 0px;
+}
+
+.cancel:hover {
+    border-color: $theme-color-1;
+    color: white;
+    background-color: $theme-color-1;
+}
+
+.delete-account {
+    position: relative;
+    right: -5vw;
+    margin: 30px 0px;
+}
+
+@media screen and (max-width: 800px) {
+    .cancel {
+        display: block;
+        margin: auto;
+        left: 0;
+    }
+
+    .delete-account {
+        display: block;
+        margin: auto;
+        left: 0;
+    }
+
+    div.da-container {
+        word-break: break-word;
+        width: 100%;
+    }
+}
