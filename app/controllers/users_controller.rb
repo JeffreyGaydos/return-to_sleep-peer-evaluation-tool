@@ -37,6 +37,20 @@ class UsersController < ApplicationController
         redirect_to "/"
     end
 
+    def edit
+        @user = User.find(params[:id])
+        render(:layout => 'authentication.html.erb')
+    end
+
+    def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            render("show", :layout => 'internal.html.erb')
+        else
+            render('edit', :layout => 'authentication.html.erb')
+        end
+    end
+
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)
