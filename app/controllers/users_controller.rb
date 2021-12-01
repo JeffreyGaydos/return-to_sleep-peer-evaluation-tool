@@ -1,9 +1,20 @@
 class UsersController < ApplicationController
 
     def show
+        #Shared locals
         @user = User.find(params[:id])
+
+        #student locals
         @courses = @user.courses
         @teams = @user.teams
+        @admins = []
+        @courses.each do |course|
+            @admins.push(course.admins)
+        end
+        #@admins is now a collection of lists of admins, organized by class
+
+        #admin locals
+        @managed_courses = @user.admin.courses
         render(:layout => 'internal.html.erb')
     end
 

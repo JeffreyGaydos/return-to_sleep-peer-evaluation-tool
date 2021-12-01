@@ -12,16 +12,19 @@
         <% @teams.each do |t| %>
             <li><%= t.name%></li>
             <ul>
-                <li>[Member Name]</li>
-                <li>[Member Name]</li>
-                <li>[Member Name]</li>
+                <% t.users.each do |tu| %>
+                    <li><%= tu.name%></li>
+                <% end %>
             </ul>
         <% end %>
     </ul>
     <h1>Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Instructor Name]: [Course Name]</li>
-        <li>[Instructor Name]: [Course Name]</li>
+        <% @admins.each do |ac| %>
+            <% ac.each do |a| %>
+                <li><%= a.user.name%> : <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).class_number %></li>
+            <% end %>
+        <% end %>
     </ul>
 </div>
