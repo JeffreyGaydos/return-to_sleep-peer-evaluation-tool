@@ -21,4 +21,9 @@ Rails.application.routes.draw do
   resources :teams do
     resources :teams_user
   end
+
+  # Routes for accessing projects for a team
+  resources :teams do
+    resources :projects
+  end
 end

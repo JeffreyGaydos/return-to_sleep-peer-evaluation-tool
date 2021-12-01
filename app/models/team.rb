@@ -18,5 +18,5 @@ class Team < ApplicationRecord
   #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
   has_many :teams_users,  dependent: :destroy
   has_many :users, through: :teams_users
-
+  has_many :projects
 end
