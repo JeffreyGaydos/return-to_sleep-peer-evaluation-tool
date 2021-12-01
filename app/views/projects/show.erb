@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>
+    Project <%=@project.name %>
+  </h1>
+  <p>for team <%=@project.team.name %></p>
+
+<!--  Button here for peer evals for this project-->
+  <% if @admin_rights %>
+  <%= link_to "Create Peer Evals for this project", '#', :class => 'btn btn-primary'%>
+  <% else %>
+  <% end %>
+</div>

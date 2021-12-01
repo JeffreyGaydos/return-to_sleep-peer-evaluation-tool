@@ -1,7 +1,8 @@
 <% provide(:title, 'Team View (Admin)') %>
 <div class="container">
-<h1>Team: <%= @team.name %></h1>
-
+  <h1>Team View (Admin)</h1>
+  <hr/>
+  <h2>Team <%= @team.name %> for course <%= @team.course.class_number %></h2>
   <br/>
     <p>Team Members</p>
     <table class="table table-striped">
@@ -19,4 +20,6 @@
   <!--    </tbody>-->
     </table>
     <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
+<!--    get request to http://localhost:3000/teams/[SOME TEAM ID NUMBER]/projects/new-->
+    <%= link_to "Create new project", new_team_project_url(params[:id]), :class => 'btn btn-primary'%>
 </div>
