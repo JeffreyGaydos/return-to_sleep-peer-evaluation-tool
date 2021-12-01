@@ -22,4 +22,5 @@
     <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
 <!--    get request to http://localhost:3000/teams/[SOME TEAM ID NUMBER]/projects/new-->
     <%= link_to "Create new project", new_team_project_url(params[:id]), :class => 'btn btn-primary'%>
+    <%= link_to "To Project Page", team_projects_path(team_id: params[:id]), :class => 'btn btn-primary'%>
 </div>

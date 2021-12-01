@@ -88,7 +88,6 @@ class TeamsController < ApplicationController
   end
 
   ######### Destroy/Delete action. Removes the Team member from the db ############
-  #
 
   # Removes team member from database
   def destroy

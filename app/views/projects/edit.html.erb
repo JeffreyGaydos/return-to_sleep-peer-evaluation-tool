@@ -1,10 +1,10 @@
-<% provide(:title, 'Create Project') %>
+<% provide(:title, 'Edit Teams') %>
 
 <div class="container">
-  <% curr_team = Team.find_by(id: params[:team_id]) %>
-  <h1>Create project for team <%= curr_team.name %> (team_id = <%= params[:team_id] %>)</h1>
-      <!--  Forms for creating a new time. Always rendered-->
-  <%= form_for :project, url:team_projects_path do |f| %>
+  <h1>Editing project <%= @project.name %> for team  <%= @project.team.name %></h1>
+
+  <!--  If the user entered invalid stuff for teams, render error messages-->
+  <%= form_for :project, url:team_project_path(team_id: @project.team.id, id: @project.id), method: :patch do |f| %>
     <%if not @project.errors.blank? %>
       <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
       <% @project.errors.full_messages.each do |msg| %>
@@ -18,7 +18,7 @@
       <%= f.text_field :name, {:class => 'form-control'} %>
     </p>
     <p>
-      <%= f.submit ({:class => 'btn btn-primary'}) %>
+      <%= f.submit({:class => 'btn btn-primary'}) %>
       <%= link_to "To Team Page", team_path(params[:team_id]), :class => 'btn btn-primary'%>
       <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
     </p>
