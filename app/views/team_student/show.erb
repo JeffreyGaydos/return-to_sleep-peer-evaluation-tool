@@ -1,6 +1,8 @@
 <% provide(:title, 'Team View (Student)') %>
 <div class="container">
-<h1>Team: <%= @team.name %></h1>
+  <h1>Team View (Student)</h1>
+  <hr/>
+  <h1>Team <%= @team.name %> for course <%= @team.course.class_number %></h1>
 <br>
   <h2>Team Members</h2>
   <table class="table table-striped">
