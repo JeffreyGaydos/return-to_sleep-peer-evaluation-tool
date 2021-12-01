@@ -15,6 +15,13 @@ class UsersController < ApplicationController
 
         #admin locals
         @managed_courses = @user.admin.courses
+        @managed_teams = []
+        @co_admins = []
+        @managed_courses.each do |mcourse|
+            @managed_teams.push(mcourse.teams)
+            @co_admins.push(mcourse.admins)
+        end
+        #@managed_teams is now a collection of lists of teams, organized by class
         render(:layout => 'internal.html.erb')
     end
 

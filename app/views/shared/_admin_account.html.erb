@@ -9,23 +9,22 @@
     <h1>Managed Teams:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Team Name]</li>
-        <li>[Team Name]</li>
-        <li>[Team Name]</li>
-        <li>[Team Name] ~ We don't want all the members names here</li>
+        <% @managed_teams.each do |mc| %>
+            <% mc.each do |mt| %>
+                <li><%= mt.name%></li>
+            <% end %>
+        <% end %>
     </ul>
     <h1>Co-Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Course Name]</li>
-        <ul>
-            <li>[Student Admin]</li>
-            <li>[Student Admin]</li>
-        </ul>
-        <li>[Course Name]</li>
-        <ul>
-            <li>[Student Admin]</li>
-            <li>[Student Admin]</li>
-        </ul>
+        <% @co_admins.each_index do |i| %>
+            <li><%= @managed_courses[i].class_number %></li>
+            <ul>
+                <% @co_admins[i].each do |a| %>
+                    <li><%= a.user.name%></li>
+                <% end %>
+            </ul>
+        <% end %>
     </ul>
 </div>
