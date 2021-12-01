@@ -16,7 +16,7 @@ class Team < ApplicationRecord
   # it is required to have the associated record present by default after this change.
 
   #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
-  has_many :teams_users
+  has_many :teams_users,  dependent: :destroy
   has_many :users, through: :teams_users
-
+  has_many :projects
 end

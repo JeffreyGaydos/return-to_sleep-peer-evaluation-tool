@@ -1,0 +1,26 @@
+<% provide(:title, 'Create Project') %>
+
+<div class="container">
+  <% curr_team = Team.find_by(id: params[:team_id]) %>
+  <h1>Create project for team <%= curr_team.name %> (team_id = <%= params[:team_id] %>)</h1>
+      <!--  Forms for creating a new time. Always rendered-->
+  <%= form_for :project, url:team_projects_path do |f| %>
+    <%if not @project.errors.blank? %>
+      <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
+      <% @project.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"> <%=msg %></div>
+      <%end %>
+    <%end %>
+
+    <p>
+      <%= f.label :name%>
+      <br>
+      <%= f.text_field :name, {:class => 'form-control'} %>
+    </p>
+    <p>
+      <%= f.submit ({:class => 'btn btn-primary'}) %>
+      <%= link_to "To Team Page", team_path(params[:team_id]), :class => 'btn btn-primary'%>
+      <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
+    </p>
+  <% end %>
+</div>

@@ -13,11 +13,18 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :institutions
+  get 'delete_account', to: 'users#delete_account'
+  delete 'delete_account', to: 'users#delete_confirmed'
 
   resources :teams
 
   # For acessing specific users that are part of a team.
   resources :teams do
     resources :teams_user
+  end
+
+  # Routes for accessing projects for a team
+  resources :teams do
+    resources :projects
   end
 end

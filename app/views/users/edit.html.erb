@@ -1,0 +1,29 @@
+<% if logged_in? %>
+<% provide(:title, "Edit User") %>
+
+<div class="psuedo-body">
+    <div class="custom-jumbo">
+    <h1>Update Your Account:</h1>
+        <%= form_with(model: @user, local: true) do |f| %>
+            <%= render 'shared/error_messages' %>
+
+            <%= f.label :name%>
+            <%= f.text_field :name, class: "form-control"%>
+            
+            <%= f.label :email%>
+            <%= f.email_field :email, class: "form-control"%>
+
+            <%= f.label :password%>
+            <%= f.password_field :password, class: "form-control"%>
+
+            <%= f.label :password_confirmation, "Re-Enter Password"%>
+            <%= f.password_field :password_confirmation, class: "form-control"%>
+
+            <%= f.submit "Save Changes", class: "btn"%>
+        <% end %>
+        <%= button_to "Back", "/users/#{current_user[:id]}", class: "btn back-button", method: :get %>
+    </div>
+</div>
+<% else %>
+    <%= render "/shared/permission_denied" %>
+<% end %>
