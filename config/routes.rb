@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/login', to: 'login#init'
   post '/login', to: 'login#create'
   get '/logout', to: 'login#destroy'
-  get '/reset_password', to: 'login#reset_password'
   get '/sign_up', to: 'users#new'
   get '/sign_up/instructors', to: 'admins#new_admin'
   post '/sign_up/instructors', to: 'admins#create_admin'

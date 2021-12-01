@@ -2,7 +2,9 @@
     <h1>Enrolled Courses:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[For loop here looping over all the courses please]</li>
+        <% @courses.each do |c| %>
+            <li><%= c.class_number%></li>
+        <% end %>
     </ul>
     <h1>Teams:</h1>
     <div class="divider"></div>
