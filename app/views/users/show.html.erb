@@ -15,7 +15,7 @@
     <% if User.find_by(id: session[:user_id])[:admin_id] %>
         <%= render "shared/admin_account" %>
     <% else %>
-        <%= render "shared/student_account", locals: {courses: @courses} %>
+        <%= render "shared/student_account", locals: {courses: @courses, teams: @teams} %>
     <% end %>
 </div>
 <% else %>

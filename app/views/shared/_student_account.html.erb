@@ -9,12 +9,14 @@
     <h1>Teams:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Team Name]</li>
-        <ul>
-            <li>[Member Name]</li>
-            <li>[Member Name]</li>
-            <li>[Member Name]</li>
-        </ul>
+        <% @teams.each do |t| %>
+            <li><%= t.name%></li>
+            <ul>
+                <li>[Member Name]</li>
+                <li>[Member Name]</li>
+                <li>[Member Name]</li>
+            </ul>
+        <% end %>
     </ul>
     <h1>Administrators:</h1>
     <div class="divider"></div>

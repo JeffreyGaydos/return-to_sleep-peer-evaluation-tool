@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @courses = @user.courses
+        @teams = @user.teams
         render(:layout => 'internal.html.erb')
     end
 
