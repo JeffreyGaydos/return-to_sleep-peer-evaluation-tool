@@ -11,13 +11,19 @@
     <thead>
     <tr>
       <th>Team Name</th>
+      <th>Course</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <% @teams.each  do |team| %>
       <tr>
-        <td><%=team.name %></td>
+        <td>
+          <%=team.name %>
+        </td>
+        <td>
+<!--          Course goes here -->
+          <%= team.course.class_number%>
         </td>
         <td>
           <%= link_to "View", team_path(team) ,:class => 'text-primary' %> /  <%= link_to "Edit", edit_team_path(team) %> /

@@ -2,13 +2,13 @@ class TeamsController < ApplicationController
 
   # Renders the new page
   def new
-    #@admin_rights = TRUE #Put here for debugging
+    @admin_rights = TRUE #Put here for debugging
 
     if @admin_rights
       @team = Team.new # Fixes an error, patchwork fix
       render 'team_admin/new'
     else
-      render 'team_student/denied'
+      render 'shared/denied'
     end
   end
 
@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    #@admin_rights = TRUE #Put here for debugging
+    @admin_rights = TRUE #Put here for debugging
     if @admin_rights
       render 'team_admin/show'
     else
@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
     @teams = Team.all
 
     # @teams = @current_user.team.all
-    #@admin_rights = TRUE #Put here for debugging
+    @admin_rights = TRUE #Put here for debugging
     if @admin_rights
       render 'team_admin/index'
     else
@@ -67,12 +67,12 @@ class TeamsController < ApplicationController
 
   # Renders the edit page
   def edit
-    #@admin_rights = TRUE #Put here for debugging
+    @admin_rights = TRUE #Put here for debugging
     if @admin_rights
       @team = Team.find(params[:id])
       render 'team_admin/edit'
     else
-      render 'team_student/denied'
+      render 'shared/denied'
     end
   end
 
@@ -88,7 +88,6 @@ class TeamsController < ApplicationController
   end
 
   ######### Destroy/Delete action. Removes the Team member from the db ############
-  #
 
   # Removes team member from database
   def destroy

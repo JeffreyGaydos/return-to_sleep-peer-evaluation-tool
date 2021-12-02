@@ -4,6 +4,9 @@ class Admin < ApplicationRecord
     has_one :user, validate: false, required: true #we don't validate users here because we allow an admin_id of -1 to exist, denoting inauthorized institution
     belongs_to :institution, validate: true, required: true
 
+    has_many :course_admin
+    has_many :courses, through: :course_admin
+
     after_create :update_user
 
     def update_user

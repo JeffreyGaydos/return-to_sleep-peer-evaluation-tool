@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/login', to: 'login#init'
   post '/login', to: 'login#create'
   get '/logout', to: 'login#destroy'
-  get '/reset_password', to: 'login#reset_password'
   get '/sign_up', to: 'users#new'
   get '/sign_up/instructors', to: 'admins#new_admin'
   post '/sign_up/instructors', to: 'admins#create_admin'
@@ -14,14 +13,8 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :institutions
-  get '/instructor/team_list', to: 'team_controller_admin#team_list'
-  get '/instructor/team_create', to: 'team_controller_admin#team_create'
-  get '/instructor/team_view', to: 'team_controller_admin#team_view'
-  get '/student/team_view', to: 'team_controller_student#team_view'
-  get '/student/team_list', to: 'team_controller_student#team_list'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get 'student/form_view', to: 'peer_eval#form_view'
-  post 'student/form_view', to: 'peer_eval#create'
+  get 'delete_account', to: 'users#delete_account'
+  delete 'delete_account', to: 'users#delete_confirmed'
 
   resources :teams
 
@@ -29,4 +22,26 @@ Rails.application.routes.draw do
   resources :teams do
     resources :teams_user
   end
+
+  # Routes for accessing projects for a team
+  resources :teams do
+    resources :projects
+  end
+
+  # resources :teams do
+  #   resources :projects do
+  #     resources :peer_eval do
+  #         get 'teams/:id/projects/:id/peer_eval/:id', to: 'peer_eval#test'
+  #       end
+  #   end
+  # end
+
+  resources :teams do
+    resources :projects do
+      resources :peer_eval
+    end
+  end
+
+post '/teams/:team_id/projects/:project_id/peer_eval/new', to: 'peer_eval#create'
+
 end

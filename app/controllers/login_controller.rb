@@ -21,7 +21,4 @@ class LoginController < ApplicationController
     redirect_to '/'
   end
 
-  def reset_password
-    render(:layout => 'authentication.html.erb')
-  end
 end

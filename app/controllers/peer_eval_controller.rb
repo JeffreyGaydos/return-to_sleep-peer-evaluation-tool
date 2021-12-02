@@ -1,10 +1,11 @@
 class PeerEvalController < ApplicationController
 
-  def show
-    @peer_eval = PeerEval.find(params[:id])
-  end
+  # def show
+  #   @peer_eval = PeerEval.find(params[:id])
+  #   @users = User.all.select { |user| user.id != current_user[:id] }
+  # end
 
-  def form_view
+  def new
     
     @peer_eval = PeerEval.new
     @users = User.all.select { |user| user.id != current_user[:id] }

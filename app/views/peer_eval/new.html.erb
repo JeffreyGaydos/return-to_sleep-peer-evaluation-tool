@@ -1,7 +1,7 @@
 <% provide(:title, 'Form view View (Student)') %>
 
 <div>
- <%= form_with(model: @peer_eval, url: "form_view", local: true) do |f| %>
+ <%= form_with(model: @peer_eval, url: "new", local: true) do |f| %>
   
   <%= f.label :score %>
   <%= f.text_field :score %>
