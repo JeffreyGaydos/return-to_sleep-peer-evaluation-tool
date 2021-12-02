@@ -5,6 +5,9 @@
         <% @managed_courses.each do |mc| %>
             <li><%= mc.class_number%></li>
         <% end %>
+        <% if @managed_courses.length == 0 %>
+            <p class="faded">No Managed Courses</p>
+        <% end %>
     </ul>
     <h1>Managed Teams:</h1>
     <div class="divider"></div>
@@ -13,6 +16,9 @@
             <% mc.each do |mt| %>
                 <li><%= mt.name%></li>
             <% end %>
+        <% end %>
+        <% if @managed_teams.length == 0 %>
+            <p class="faded">No Managed Teams</p>
         <% end %>
     </ul>
     <h1>Co-Administrators:</h1>
@@ -25,6 +31,9 @@
                     <li><%= a.user.name%></li>
                 <% end %>
             </ul>
+        <% end %>
+        <% if @co_admins.length == 0 %>
+            <p class="faded">No Co-Admins</p>
         <% end %>
     </ul>
 </div>

@@ -14,12 +14,14 @@ class UsersController < ApplicationController
         #@admins is now a collection of lists of admins, organized by class
 
         #admin locals
-        @managed_courses = @user.admin.courses
-        @managed_teams = []
-        @co_admins = []
-        @managed_courses.each do |mcourse|
-            @managed_teams.push(mcourse.teams)
-            @co_admins.push(mcourse.admins)
+        if @user.admin
+            @managed_courses = @user.admin.courses
+            @managed_teams = []
+            @co_admins = []
+            @managed_courses.each do |mcourse|
+                @managed_teams.push(mcourse.teams)
+                @co_admins.push(mcourse.admins)
+            end
         end
         #@managed_teams is now a collection of lists of teams, organized by class
         render(:layout => 'internal.html.erb')
