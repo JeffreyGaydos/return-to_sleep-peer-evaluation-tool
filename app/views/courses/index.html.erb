@@ -1,4 +1,11 @@
 <h1> Courses </h1>
+
 <% @course.each do |course| %>
-    <h3><%= course.class_number %></h3>
+
+    <div class="well">
+            <h3>Course Name: <%= course.name %> | <%= course.class_number %></h3>
+            <button>Enroll</button>
+    </div>
+    <hr />
+
 <% end %>

@@ -10,8 +10,8 @@ class User < ApplicationRecord
     belongs_to :admin, optional: true
     #The following 2 lines are required to set up the many_to_many relationship between Courses and Users
     #uncomment once we have those models present
-    # has_many :courses_users
-    # has_many :courses, through: :courses_users
+    has_many :user_course
+    has_many :courses, through: :user_course
 
     #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
     has_many :teams_user

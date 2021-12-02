@@ -1,26 +1,29 @@
-class TeamControllerAdminController < ApplicationController
+class TeamsController < ApplicationController
 
   # Renders the team_listing page for a specific course as an admin.
-  def team_list
-    @admin_current_course = "!!! TEMP!!!!"
+  def show
+    @current_course_id = params[:id]
+    # CourseTeam.find_by(course_id: @current_course_id) #Givees you all of the teams for the course
+    @current_course_name = "[Insert Course name here]"
+
     # @admin_team_listings - Team...
     # Get an array of all of the teams asssociated with @admin_current_course
     # Display all of them and given options for editing and deleting.
+    #
+
+    render 'teams/team_list'
   end
 
-  def team_delete
+  def delete
+    team_to_delete_id = params[:team_to_delete]
     # Delete specific team from db.
     # Re-render team_list page.
+    Team.delete team_to_delete_id
     team_list
   end
 
-  # Edit a team by going to its view.
-  def team_edit
-
-  end
-
   # Renders the team_create page.
-  def team_create
+  def new
 
   end
 
@@ -30,12 +33,15 @@ class TeamControllerAdminController < ApplicationController
   end
 
   # Renders a spage where we view specific team and give options to edit team, like kicking a student
-  def team_view
-
+  def edit
+    @current_team_id = params[:team_id]
   end
 
   # Kicks a student from a team.
   def kick_student_from_team
+    student_to_be_removed_id = params[kick_id]
 
+    curr_user = User.find(student_to_be_removed_id)
   end
+
 end

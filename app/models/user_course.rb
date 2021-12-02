@@ -1,4 +1,4 @@
-class CourseUser < ApplicationRecord
+class UserCourse < ApplicationRecord
   belongs_to :user, validate: true
   belongs_to :course, validate: true
 

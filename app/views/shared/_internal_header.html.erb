@@ -8,10 +8,10 @@
                     <a class="nav-link" href="/about">About</a>  
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">Courses</a>
+                    <a class="nav-link" href="/courses">Courses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">Teams</a>
+                    <%= link_to "Teams", teams_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
                     <%= link_to "Account", "/users/#{@current_user[:id]}", class: "nav-link"%>
@@ -28,10 +28,10 @@
             <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/about">Courses</a>
+            <a class="nav-link" href="/courses">Courses</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/about">Teams</a>
+          <%= link_to "Teams", teams_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
             <%= link_to "Account", "/users/#{@current_user[:id]}", class: "nav-link"%>
