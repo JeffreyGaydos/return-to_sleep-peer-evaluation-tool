@@ -1,0 +1,48 @@
+<% if @admin_rights %>
+  <div class="container">
+    <h1>
+      Editing students for team <%= @team.name %>
+    </h1>
+    <hr/>
+    <h2>
+      Students from <%= @team.course.class_number %>
+    </h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Id</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @team.course.users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name %>
+          </td>
+          <td>
+            <%= user.id %>
+          </td>
+          <% if not @team.users.include? user%>
+          <td>
+            <%= link_to "Add Student", '/teams/' + @team.id.to_s + '/students/?user_id=' + user.id.to_s, method: :patch %>
+          </td>
+          <% else %>
+            <td>
+              <%= link_to "Delete Student", '/teams/' + @team.id.to_s + '/students/?user_id=' + user.id.to_s,
+                          method: :delete, data: {confirm: "Are you sure you want to delete user " + user.name+ "?"},
+                          :class => 'text-danger' %>
+            </td>
+          <% end%>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
+
+  </div>
+<% else %>
+  <%= render 'shared/permission_denied' %>
+<% end %>
