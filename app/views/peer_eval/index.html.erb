@@ -1,0 +1,29 @@
+<% provide(:title, 'Peer evaluation listS') %>
+<div class="container">
+
+  <h1> Your Peer evals for project <%= @project_num %> </h1>
+
+  <h2> Created Peer Evaluations: </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Student name</td>
+        <td>Score</td>
+        <td>Comment</td>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @peer_evals.each do |eval| %>
+        <td> <%= @users.find_by(id: eval.user_id).name %> </td>
+        <td> <%= eval.score %> </td>
+        <td> <%= eval.comment %> </td>
+      <% end %>
+
+    </tbody>
+  </table>
+
+  <button>New Eval</button>
+
+  <h2> Peer Evaluations Received </h2>
+</div>
