@@ -28,7 +28,7 @@
         <td>
           <%= link_to "View", team_path(team) ,:class => 'text-primary' %> /  <%= link_to "Edit", edit_team_path(team) %> /
           <%= link_to "Delete",  team_path(team), method: :delete, data: {confirm: "Are you sure you want to delete team " + team.name+ "?"}, :class => 'text-danger'%>
-          / <%= link_to "Add Students", '/teams/' + team.id.to_s + '/add_students'%>
+          / <%= link_to "Edit students", '/teams/' + team.id.to_s + '/students'%>
         </td>
       </tr>
     <% end %>

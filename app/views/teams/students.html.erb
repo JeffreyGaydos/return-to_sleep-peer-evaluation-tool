@@ -26,11 +26,11 @@
           </td>
           <% if not @team.users.include? user%>
           <td>
-            <%= link_to "Add Student", '/teams/' + @team.id.to_s + '/add_students/?user_id=' + user.id.to_s, method: :patch %>
+            <%= link_to "Add Student", '/teams/' + @team.id.to_s + '/students/?user_id=' + user.id.to_s, method: :patch %>
           </td>
           <% else %>
             <td>
-              <%= link_to "Delete Student", '/teams/' + @team.id.to_s + '/add_students/?user_id=' + user.id.to_s,
+              <%= link_to "Delete Student", '/teams/' + @team.id.to_s + '/students/?user_id=' + user.id.to_s,
                           method: :delete, data: {confirm: "Are you sure you want to delete user " + user.name+ "?"},
                           :class => 'text-danger' %>
             </td>
