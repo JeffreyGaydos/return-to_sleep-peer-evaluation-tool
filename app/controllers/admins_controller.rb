@@ -22,7 +22,7 @@ class AdminsController < ApplicationController
                 flash[:success] = "Admin Account Created successfully. Welcome to return to_sleep's Peer Evaluation Tool!"
                 log_in User.find_by "id", @admin[:user_id]
                 #render('show', :layout => 'internal.html.erb')
-                redirect_to "users/#{@admin[:user_id]}"
+                redirect_to "/users/#{@admin[:user_id]}"
             else
                 render('new', :layout => 'authentication.html.erb')
             end

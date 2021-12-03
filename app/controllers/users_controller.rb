@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         #student locals
         @courses = @user.courses
         @teams = @user.teams
-        @admins = []
+        @admins = [] #BAD BAD Admin can get an empty array inside of it, making it of length
         @courses.each do |course|
             @admins.push(course.admins)
         end
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
             end
         end
         #@managed_teams is now a collection of lists of teams, organized by class
+
         render(:layout => 'internal.html.erb')
     end
 
