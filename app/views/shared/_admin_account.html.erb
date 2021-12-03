@@ -2,28 +2,38 @@
     <h1>Managed Courses:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[For loop here looping over all the courses please]</li>
+        <% @managed_courses.each do |mc| %>
+            <li><%= mc.class_number%></li>
+        <% end %>
+        <% if @managed_courses.length == 0 %>
+            <p class="faded">No Managed Courses</p>
+        <% end %>
     </ul>
     <h1>Managed Teams:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Team Name]</li>
-        <li>[Team Name]</li>
-        <li>[Team Name]</li>
-        <li>[Team Name] ~ We don't want all the members names here</li>
+        <% @managed_teams.each do |mc| %>
+            <% mc.each do |mt| %>
+                <li><%= mt.name%></li>
+            <% end %>
+        <% end %>
+        <% if @managed_teams.length == 0 %>
+            <p class="faded">No Managed Teams</p>
+        <% end %>
     </ul>
     <h1>Co-Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <li>[Course Name]</li>
-        <ul>
-            <li>[Student Admin]</li>
-            <li>[Student Admin]</li>
-        </ul>
-        <li>[Course Name]</li>
-        <ul>
-            <li>[Student Admin]</li>
-            <li>[Student Admin]</li>
-        </ul>
+        <% @co_admins.each_index do |i| %>
+            <li><%= @managed_courses[i].class_number %></li>
+            <ul>
+                <% @co_admins[i].each do |a| %>
+                    <li><%= a.user.name%></li>
+                <% end %>
+            </ul>
+        <% end %>
+        <% if @co_admins.length == 0 %>
+            <p class="faded">No Co-Admins</p>
+        <% end %>
     </ul>
 </div>

@@ -7,9 +7,6 @@
                 <li>
                     <a class="nav-link" href="/about">About</a>  
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">Account</a>
-                </li>
                 <% if @admin_rights == -1 %>
                     <li>
                         <a class="nav-link important-link" href="/sign_up/institution_auth?user=<%= @current_user[:id] %>">Authenticate with your University</a>  
@@ -22,6 +19,9 @@
                         <a class="nav-link" href="/about">Students</a>
                     </li>
                 <% end %>
+                <li class="nav-item">
+                    <%= link_to "Account", "/users/#{@current_user[:id]}", class: "nav-link" %>
+                </li>
                 <li>
                     <%= link_to "Logout", "/logout", class: "nav-link sign-up" %>
                 </li>
@@ -31,9 +31,6 @@
     <ul class="nav large">
         <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/about">Account</a>
         </li>
         <% if @admin_rights == -1 %>
             <li>
@@ -47,6 +44,9 @@
                 <a class="nav-link" href="/about">Students</a>
             </li>
         <% end %>
+        <li class="nav-item">
+            <%= link_to "Account", "/users/#{@current_user[:id]}", class: "nav-link" %>
+        </li>
         <li>
             <%= link_to "Logout", "/logout", class: "nav-link sign-up" %>
         </li>

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/login', to: 'login#init'
   post '/login', to: 'login#create'
   get '/logout', to: 'login#destroy'
-  get '/reset_password', to: 'login#reset_password'
   get '/sign_up', to: 'users#new'
   get '/sign_up/instructors', to: 'admins#new_admin'
   post '/sign_up/instructors', to: 'admins#create_admin'
@@ -17,11 +16,18 @@ Rails.application.routes.draw do
   resources :admins
   resources :courses
   resources :institutions
+  get 'delete_account', to: 'users#delete_account'
+  delete 'delete_account', to: 'users#delete_confirmed'
 
   resources :teams
 
   # For acessing specific users that are part of a team.
   resources :teams do
     resources :teams_user
+  end
+
+  # Routes for accessing projects for a team
+  resources :teams do
+    resources :projects
   end
 end

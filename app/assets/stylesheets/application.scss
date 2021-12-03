@@ -108,6 +108,20 @@ div.divider {
     margin-bottom: 15px;
 }
 
+div.divider-top {
+    background-color: $theme-color-2;
+    width: 100%;
+    height: 3px;
+    margin-top: 15px;
+}
+
+div.divider-both {
+    background-color: $theme-color-2;
+    width: 100%;
+    height: 3px;
+    margin: 15px 0px;
+}
+
 div.content {
     margin: 25px;
 }
