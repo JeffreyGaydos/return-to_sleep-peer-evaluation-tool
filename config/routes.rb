@@ -22,6 +22,12 @@ Rails.application.routes.draw do
     resources :teams_user
   end
 
+  # Route for adding students to a team
+  get '/teams/:id/add_students', to: 'teams#add_students'
+  # POST for adding a new student.
+  patch '/teams/:id/add_students/', to: 'teams#add_students_patch'
+  delete '/teams/:id/add_students/', to: 'teams#add_students_delete'
+
   # Routes for accessing projects for a team
   resources :teams do
     resources :projects
