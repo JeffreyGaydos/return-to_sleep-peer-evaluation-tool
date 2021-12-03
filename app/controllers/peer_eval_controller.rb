@@ -14,7 +14,8 @@ class PeerEvalController < ApplicationController
   def new
     
     @peer_eval = PeerEval.new
-    @users = User.all.select { |user| user.id != current_user[:id] }
+    # filter out by peer evals that already exist as well as current user, need to filter to ones just within team
+    @users = User.all.select { |user| user.id != current_user[:id] && !PeerEval.exists?(user_id: user.id) }
 
   end
 
@@ -28,10 +29,11 @@ class PeerEvalController < ApplicationController
     @peer_eval.team_id = params[:team_id] # add team id from url params
     @peer_eval.project_id = params[:project_id] # add project id from url params
     
+    # Removed this check cause we are already filtering out existing peer evals
     if PeerEval.exists?(user_id: evaluated_user_id)
       flash[:alert] = "ERROR: Peer evaluation already exists for this user"
     elsif @peer_eval.save!
-      redirect_to "/users/#{current_user[:id]}"
+      redirect_to "/teams/#{params[:team_id]}/projects/#{params[:project_id]}/peer_eval"
     end
   end
   
