@@ -5,6 +5,9 @@
         <% @courses.each do |c| %>
             <li><%= c.class_number%></li>
         <% end %>
+        <% if @courses.length == 0 %>
+            <p class="faded">No Courses</p>
+        <% end %>
     </ul>
     <h1>Teams:</h1>
     <div class="divider"></div>
@@ -17,6 +20,9 @@
                 <% end %>
             </ul>
         <% end %>
+        <% if @teams.length == 0 %>
+            <p class="faded">No Teams</p>
+        <% end %>
     </ul>
     <h1>Administrators:</h1>
     <div class="divider"></div>
@@ -25,6 +31,9 @@
             <% ac.each do |a| %>
                 <li><%= a.user.name%> : <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).class_number %></li>
             <% end %>
+        <% end %>
+        <% if @admins.length == 0 %>
+            <p class="faded">No Related Admins</p>
         <% end %>
     </ul>
 </div>
