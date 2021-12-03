@@ -3,8 +3,12 @@
 <% @course.each do |course| %>
 
     <div class="well">
-            <h3>Course Name: <%= course.name %> | <%= course.class_number %></h3>
-            <button>Enroll</button>
+            <h3 class="wrap-name"><%= course.name %> | <%= course.class_number %></h3>
+            <%= form_for :course, local: true, scope: :session, url:"/courses/add?course=#{course[:id]}" do |f| %>
+               
+                <%= f.submit "Enroll", class: 'btn btn-primary course-btn' %> 
+               
+            <%end%>
     </div>
     <hr />
 
