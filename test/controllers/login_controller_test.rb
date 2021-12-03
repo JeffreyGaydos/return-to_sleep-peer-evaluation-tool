@@ -10,12 +10,6 @@ class LoginControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "#{@base_title}Login"
   end
-  
-  test "should get reset password" do
-    get "/reset_password"
-    assert_response :success
-    assert_select "title", "#{@base_title}Reset Password"
-  end
 
   test "Deny login with invalid credentials" do
     get '/login'
