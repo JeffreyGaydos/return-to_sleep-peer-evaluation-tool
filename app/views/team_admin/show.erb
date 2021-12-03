@@ -9,16 +9,21 @@
       <thead>
       <tr>
         <th>Member Name</th>
-        <th>Action</th>
+        <th>Id</th>
       </tr>
-  <!--    </thead>-->
-  <!--    <tbody>-->
-  <!--    <tr>-->
-  <!--      <td>Member</td>-->
-  <!--      <td><%#= link_to "Kick", "#"%></td>-->
-  <!--    </tr>-->
-  <!--    </tbody>-->
+
+      <% @team.users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name %>
+          </td>
+          <td>
+            <%= user.id %>
+          </td>
+        </tr>
+      <% end %>
     </table>
+
     <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
 <!--    get request to http://localhost:3000/teams/[SOME TEAM ID NUMBER]/projects/new-->
     <%= link_to "Create new project", new_team_project_url(params[:id]), :class => 'btn btn-primary'%>

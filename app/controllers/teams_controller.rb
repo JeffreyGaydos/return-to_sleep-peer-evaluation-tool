@@ -96,4 +96,26 @@ class TeamsController < ApplicationController
 
     redirect_to teams_path
   end
+
+  # Adding students to a team
+  def students
+    @team = Team.find(params[:id])
+    @admin_rights = TRUE #Put here for debugging
+  end
+
+  # Only update students here
+  def students_patch
+    @team = Team.find(params[:id])
+    @team.users << User.find_by(id: params[:user_id])
+    @admin_rights = TRUE
+    render 'teams/students'
+  end
+
+  # Only update students here
+  def students_delete
+    @team = Team.find(params[:id])
+    curr_user = User.find_by(id: params[:user_id])
+    @team.users.delete(curr_user)
+    redirect_to team_path(@team) + '/students/'
+  end
 end
