@@ -1,15 +1,19 @@
-<h1> Courses </h1>
+<%if logged_in? && !@admin_rights%>
+    <% provide(:title, 'Courses')%> 
+    <h1> Courses </h1>
+    <%if @course.length == current_user.courses.length%>
+        <p class="no-course">There are no more courses left to enroll in. Please check with an admin, if this does not seem correct.</p>
+    <%end%>
+    <% @course.each do |course| %>
+        <%if not current_user.courses.include?(course)%>
+            <div class="well">
+                    <h3 class="wrap-name"><%= course.name %> | <%= course.class_number %></h3>
+                    <%= form_for :course, local: true, scope: :session, url:"/courses/add?course=#{course[:id]}" do |f| %>
+                        <%= f.submit "Enroll", class: 'btn btn-primary course-btn' %> 
+                    <%end%>
+            </div>
+            <hr />
+        <% end %>
+    <%end%>
+<%end%>
 
-<% @course.each do |course| %>
-
-    <div class="well">
-            <h3 class="wrap-name"><%= course.name %> | <%= course.class_number %></h3>
-            <%= form_for :course, local: true, scope: :session, url:"/courses/add?course=#{course[:id]}" do |f| %>
-               
-                <%= f.submit "Enroll", class: 'btn btn-primary course-btn' %> 
-               
-            <%end%>
-    </div>
-    <hr />
-
-<% end %>

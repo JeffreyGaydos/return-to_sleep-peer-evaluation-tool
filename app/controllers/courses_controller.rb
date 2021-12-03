@@ -20,8 +20,24 @@ class CoursesController < ApplicationController
         redirect_to "/users/#{current_user.id}"
     end
 
+    def new
+        @course = Course.new
+        render(:layout => "internal.html.erb")
+    end
+
+    def create
+        @course = Course.new(course_params)
+
+        if @course.save
+            current_user.admin.courses << @course
+            redirect_to "/users/#{current_user.id}"
+        else
+            render('new', :layout => "internal.html.erb")
+        end
+    end
+
     private
         def course_params
-            params.require(:user).permit(:class_number, :name)
+            params.require(:course).permit(:class_number, :name)
         end
 end

@@ -97,6 +97,11 @@ h1{
     margin-bottom: 25px;
 }
 
+p.no-course{
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
 .hr {
     width:40%;
     border-bottom:1px solid rgba(0,0,0,.7);
@@ -123,6 +128,8 @@ h1{
 .wrap-name{
     width: 60%;
     word-break: break-word;
+}
+
 .btn.reset-password {
     color: $theme-color-1;
     border: 1px solid $theme-color-1;

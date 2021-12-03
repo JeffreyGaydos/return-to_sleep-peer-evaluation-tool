@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-    validates :class_number, presence: true, numericality: { greater_than: 0 }
+    validates :class_number, presence: true, numericality: { greater_than: 0 }, :uniqueness => true
     validates :name, presence: true, length: { maximum: 255, minimum: 2 }
     
     has_many :user_course
