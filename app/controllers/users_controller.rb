@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
-            render("show", :layout => 'internal.html.erb')
+            redirect_to "/users/#{params[:id]}"
         else
             render('edit', :layout => 'authentication.html.erb')
         end
