@@ -42,6 +42,6 @@ Rails.application.routes.draw do
     end
   end
 
-post '/teams/:team_id/projects/:project_id/peer_eval/new', to: 'peer_eval#create'
+post '/teams/:team_id/projects/:project_id/peer_eval/:id', to: 'peer_eval#create'
 
 end
