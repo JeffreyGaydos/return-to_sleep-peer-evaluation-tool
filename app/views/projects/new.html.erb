@@ -1,5 +1,5 @@
 <% provide(:title, 'Create Project') %>
-
+<% if @admin_rights %>
 <div class="container">
   <% curr_team = Team.find_by(id: params[:team_id]) %>
   <h1>Create project for team <%= curr_team.name %> (team_id = <%= params[:team_id] %>)</h1>
@@ -24,3 +24,6 @@
     </p>
   <% end %>
 </div>
+<% else %>
+  <%= render 'shared/permission_denied' %>
+<% end %>

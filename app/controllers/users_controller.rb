@@ -22,8 +22,10 @@ class UsersController < ApplicationController
                 @managed_teams.push(mcourse.teams)
                 @co_admins.push(mcourse.admins)
             end
+            #at this point @co_admins has the current admin in it
+            #we avoid this issue in the view
+            #@managed_teams is now a collection of lists of teams, organized by class
         end
-        #@managed_teams is now a collection of lists of teams, organized by class
         render(:layout => 'internal.html.erb')
     end
 

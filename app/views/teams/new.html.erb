@@ -1,9 +1,9 @@
 <% provide(:title, 'Create Teams') %>
-
+<% if @admin_rights %>
 <div class="container">
   <h1>Create Teams</h1>
 
-<!--  If the user entered invalid stuff for teams, render error messages-->
+  <!--  If the user entered invalid stuff for teams, render error messages-->
   <%= form_for :team, url:teams_path do |f| %>
     <%if not @team.errors.blank? %>
       <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
@@ -14,11 +14,38 @@
     <!--    Always rendered forms-->
     <p>
       <%= f.label :name%>
-      <br>
       <%= f.text_field :name, {:class => 'form-control'} %>
     </p>
+    <hr/>
     <p>
-      <%= f.label :course_id%>
+      Make sure you type the course ID in the next field to add a team.
+    </p>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Course No</th>
+      <th>Course ID</th>
+    </tr>
+    </thead>
+      <tbody>
+    <% current_user.admin.courses.each do |c|%>
+      <tr>
+        <td>
+          <%= c.name %>
+        </td>
+        <td>
+          <%= c.class_number %>
+        </td>
+        <td>
+          <%= c.id %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+    </table>
+    <p>
+      <label for="team_course_id">Course ID</label>
       <br>
       <%= f.number_field :course_id, {:class => 'form-control'} %>
     </p>
@@ -28,3 +55,6 @@
     </p>
   <% end %>
 </div>
+<% else %>
+  <%= render 'shared/permission_denied' %>
+<% end %>

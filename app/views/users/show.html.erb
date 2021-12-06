@@ -1,5 +1,6 @@
 <% if session[:user_id] == params[:id].to_i %>
 <%# Hyper-basic profile page, just for debugging atm %>
+<% provide(:title, "Account") %>
 <div class="content">
     <div class="left-pannel">
         <table aria-role="presentation">

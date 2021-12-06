@@ -1,15 +1,14 @@
 class TeamsController < ApplicationController
 
+  # Debugging purposes only!
+  def set_as_admin
+    @admin_rights = User.find_by(id: session[:user_id])[:admin_id]
+  end
+
   # Renders the new page
   def new
-    @admin_rights = TRUE #Put here for debugging
-
-    if @admin_rights
-      @team = Team.new # Fixes an error, patchwork fix
-      render 'team_admin/new'
-    else
-      render 'shared/denied'
-    end
+    set_as_admin
+    @team = Team.new # Fixes an error, patchwork fix
   end
 
   # Called when we click on the submit button. Creates a new team and either saves it to the database
@@ -18,11 +17,12 @@ class TeamsController < ApplicationController
     # Debug statements to see if forms actually sent something.
     # render plain: params[:team].inspect
     @team = Team.new(get_teams_params)
-
+    set_as_admin
     if @team.save
+      @team.users << current_user
       redirect_to @team
     else
-      render 'team_admin/new'
+      render 'teams/new'
     end
   end
 
@@ -38,52 +38,38 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      render 'team_admin/show'
-    else
-      render 'team_student/show'
-    end
+    set_as_admin
   end
 
   # Display listing of teams #
 
   def index
     # Get all teams for a user
-    # @teams = @current_user.teams.all
-    #
-    @teams = Team.all
+    @teams = current_user.teams
+    # @teams = Team.all
 
     # @teams = @current_user.team.all
-    @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      render 'team_admin/index'
-    else
-      render 'team_student/index'
-    end
+    set_as_admin
   end
 
   # EDIT PAGE #
 
   # Renders the edit page
   def edit
-    @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      @team = Team.find(params[:id])
-      render 'team_admin/edit'
-    else
-      render 'shared/denied'
-    end
+    set_as_admin
+    @team = Team.find(params[:id])
   end
 
   # Gets called when we want to patch
   def update
+    set_as_admin
     @team = Team.find(params[:id])
 
     if @team.update(get_teams_params)
       redirect_to @team
     else
-      render 'team_admin/edit'
+      @admin_rights = true
+      render 'teams/edit'
     end
   end
 
@@ -95,5 +81,28 @@ class TeamsController < ApplicationController
     @team.destroy
 
     redirect_to teams_path
+  end
+
+  # Adding students to a team
+  def students
+    @team = Team.find(params[:id])
+    set_as_admin
+  end
+
+  # Only update students here
+  def students_patch
+    @team = Team.find(params[:id])
+    @team.users << User.find_by(id: params[:user_id])
+    set_as_admin
+    render 'teams/students'
+  end
+
+  # Only update students here
+  def students_delete
+    set_as_admin
+    @team = Team.find(params[:id])
+    curr_user = User.find_by(id: params[:user_id])
+    @team.users.delete(curr_user)
+    redirect_to "#{team_path(@team)}/students/"
   end
 end

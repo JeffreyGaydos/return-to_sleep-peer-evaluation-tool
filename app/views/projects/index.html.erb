@@ -1,8 +1,11 @@
 <div class="container">
   <h1>All projects for <%= @team.name %></h1>
 
-  <%= link_to ("Create a project for " + @team.name) , new_team_project_url(params[:team_id]), :class => 'btn btn-primary'%>
+  <% if @admin_rights %>
+   <%= link_to ("Create a project for " + @team.name) , new_team_project_url(params[:team_id]), :class => 'btn btn-primary'%>
+  <% end %>
   <%= link_to "To Team Page", team_path(params[:team_id]), :class => 'btn btn-primary'%>
+  <%= link_to "To Peer Evaluations", '#', :class => 'btn btn-primary'%>
 
   <table class="table table-striped">
     <thead>

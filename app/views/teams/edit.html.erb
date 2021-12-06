@@ -1,5 +1,5 @@
 <% provide(:title, 'Edit Teams') %>
-
+<% if @admin_rights %>
 <div class="container">
   <h1>Editing <%= @team.name %></h1>
 
@@ -21,8 +21,8 @@
       <%= f.label :course_id%>
       <br>
       <%= f.number_field :course_id, {:class => 'form-control'} %>
-<!--      Commented line below fills in class number instead-->
-<!--      <input class="form-control" type="number" value=<%#= @team.course.class_number %> name="team[course_id]" id="team_course_id">-->
+      <!--      Commented line below fills in class number instead-->
+      <!--      <input class="form-control" type="number" value=<%#= @team.course.class_number %> name="team[course_id]" id="team_course_id">-->
     </p>
     <p>
       <%= f.submit ({:class => 'btn btn-primary'}) %>
@@ -30,3 +30,6 @@
     </p>
   <% end %>
 </div>
+<% else %>
+<%= render 'shared/permission_denied' %>
+<%end %>
