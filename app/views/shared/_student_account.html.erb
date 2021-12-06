@@ -27,9 +27,9 @@
     <h1>Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <% @admins.each do |ac| %>
-            <% ac.each do |a| %>
-                <li><%= a.user.name%> | <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).name %></li>
+        <% @admins.each_index do |i| %>
+            <% @admins[i].each do |a| %>
+                <li><%= a.user.name%> | <%= @courses[i].name %></li>
             <% end %>
         <% end %>
         <% if @admins.length == 0 %>
