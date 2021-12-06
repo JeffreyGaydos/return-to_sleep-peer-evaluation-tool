@@ -13,7 +13,6 @@
       </tr>
     </thead>
     <tbody>
-
       <% @peer_evals.each do |eval| %>
         <td> <%= @users.find_by(id: eval.user_id).name %> </td>
         <td> <%= eval.score %> </td>
@@ -23,7 +22,29 @@
     </tbody>
   </table>
 
-  <button>New Eval</button>
+  <%= link_to "Create new peer evaluation", @new, :class => 'btn btn-primary'%>
 
-  <h2> Peer Evaluations Received </h2>
+  <h2> Peer Evaluations Received: </h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Student name</td>
+        <td>Score</td>
+        <td>Comment</td>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @peer_evals.each do |eval| %>
+        <% if eval.user_id == @current_user[:id].to_i %>
+          <td> <%= @current_user.name %> </td>
+          <td> <%= eval.score %> </td>
+          <td> <%= eval.comment %> </td>
+        <% end %>
+      <% end %>
+
+    </tbody>
+  </table>
+
 </div>

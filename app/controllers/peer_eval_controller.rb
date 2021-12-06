@@ -6,9 +6,11 @@ class PeerEvalController < ApplicationController
   # end
 
   def index
-    @peer_evals = PeerEval.all
+    @peer_evals = PeerEval.all.select { |eval| eval.project_id == params[:project_id].to_i }
     @project_num = params[:project_id]
     @users = User.all
+    @new = "/teams/1/projects/1/peer_eval/new"
+    @current_user = current_user
   end
 
   def new
