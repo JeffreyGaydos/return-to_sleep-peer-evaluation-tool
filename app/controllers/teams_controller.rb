@@ -2,13 +2,13 @@ class TeamsController < ApplicationController
 
   # Debugging purposes only!
   def set_as_admin
-    # @admin_rights = true #Put here for debugging
+    @admin_rights = User.find_by(id: session[:user_id])[:admin_id]
   end
 
   # Renders the new page
   def new
     set_as_admin
-    @team = Team.new if @admin_rights # Fixes an error, patchwork fix
+    @team = Team.new # Fixes an error, patchwork fix
   end
 
   # Called when we click on the submit button. Creates a new team and either saves it to the database
@@ -17,8 +17,8 @@ class TeamsController < ApplicationController
     # Debug statements to see if forms actually sent something.
     # render plain: params[:team].inspect
     @team = Team.new(get_teams_params)
-
     if @team.save
+      @team.users << current_user
       redirect_to @team
     else
       render 'teams/new'
@@ -44,8 +44,8 @@ class TeamsController < ApplicationController
 
   def index
     # Get all teams for a user
-    # @teams = @current_user.teams.all
-    @teams = @current_user.teams
+    @teams = current_user.teams
+    # @teams = Team.all
 
     # @teams = @current_user.team.all
     set_as_admin
@@ -56,7 +56,7 @@ class TeamsController < ApplicationController
   # Renders the edit page
   def edit
     set_as_admin
-    @team = Team.find(params[:id]) if @admin_rights
+    @team = Team.find(params[:id])
   end
 
   # Gets called when we want to patch

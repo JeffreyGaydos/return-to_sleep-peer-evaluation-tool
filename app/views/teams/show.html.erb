@@ -16,6 +16,9 @@
       <tr>
         <td>
           <%= user.name %>
+          <% if user.admin %>
+            (Admin)
+          <% end %>
         </td>
         <td>
           <%= user.id %>
