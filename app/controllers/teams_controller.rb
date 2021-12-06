@@ -17,6 +17,7 @@ class TeamsController < ApplicationController
     # Debug statements to see if forms actually sent something.
     # render plain: params[:team].inspect
     @team = Team.new(get_teams_params)
+    set_as_admin
     if @team.save
       @team.users << current_user
       redirect_to @team
@@ -61,6 +62,7 @@ class TeamsController < ApplicationController
 
   # Gets called when we want to patch
   def update
+    set_as_admin
     @team = Team.find(params[:id])
 
     if @team.update(get_teams_params)
@@ -97,6 +99,7 @@ class TeamsController < ApplicationController
 
   # Only update students here
   def students_delete
+    set_as_admin
     @team = Team.find(params[:id])
     curr_user = User.find_by(id: params[:user_id])
     @team.users.delete(curr_user)
