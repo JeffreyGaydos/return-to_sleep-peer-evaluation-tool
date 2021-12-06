@@ -8,9 +8,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Institution Objects:
-@institution1 = Institution.save(name_id: "OSU")
-@institution2 = Institution.save(name_id: "LSU")
-@institution3 = Institution.save(name_id: "Xichigan")
+@institution1 = Institution.create(name_id: "OSU")
+@institution2 = Institution.create(name_id: "LSU")
+@institution3 = Institution.create(name_id: "Xichigan")
 
 # Student Users:
 @user1 = User.create(name: "User1", email: "user1@example.com", password: "Something", password_confirmation: "Something")
@@ -25,11 +25,11 @@
 @user10 = User.create(name: "User10", email: "user10@example.com", password: "Something", password_confirmation: "Something")
 
 # Admin Users, or Instructors:
-@instructor1 = User.save(name: "Instructor1", email: "instructor1@example.com", password: "Something", password_confirmation: "Something")
+@instructor1 = User.create(name: "Instructor1", email: "instructor1@example.com", password: "Something", password_confirmation: "Something")
 @admin1 = Admin.new(user: @instructor1, user_id: @instructor1.id, institution: @institution1, institution_id: @institution1.id)
-@instructor2 = User.save(name: "Instructor2", email: "instructor2@example.com", password: "Something", password_confirmation: "Something")
+@instructor2 = User.create(name: "Instructor2", email: "instructor2@example.com", password: "Something", password_confirmation: "Something")
 @admin2 = Admin.new(user: @instructor2, user_id: @instructor2.id, institution: @institution2, institution_id: @institution2.id)
-@instructor3 = User.save(name: "Instructor3", email: "instructor3@example.com", password: "Something", password_confirmation: "Something")
+@instructor3 = User.create(name: "Instructor3", email: "instructor3@example.com", password: "Something", password_confirmation: "Something")
 @admin3 = Admin.new(user: @instructor3, user_id: @instructor3.id, institution: @institution3, institution_id: @institution3.id)
 
 # Courses
@@ -40,12 +40,12 @@
 @course5 = Course.new(name: "Web Apps 5", class_number: 3905)
 
 # Teams
-@team1 = Team.new(name: "Team 1", course: @course1)
-@team3 = Team.new(name: "Team 2", course: @course1)
-@team2 = Team.new(name: "Team 3", course: @course1)
-@team4 = Team.new(name: "Team 4", course: @course2)
-@team5 = Team.new(name: "Team 5", course: @course2)
-@team6 = Team.new(name: "Team 6", course: @course3)
-@team7 = Team.new(name: "Team 7", course: @course4)
-@team8 = Team.new(name: "Team 8", course: @course5)
+@team1 = Team.create(name: "Team 1", course: @course1)
+@team3 = Team.create(name: "Team 2", course: @course1)
+@team2 = Team.create(name: "Team 3", course: @course1)
+@team4 = Team.create(name: "Team 4", course: @course2)
+@team5 = Team.create(name: "Team 5", course: @course2)
+@team6 = Team.create(name: "Team 6", course: @course3)
+@team7 = Team.create(name: "Team 7", course: @course4)
+@team8 = Team.create(name: "Team 8", course: @course5)
 

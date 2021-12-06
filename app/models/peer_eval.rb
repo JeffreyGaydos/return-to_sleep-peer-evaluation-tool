@@ -3,8 +3,8 @@ class PeerEval < ApplicationRecord
   validates :comment, presence: true, length: { maximum: 255 }
 
   # define database relationships
-  belongs_to :user
-  belongs_to :team
-  belongs_to :project
+  belongs_to :user, required: true
+  belongs_to :team, required: true
+  belongs_to :project, required: true
   
 end
