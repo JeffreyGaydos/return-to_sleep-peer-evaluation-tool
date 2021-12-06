@@ -21,13 +21,13 @@
       <% else %>
         <%= render "shared/internal_header" %>
       <% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
     <% else %>
-      <%= render "shared/external_header" %>
+      <%= render "shared/permission_denied" %>
     <% end %>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
-    <%= yield %>
   </body>
   <%= render "shared/footer" %>
 </html>
