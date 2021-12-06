@@ -28,6 +28,9 @@ Markdown Compilation for home page:
 Tutorial code emulated primarily for User model and authentication systems:
 * Ruby on Rails Tutorial, 6th Edition - Michael Hartl
 
+Illustration on home page:
+* https://www.chalk.com/resources/3-ways-peer-review-can-build-student-engagement/
+
 ## Things we would have liked to add, time permitting:
 * Profile images
 * Public profiles
