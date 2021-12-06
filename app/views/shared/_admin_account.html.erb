@@ -4,7 +4,8 @@
     <ul>
         <% @managed_courses.each do |mc| %>
             <li>
-              <%= link_to mc.name + " (" + mc.class_number.to_s + ") | View" , course_path(mc)%> /
+              <%= mc.name + " (" + mc.class_number.to_s + ") | " %>
+              <%= link_to "View" , course_path(mc)%> /
               <%= link_to "Delete", course_path(mc), method: :delete, data: {confirm: "Are you sure you want to delete team " + mc.class_number.to_s+ "?"}, :class => 'text-danger'%>
             </li>
         <% end %>
@@ -17,7 +18,10 @@
     <ul>
         <% @managed_teams.each do |mc| %>
             <% mc.each do |mt| %>
-                <li><%= mt.name%></li>
+                <li>
+                  <%= mt.name + " (" + mt.course.name + ") | " %>
+                  <%= link_to "View" , team_path(mt)%>
+                </li>
             <% end %>
         <% end %>
         <% if @managed_teams.length == 0 %>
@@ -33,7 +37,9 @@
                 <ul>
                     <% @co_admins[i].each do |a| %>
                         <% if a.user != current_user %>
-                            <li><%= a.user.name%></li>
+                            <li>
+                              <%= a.user.name%>
+                            </li>
                         <% end %>
                     <% end %>
                 </ul>
