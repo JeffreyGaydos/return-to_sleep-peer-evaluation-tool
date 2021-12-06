@@ -8,6 +8,10 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     @course = Course.new(class_number: 3901, name:"web dev")
     @team = Team.new(name: "team name", course: @course)
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+    @user.save
+    @institution = Institution.new(name_id: "OSU")
+    @institution.save
+    @admin = Admin.new(user: @user, user_id: 1, institution: @institution, institution_id: 1)
 
     @team.users << @user
     @team.course = @course
@@ -58,10 +62,10 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to team_url(@team)
   end
 
-  # test "should not update team given bad params" do
-  #   @admin_rights = true
-  #   patch team_url(@team), params: { team: { name: "", course_id: -69420} }
-  #   assert_select "div"
-  # end
+  test "should not update team given bad params" do
+    @admin_rights = true
+    patch team_url(@team), params: { team: { name: "", course_id: -69420} }
+    assert_select "div[class=alert-danger]"
+  end
 
 end

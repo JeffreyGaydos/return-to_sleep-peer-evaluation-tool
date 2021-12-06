@@ -1,14 +1,13 @@
 class ProjectsController < ApplicationController
 
-  def new
-    @admin_rights = true #Put here for debugging
-    if @admin_rights
-      @project = Project.new # Patchwork
-      render 'projects/new'
-    else
-      render 'shared/denied'
-    end
+  # Debugging purposes only!
+  def set_as_admin
+    @admin_rights = User.find_by(id: session[:user_id])[:admin_id]
+  end
 
+  def new
+    set_as_admin
+    @project = Project.new # Patchwork
   end
 
   # Called when we click on the submit button. Creates a new team and either saves it to the database
@@ -21,7 +20,6 @@ class ProjectsController < ApplicationController
       redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
     else
       render 'projects/new'
-      # render 'projects/new'
     end
   end
 
@@ -34,12 +32,7 @@ class ProjectsController < ApplicationController
   # Show a specific project page #
   def show
     @project = Project.find(params[:id])
-    @admin_rights = TRUE #Put here for debugging
-    # if @admin_rights
-    #   render 'team_admin/show'
-    # else
-    #   render 'team_student/show'
-    # end
+    set_as_admin
   end
 
   # Display listing of all projects for Team who has a team id of :team_id
@@ -50,7 +43,7 @@ class ProjectsController < ApplicationController
     #
     # @projects_for_team = Project.find
 
-    @admin_rights = TRUE #Put here for debugging
+    set_as_admin
     team_id = params[:team_id]
     @team = Team.find_by(id: team_id)
 
@@ -61,18 +54,15 @@ class ProjectsController < ApplicationController
 
   # Renders the edit page
   def edit
-    @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      @project = Project.find(params[:id])
-    else
-      render 'shared/denied'
-    end
+    set_as_admin
+    @project = Project.find(params[:id])
   end
 
 
   # Gets called when we want to patch
   def update
     @project = Project.find(params[:id])
+    set_as_admin
 
     if @project.update(get_project_params)
       redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
