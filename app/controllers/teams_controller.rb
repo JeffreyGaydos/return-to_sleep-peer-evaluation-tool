@@ -3,13 +3,7 @@ class TeamsController < ApplicationController
   # Renders the new page
   def new
     @admin_rights = TRUE #Put here for debugging
-
-    if @admin_rights
-      @team = Team.new # Fixes an error, patchwork fix
-      render 'team_admin/new'
-    else
-      render 'shared/denied'
-    end
+    @team = Team.new if @admin_rights # Fixes an error, patchwork fix
   end
 
   # Called when we click on the submit button. Creates a new team and either saves it to the database
@@ -22,7 +16,7 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to @team
     else
-      render 'team_admin/new'
+      render 'teams/new'
     end
   end
 
@@ -38,12 +32,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      render 'team_admin/show'
-    else
-      render 'team_student/show'
-    end
+    # @admin_rights = TRUE #Put here for debugging
   end
 
   # Display listing of teams #
@@ -56,11 +45,6 @@ class TeamsController < ApplicationController
 
     # @teams = @current_user.team.all
     @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      render 'team_admin/index'
-    else
-      render 'team_student/index'
-    end
   end
 
   # EDIT PAGE #
@@ -68,12 +52,7 @@ class TeamsController < ApplicationController
   # Renders the edit page
   def edit
     @admin_rights = TRUE #Put here for debugging
-    if @admin_rights
-      @team = Team.find(params[:id])
-      render 'team_admin/edit'
-    else
-      render 'shared/denied'
-    end
+    @team = Team.find(params[:id]) if @admin_rights
   end
 
   # Gets called when we want to patch
@@ -83,7 +62,7 @@ class TeamsController < ApplicationController
     if @team.update(get_teams_params)
       redirect_to @team
     else
-      render 'team_admin/edit'
+      render 'teams/edit'
     end
   end
 

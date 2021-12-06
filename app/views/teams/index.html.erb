@@ -1,7 +1,7 @@
-<% provide(:title, 'Team View (Admin)') %>
+<% provide(:title, 'Team View') %>
 <div class="container">
-<h1>Teams Listing (Admin)</h1>
-  <p>Here are all of the teams you have control over.
+  <h1>Teams Listing</h1>
+  <p>Here are all of the teams
     <%=link_to "If you want to create a new team, click the button below", new_team_path %>
   </p>
   <%= link_to "Create a new team", new_team_path, :class => 'btn btn-primary'%>
@@ -22,13 +22,16 @@
           <%=team.name %>
         </td>
         <td>
-<!--          Course goes here -->
+          <!--          Course goes here -->
           <%= team.course.class_number%>
         </td>
         <td>
-          <%= link_to "View", team_path(team) ,:class => 'text-primary' %> /  <%= link_to "Edit", edit_team_path(team) %> /
-          <%= link_to "Delete",  team_path(team), method: :delete, data: {confirm: "Are you sure you want to delete team " + team.name+ "?"}, :class => 'text-danger'%>
-          / <%= link_to "Edit students", '/teams/' + team.id.to_s + '/students'%>
+          <%= link_to "View", team_path(team) ,:class => 'text-primary' %>
+          <% if @admin_rights %>
+            / <%= link_to "Edit", edit_team_path(team) %> /
+            <%= link_to "Delete",  team_path(team), method: :delete, data: {confirm: "Are you sure you want to delete team " + team.name+ "?"}, :class => 'text-danger'%>
+            / <%= link_to "Edit students", '/teams/' + team.id.to_s + '/students'%>
+          <% end %>
         </td>
       </tr>
     <% end %>
