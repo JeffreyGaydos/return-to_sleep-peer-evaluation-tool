@@ -16,6 +16,8 @@ class ProjectsController < ApplicationController
     # Debug statements to see if forms actually sent something.
     # render plain: params[:team].inspect
     @project = Project.new(get_project_params)
+    set_as_admin
+
     if @project.save
       redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
     else
