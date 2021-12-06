@@ -2,9 +2,9 @@ class TeamsController < ApplicationController
 
   # Debugging purposes only!
   def set_as_admin
-    # @admin_rights = TRUE #Put here for debugging
+    # @admin_rights = true #Put here for debugging
   end
-  
+
   # Renders the new page
   def new
     set_as_admin
@@ -67,6 +67,7 @@ class TeamsController < ApplicationController
     if @team.update(get_teams_params)
       redirect_to @team
     else
+      @admin_rights = true
       render 'teams/edit'
     end
   end
@@ -91,7 +92,7 @@ class TeamsController < ApplicationController
   def students_patch
     @team = Team.find(params[:id])
     @team.users << User.find_by(id: params[:user_id])
-    @admin_rights = TRUE
+    set_as_admin
     render 'teams/students'
   end
 
@@ -100,6 +101,6 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     curr_user = User.find_by(id: params[:user_id])
     @team.users.delete(curr_user)
-    redirect_to team_path(@team) + '/students/'
+    redirect_to "#{team_path(@team)}/students/"
   end
 end
