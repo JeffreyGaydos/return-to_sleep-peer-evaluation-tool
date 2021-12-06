@@ -4,6 +4,7 @@
   <hr/>
   <h2>Team <%= @team.name %> for course <%= @team.course.class_number %></h2>
   <br/>
+  <% if not @team.users.empty? %>
   <p>Team Members</p>
   <table class="table table-striped">
     <thead>
@@ -11,7 +12,6 @@
       <th>Member Name</th>
       <th>Id</th>
     </tr>
-
     <% @team.users.each do |user| %>
       <tr>
         <td>
@@ -24,9 +24,12 @@
           <%= user.id %>
         </td>
       </tr>
+      <% end %>
+      </table>
+    <% else %>
+    <p>No team members found! </p>
     <% end %>
     </table>
-
   <%= link_to "To Teams Page", teams_path, :class => 'btn btn-primary'%>
   <!--    get request to http://localhost:3000/teams/[SOME TEAM ID NUMBER]/projects/new-->
   <% if @admin_rights %>
