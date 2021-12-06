@@ -1,8 +1,13 @@
 class TeamsController < ApplicationController
 
+  # Debugging purposes only!
+  def set_as_admin
+    # @admin_rights = TRUE #Put here for debugging
+  end
+  
   # Renders the new page
   def new
-    @admin_rights = TRUE #Put here for debugging
+    set_as_admin
     @team = Team.new if @admin_rights # Fixes an error, patchwork fix
   end
 
@@ -32,7 +37,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    # @admin_rights = TRUE #Put here for debugging
+    set_as_admin
   end
 
   # Display listing of teams #
@@ -44,14 +49,14 @@ class TeamsController < ApplicationController
     @teams = Team.all
 
     # @teams = @current_user.team.all
-    @admin_rights = TRUE #Put here for debugging
+    set_as_admin
   end
 
   # EDIT PAGE #
 
   # Renders the edit page
   def edit
-    @admin_rights = TRUE #Put here for debugging
+    set_as_admin
     @team = Team.find(params[:id]) if @admin_rights
   end
 
@@ -79,7 +84,7 @@ class TeamsController < ApplicationController
   # Adding students to a team
   def students
     @team = Team.find(params[:id])
-    @admin_rights = TRUE #Put here for debugging
+    set_as_admin
   end
 
   # Only update students here
