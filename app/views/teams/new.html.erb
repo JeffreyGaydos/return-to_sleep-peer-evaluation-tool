@@ -1,10 +1,10 @@
-<% provide(:title, 'Edit Teams') %>
-
+<% provide(:title, 'Create Teams') %>
+<% if @admin_rights %>
 <div class="container">
-  <h1>Editing <%= @team.name %></h1>
+  <h1>Create Teams</h1>
 
   <!--  If the user entered invalid stuff for teams, render error messages-->
-  <%= form_for :team, url:team_path(@team), method: :patch do |f| %>
+  <%= form_for :team, url:teams_path do |f| %>
     <%if not @team.errors.blank? %>
       <!--    <div class="alert alert-danger"> <%#= @post.full %></div>-->
       <% @team.errors.full_messages.each do |msg| %>
@@ -21,8 +21,6 @@
       <%= f.label :course_id%>
       <br>
       <%= f.number_field :course_id, {:class => 'form-control'} %>
-<!--      Commented line below fills in class number instead-->
-<!--      <input class="form-control" type="number" value=<%#= @team.course.class_number %> name="team[course_id]" id="team_course_id">-->
     </p>
     <p>
       <%= f.submit ({:class => 'btn btn-primary'}) %>
@@ -30,3 +28,6 @@
     </p>
   <% end %>
 </div>
+<% else %>
+  <%= render 'shared/permission_denied' %>
+<% end %>

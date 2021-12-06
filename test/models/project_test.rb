@@ -11,8 +11,9 @@ class ProjectTest < ActiveSupport::TestCase
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
     @project = Project.new(name: "Project")
 
-
+    @team.course = @course
     @team.users << @user
+    @team.projects << @project
     @project.team = @team
 
 
