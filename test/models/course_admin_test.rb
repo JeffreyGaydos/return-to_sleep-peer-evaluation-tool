@@ -2,8 +2,8 @@ require 'test_helper'
 
 class CourseAdminTest < ActiveSupport::TestCase
   def setup
-    @course = Course.new(class_number: 3901)
-    @course2 = Course.new(class_number: 3902)
+    @course = Course.new(name: "Web Apps CSE", class_number: 3901)
+    @course2 = Course.new(name: "Game Design CSE", class_number: 3902)
 
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
     @user.save
