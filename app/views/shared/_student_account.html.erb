@@ -3,7 +3,7 @@
     <div class="divider"></div>
     <ul>
         <% @courses.each do |c| %>
-            <li><%= c.class_number%></li>
+            <li><%= c.name %> | <%= c.class_number%></li>
         <% end %>
         <% if @courses.length == 0 %>
             <p class="faded">No Courses</p>
@@ -29,7 +29,7 @@
     <ul>
         <% @admins.each do |ac| %>
             <% ac.each do |a| %>
-                <li><%= a.user.name%> : <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).class_number %></li>
+                <li><%= a.user.name%> | <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).name %></li>
             <% end %>
         <% end %>
         <% if @admins.length == 0 %>
