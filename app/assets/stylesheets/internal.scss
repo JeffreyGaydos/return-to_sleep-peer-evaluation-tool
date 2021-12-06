@@ -68,7 +68,22 @@ div.right-pannel {
     display: inline-block;
 }
 
+div.left-pannel.peer-eval-column {
+    min-width: 100px;
+    max-width: 25%;
+    width: auto;
+}
 
+@media screen and (max-width: 1350px) {
+    div.left-pannel.peer-eval-column {
+        width: calc(50% - 50px);
+        min-width: none;
+        max-width: none;
+        display: block;
+        margin: auto;
+        margin-left: 360px;
+    }
+}
 
 @media screen and (max-width: 800px) {
     div.right-pannel {
@@ -88,9 +103,14 @@ div.right-pannel {
         margin: auto;
         text-align: center;
     }
+
+    div.left-pannel.peer-eval-column {
+        margin: auto;
+        text-align: left;
+    }
 }
 
-//------- here are the course stylings
+//Course pages
 
 h1{
     text-align: center;

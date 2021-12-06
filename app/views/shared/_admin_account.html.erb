@@ -41,3 +41,20 @@
         <% end %>
     </ul>
 </div>
+<div class="left-pannel peer-eval-column">
+    <h1>Peer Evaluation Status:</h1>
+    <div class="divider"></div>
+    <ul>
+        <% @managed_teams.each do |team_c|%>
+            <% team_c.each do |team| %>
+                <li><%= team.name %>
+                    <ul>
+                        <% team.projects.each do |proj|%>
+                            <li><%= proj.name %> : <%= "Pending" if proj.peer_evals.each %></li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
