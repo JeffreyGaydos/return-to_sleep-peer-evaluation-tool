@@ -1,8 +1,17 @@
 <% provide(:title, "Home") %>
 
-<div id="readme-container">
-    I Don't know what we should put on our homepage...
-    <%# Debug information about the page can be displayed using the following: %>
-    <p><br><strong>Debug Information:</strong></p>
-    <%= debug(params) if Rails.env.development? %>
+
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1>Team Feedback Made Easy</h1>
+
+    <%if !logged_in? %>
+        <p>Get early access for beta testing.</p>
+        <a class="btn btn-outline-light btn-lg" href="/sign_up">Sign Up</a>
+    <%else%>
+        <p>We hope you are enjoying your experience.</p>
+        <a class="btn btn-outline-light btn-lg" href="/about">Learn More</a>
+    <%end%>
+  </div>
 </div>

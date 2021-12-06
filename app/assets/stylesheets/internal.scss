@@ -176,6 +176,37 @@ span.email {
     margin: 30px 0px;
 }
 
+
+//test
+/* The hero image */
+.hero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: url("/assets/saas-application.png");
+  
+    /* Set a specific height */
+    height: 100vh;
+    width: calc(100vw - 20px);
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+  
+  /* Place text in the middle of the image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
 @media screen and (max-width: 800px) {
     .cancel {
         display: block;
