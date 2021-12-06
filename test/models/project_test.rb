@@ -39,7 +39,6 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test "project should have valid teams" do
-    print(@project.errors.full_messages)
     assert @project.errors.blank?
   end
 
