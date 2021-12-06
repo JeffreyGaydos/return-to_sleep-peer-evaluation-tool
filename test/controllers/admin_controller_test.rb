@@ -3,6 +3,7 @@ require 'test_helper'
 class AdminsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @base_title = "Peer Evaluation Tool - "
+    @institution = Institution.create(name_id: "OSU")
   end
 
   test "should get sign up instructors" do
@@ -28,6 +29,20 @@ class AdminsControllerTest < ActionDispatch::IntegrationTest
     get "/sign_up/instructors"
     assert_difference 'User.count', 1 do
       post "/sign_up/instructors", params: { user: { name: "Jeffrey Gaydos", email: "jg@osu.edu", password: "SomethingC00l", password_confirmation: "SomethingC00l"}}
+    end
+  end
+
+  test "valid instructor sign-up and institution validtion creates an admin user" do
+    get "/sign_up/instructors"
+    assert_difference 'User.count', 1 do
+      post "/sign_up/instructors", params: { user: { name: "Jeffrey Gaydos", email: "jg@osu.edu", password: "SomethingC00l", password_confirmation: "SomethingC00l"}}
+    end
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    assert_select "#admin_institution_id", 1
+    assert_difference 'Admin.count', 1 do
+      post "/sign_up/institution_auth?user_id=1", params: { admin: { institution_id: "OSU" } }
     end
   end
 

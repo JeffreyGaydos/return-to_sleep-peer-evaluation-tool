@@ -11,10 +11,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @ndm_adm_teams = "No Managed Teams"
     @ndm_adm_admins = "No Co-Admins"
 
-    @instructor = User.new(name: "Example Instructor", email: "instructor@example.com", password: "foobar", password_confirmation: "foobar")
-    @instructor.save
-    @institution = Institution.new(name_id: "OSU")
-    @institution.save
+    @instructor = User.create(name: "Example Instructor", email: "instructor@example.com", password: "foobar", password_confirmation: "foobar")
+    @institution = Institution.create(name_id: "OSU")
     @admin = Admin.create(user: @instructor, user_id: 1, institution: @institution, institution_id: 1)
 
     @student = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
@@ -51,43 +49,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post "/users", params: { user: { name: "Jeffrey Gaydos", email: "jg@osu.edu", password: "SomethingC00l", password_confirmation: "SomethingC00l"}}
     end
   end
-
-  ###############################################################################
-  # Admin Sign Up Tests
-  ###############################################################################
-
-  test "should get sign up for instructors" do
-    get "/sign_up/instructors"
-    assert_response :success
-    assert_select "title", "#{@base_title}Instructors' Sign Up"
-  end
-    
-  test "invalid sign-up for instructors should not create a new user admin" do
-    get "/sign_up/instructors"
-    assert_no_difference 'User.count' do
-      post "/sign_up/instructors", params: { user: { name: "", email: "", password: "", password_confirmation: ""}}
-    end
-  end
-
-  test "invalid sign-up for instructors should trigger error messages" do
-    get "/sign_up/instructors"
-    post "/sign_up/instructors", params: { user: { name: "", email: "", password: "", password_confirmation: ""}}
-    assert_select "#error-explanation"
-  end
-
-  # test "valid instructor sign-up and institution validtion creates an admin user" do
-  #   get "/sign_up/instructors"
-  #   assert_difference 'User.count', 1 do
-  #     post "/sign_up/instructors", params: { user: { name: "Jeffrey Gaydos", email: "jg@osu.edu", password: "SomethingC00l", password_confirmation: "SomethingC00l"}}
-  #   end
-  #   assert_response :redirect
-  #   follow_redirect!
-  #   assert_response :success
-  #   assert_select "#admin_institution_id", 1
-  #   assert_difference 'Admin.count', 1 do
-  #     post "/sign_up/institution_auth", params: { admin: { institution_id: "OSU"} }
-  #   end
-  # end
 
   ###############################################################################
   # Account Page Tests
