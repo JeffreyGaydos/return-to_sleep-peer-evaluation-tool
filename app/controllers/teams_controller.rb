@@ -45,8 +45,7 @@ class TeamsController < ApplicationController
   def index
     # Get all teams for a user
     # @teams = @current_user.teams.all
-    #
-    @teams = Team.all
+    @teams = @current_user.teams
 
     # @teams = @current_user.team.all
     set_as_admin
