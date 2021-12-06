@@ -83,4 +83,12 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'div', class: 'alert-danger'
   end
 
+  test "should destroy team" do
+    assert_difference('Team.count', -1) do
+      delete team_url(@team)
+    end
+
+    assert_redirected_to teams_url
+  end
+
 end
