@@ -51,19 +51,10 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should get edit student view " do
-  #   @admin_rights = false
-  #   get edit_team_url(@team)
-  #   assert_response :success
-  #   assert_select "form", false, "This page must contain no forms"
-  # end
-  #
-  # test "should get edit admin view " do
-  #   @admin_rights = true
-  #   get edit_team_url(@team)
-  #   assert_response :success
-  #   assert_select "form", true, "This page must contain forms"
-  # end
+  test 'should get students' do
+    get team_students_get_url(@team)
+    assert_response :success
+  end
 
   test 'should update team' do
     @admin_rights = true
@@ -71,11 +62,18 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to team_url(@team)
   end
 
-  test 'should not update team given bad params' do
+  test 'should not update team given empty str' do
     @admin_rights = true
     patch team_url(@team), params: { team: { name: '', course_id: 1} }
     assert_select 'div', class: 'alert-danger'
   end
+
+  test 'should not update team given long str' do
+    @admin_rights = true
+    patch team_url(@team), params: { team: { name: 'adfasdf' * 420, course_id: 1} }
+    assert_select 'div', class: 'alert-danger'
+  end
+
 
   test 'should not update team given bad id' do
     @admin_rights = true
