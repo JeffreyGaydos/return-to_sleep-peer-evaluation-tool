@@ -36,4 +36,21 @@ Rails.application.routes.draw do
   resources :teams do
     resources :projects
   end
+
+  # resources :teams do
+  #   resources :projects do
+  #     resources :peer_eval do
+  #         get 'teams/:id/projects/:id/peer_eval/:id', to: 'peer_eval#test'
+  #       end
+  #   end
+  # end
+
+  resources :teams do
+    resources :projects do
+      resources :peer_eval
+    end
+  end
+
+post '/teams/:team_id/projects/:project_id/peer_eval/:id', to: 'peer_eval#create'
+
 end

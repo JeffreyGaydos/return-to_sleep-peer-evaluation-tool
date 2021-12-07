@@ -46,6 +46,14 @@ img.prof-pic {
     margin: 10px;
 }
 
+span.pe-complete {
+    color: darkgreen;
+}
+
+span.pe-pending {
+    color: orange;
+}
+
 p.faded {
     color: rgba(0, 0, 0, 0.5);
 }
@@ -68,7 +76,22 @@ div.right-pannel {
     display: inline-block;
 }
 
+div.left-pannel.peer-eval-column {
+    min-width: 100px;
+    max-width: 25%;
+    width: auto;
+}
 
+@media screen and (max-width: 1350px) {
+    div.left-pannel.peer-eval-column {
+        width: calc(50% - 50px);
+        min-width: none;
+        max-width: none;
+        display: block;
+        margin: auto;
+        margin-left: 360px;
+    }
+}
 
 @media screen and (max-width: 800px) {
     div.right-pannel {
@@ -88,9 +111,15 @@ div.right-pannel {
         margin: auto;
         text-align: center;
     }
+
+    div.left-pannel.peer-eval-column {
+        width: max-content;
+        margin: auto;
+        text-align: left;
+    }
 }
 
-//------- here are the course stylings
+//Course pages
 
 h1{
     text-align: center;
