@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   end
 
   # Route for adding students to a team
-  get '/teams/:id/students', to: 'teams#students'
+  get '/teams/:id/students', to: 'teams#students', as: "team_students_get"
   # POST for adding a new student.
-  patch '/teams/:id/students/', to: 'teams#students_patch'
-  delete '/teams/:id/students/', to: 'teams#students_delete'
+  patch '/teams/:id/students/', to: 'teams#students_patch', as: "team_students_patch"
+  delete '/teams/:id/students/', to: 'teams#students_delete', as: "team_students_delete"
 
   # Routes for accessing projects for a team
   resources :teams do
@@ -51,6 +51,6 @@ Rails.application.routes.draw do
     end
   end
 
-post '/teams/:team_id/projects/:project_id/peer_eval/new', to: 'peer_eval#create'
+post '/teams/:team_id/projects/:project_id/peer_eval/:id', to: 'peer_eval#create'
 
 end

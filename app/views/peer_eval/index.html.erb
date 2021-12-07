@@ -1,47 +1,27 @@
 <% provide(:title, 'Peer evaluation listS') %>
 <div class="container">
 
-  <h1> Your Peer evals for project <%= @project_num %> </h1>
+  <h1> Your Peer evals for "<%= @project_name %>"" </h1>
 
-  <h2> Created Peer Evaluations: </h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <td>Student name</td>
-        <td>Score</td>
-        <td>Comment</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @peer_evals.each do |eval| %>
-        <td> <%= @users.find_by(id: eval.user_id).name %> </td>
-        <td> <%= eval.score %> </td>
-        <td> <%= eval.comment %> </td>
-      <% end %>
-
-    </tbody>
-  </table>
-
-  <%= link_to "Create new peer evaluation", @new, :class => 'btn btn-primary'%>
-
-  <h2> Peer Evaluations Received: </h2>
+  <h2> Create Peer Evaluations: </h2>
 
   <table class="table table-striped">
     <thead>
       <tr>
         <td>Student name</td>
-        <td>Score</td>
-        <td>Comment</td>
+        <td>Peer Eval</td>
       </tr>
     </thead>
     <tbody>
-
-      <% @peer_evals.each do |eval| %>
-        <% if eval.user_id == @current_user[:id].to_i %>
-          <td> <%= @current_user.name %> </td>
-          <td> <%= eval.score %> </td>
-          <td> <%= eval.comment %> </td>
-        <% end %>
+      <% @team_users.each do |user| %>
+        <td> <%= user.name %> </td>
+          <td>
+          <% if @peer_eval.exists?(user_id: user.id)%> 
+            Completed
+          <% else %>
+            <%= link_to "Create new peer evaluation", new_team_project_peer_eval_path(:evaluated_user_id => user.id), :class => 'btn btn-primary'%>
+          <% end %>    
+          </td>    
       <% end %>
 
     </tbody>

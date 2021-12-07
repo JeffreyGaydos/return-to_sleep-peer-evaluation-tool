@@ -7,15 +7,19 @@ class PeerEvalController < ApplicationController
 
   def index
     @peer_evals = PeerEval.all.select { |eval| eval.project_id == params[:project_id].to_i }
-    @project_num = params[:project_id]
+    @peer_eval = PeerEval
+    @project_name = Project.find_by(id: params[:project_id].to_i).name
+    @url = "/teams/#{params[:team_id]}/projects/#{params[:project_id]}/peer_eval/new"
     @users = User.all
-    @new = "/teams/1/projects/1/peer_eval/new"
     @current_user = current_user
+    @team_users = Team.find_by(id: params[:team_id].to_i).users
   end
 
   def new
     
     @peer_eval = PeerEval.new
+    @user = current_user
+    session[:eval_user_id] = params[:evaluated_user_id] 
     # filter out by peer evals that already exist as well as current user, need to filter to ones just within team
     @users = User.all.select { |user| user.id != current_user[:id] && !PeerEval.exists?(user_id: user.id) }
 
@@ -26,8 +30,8 @@ class PeerEvalController < ApplicationController
     @peer_eval = PeerEval.new # create new peer eval object
     @peer_eval.score = params[:peer_eval][:score] # add score from form
     @peer_eval.comment = params[:peer_eval][:comment] # add comment from form
-    evaluated_user_id = params[:peer_eval][:evaluated_user_id]
-    @peer_eval.user_id =  evaluated_user_id # add evaluated user from dropdown
+    evaluated_user_id = session[:eval_user_id]
+    @peer_eval.user_id = evaluated_user_id # add evaluated user from dropdown
     @peer_eval.team_id = params[:team_id] # add team id from url params
     @peer_eval.project_id = params[:project_id] # add project id from url params
     

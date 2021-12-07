@@ -2,42 +2,54 @@
     <h1>Managed Courses:</h1>
     <div class="divider"></div>
     <ul>
-        <% @managed_courses.each do |mc| %>
-            <li><%= mc.name %> | <%= mc.class_number%></li>
-        <% end %>
         <% if @managed_courses.length == 0 %>
             <p class="faded">No Managed Courses</p>
+        <% else %>
+            <% @managed_courses.each do |mc| %>
+                <li>
+                <%= mc.name + " (" + mc.class_number.to_s + ") | " %>
+                <%= link_to "View" , course_path(mc)%> /
+                <%= link_to "Delete", course_path(mc), method: :delete, data: {confirm: "Are you sure you want to delete team " + mc.class_number.to_s+ "?"}, :class => 'text-danger'%>
+                </li>
+            <% end %>
         <% end %>
     </ul>
     <h1>Managed Teams:</h1>
     <div class="divider"></div>
     <ul>
-        <% @managed_teams.each do |mc| %>
-            <% mc.each do |mt| %>
-                <li><%= mt.name%></li>
-            <% end %>
-        <% end %>
         <% if @managed_teams.length == 0 %>
             <p class="faded">No Managed Teams</p>
+        <% else %>
+            <% @managed_teams.each do |mc| %>
+                <% mc.each do |mt| %>
+                    <li>
+                    <%= mt.name + " (" + mt.course.name + ") | " %>
+                    <%= link_to "View" , team_path(mt)%>
+                    </li>
+                <% end %>
+            <% end %>
         <% end %>
     </ul>
     <h1>Co-Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <% @co_admins.each_index do |i| %>
-            <% if @co_admins[i].length > 1%>
-                <li><%= @managed_courses[i].class_number %></li>
-                <ul>
-                    <% @co_admins[i].each do |a| %>
-                        <% if a.user != current_user %>
-                            <li><%= a.user.name%></li>
-                        <% end %>
-                    <% end %>
-                </ul>
-            <% end %>
-        <% end %>
         <% if @co_admins.length == 0 %>
             <p class="faded">No Co-Admins</p>
+        <% else %>
+            <% @co_admins.each_index do |i| %>
+                <% if @co_admins[i].length > 1%>
+                    <li><%= @managed_courses[i].class_number %></li>
+                    <ul>
+                        <% @co_admins[i].each do |a| %>
+                            <% if a.user != current_user %>
+                                <li>
+                                <%= a.user.name%>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                <% end %>
+            <% end %>
         <% end %>
     </ul>
 </div>

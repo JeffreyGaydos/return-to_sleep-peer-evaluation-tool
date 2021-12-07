@@ -1,5 +1,5 @@
 <% provide(:title, 'Edit Teams') %>
-
+<% if @admin_rights %>
 <div class="container">
   <h1>Editing project <%= @project.name %> for team  <%= @project.team.name %></h1>
 
@@ -18,9 +18,13 @@
       <%= f.text_field :name, {:class => 'form-control'} %>
     </p>
     <p>
+      <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
       <%= f.submit({:class => 'btn btn-primary'}) %>
       <%= link_to "To Team Page", team_path(params[:team_id]), :class => 'btn btn-primary'%>
-      <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
     </p>
   <% end %>
 </div>
+
+<% else %>
+<%= render 'shared/permission_denied' %>
+<% end %>

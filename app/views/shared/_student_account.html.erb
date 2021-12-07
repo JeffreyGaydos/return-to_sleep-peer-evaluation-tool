@@ -29,7 +29,9 @@
     <ul>
         <% @admins.each_index do |i| %>
             <% @admins[i].each do |a| %>
-                <li><%= a.user.name%> | <%= @courses[i].name %></li>
+                <% if a.user %>
+                    <li><%= a.user.name%> | <%= @courses[i].name %></li>
+                <% end %>
             <% end %>
         <% end %>
         <% if @admins.length == 0 %>
