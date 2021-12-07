@@ -10,9 +10,14 @@ class UsersController < ApplicationController
             @managed_teams = []
             @co_admins = []
             @project_status = []
+            @has_co_admins = false;
             @managed_courses.each do |mcourse|
                 @managed_teams.push(mcourse.teams)
-                @co_admins.push(mcourse.admins)
+                course_admin_list = mcourse.admins.select {|admin| admin.user_id != @user.id }
+                @co_admins.push(course_admin_list)
+                if course_admin_list.length > 0
+                    @has_co_admins = true;
+                end
             end
             #at this point @co_admins has the current admin in it
             #we avoid this issue in the view
