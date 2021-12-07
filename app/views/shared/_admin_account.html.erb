@@ -60,7 +60,11 @@
                 <li><%= team.name %>
                     <ul>
                         <% team.projects.each_with_index do |proj, j|%>
-                            <li><%= proj.name %> : <span class="pe-pending"><%= "Pending" if @project_status[@project_team_index][j] == 0 %></span><span class="pe-complete"><%= "Complete" if @project_status[@project_team_index][j] == 1 %></span></li>
+                            <li><%= proj.name %> : 
+                            <span class="pe-pending"><%= "Pending" if @project_status[@project_team_index][j] == 0 %></span>
+                            <span class="pe-complete"><%= "Complete" if @project_status[@project_team_index][j] == 1 %></span>
+                             | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
+                            </li>
                         <% end %>                        
                     </ul>
                     <% @project_team_index += 1 %>
