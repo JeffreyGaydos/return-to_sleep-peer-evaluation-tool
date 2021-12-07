@@ -155,4 +155,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert User.find_by(name: "Example User2")
   end
 
+  test "Get Delete account page" do
+    get "/delete_account?user=#{@student.id}"
+    assert_response :success
+  end
+
+  test "Delete account" do
+    get "/delete_account?user=#{@student.id}"
+    assert_response :success
+    assert_difference 'User.count', -1 do
+      delete "/users/#{@student.id}"
+    end
+
+  end
+
 end
