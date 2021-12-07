@@ -6,9 +6,6 @@
 
 <!--  Button here for peer evals for this project-->
   <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
-  <% if @admin_rights %>
-    <%= link_to "To Peer Evals", '#', :class => 'btn btn-primary'%>
-  <% else %>
-  <% end %>
+  <%= link_to "To Peer Evals", "#{@project.id}/peer_eval", :class => 'btn btn-primary'%>
 
 </div>
