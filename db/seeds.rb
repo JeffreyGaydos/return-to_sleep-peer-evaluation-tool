@@ -62,6 +62,28 @@
 @project10 = Project.create(name: "Game of Set", team: @team7)
 @project11 = Project.create(name: "Game of Set", team: @team8)
 
+# Peer-Eval objects
+@peerEval1 = PeerEval.create(score: 10, comment: "Nothing: 10/10", user_id: 1, team_id: 1, project_id: 1, evaluated_user: 2)
+@peerEval2 = PeerEval.create(score: 7, comment: "Nothing: 7/10", user_id: 1, team_id: 1, project_id: 1, evaluated_user: 3)
+@peerEval3 = PeerEval.create(score: 8, comment: "Nothing: 8/10", user_id: 1, team_id: 1, project_id: 1, evaluated_user: 4)
+@peerEval4 = PeerEval.create(score: 8, comment: "Nothing: 8/10", user_id: 2, team_id: 1, project_id: 1, evaluated_user: 1)
+@peerEval5 = PeerEval.create(score: 5, comment: "Nothing: 5/10", user_id: 2, team_id: 1, project_id: 1, evaluated_user: 3)
+@peerEval6 = PeerEval.create(score: 6, comment: "Nothing: 6/10", user_id: 2, team_id: 1, project_id: 1, evaluated_user: 4)
+@peerEval7 = PeerEval.create(score: 8, comment: "Nothing: 8/10", user_id: 3, team_id: 1, project_id: 1, evaluated_user: 1)
+@peerEval8 = PeerEval.create(score: 10, comment: "Nothing: 10/10", user_id: 3, team_id: 1, project_id: 1, evaluated_user: 2)
+@peerEval9 = PeerEval.create(score: 7, comment: "Nothing: 7/10", user_id: 3, team_id: 1, project_id: 1, evaluated_user: 4)
+@peerEval10 = PeerEval.create(score: 8, comment: "Nothing: 8/10", user_id: 4, team_id: 1, project_id: 1, evaluated_user: 1)
+@peerEval11 = PeerEval.create(score: 4, comment: "Nothing: 4/10", user_id: 4, team_id: 1, project_id: 1, evaluated_user: 2)
+@peerEval12 = PeerEval.create(score: 10, comment: "Nothing: 10/10", user_id: 4, team_id: 1, project_id: 1, evaluated_user: 3)
+@peerEval13 = PeerEval.create(score: 8, comment: "Nothing: 8/10", user_id: 1, team_id: 1, project_id: 2, evaluated_user: 2)
+@peerEval14 = PeerEval.create(score: 7, comment: "Nothing: 7/10", user_id: 1, team_id: 1, project_id: 2, evaluated_user: 3)
+@peerEval15 = PeerEval.create(score: 9, comment: "Nothing: 9/10", user_id: 1, team_id: 1, project_id: 2, evaluated_user: 4)
+@peerEval16 = PeerEval.create(score: 9, comment: "Nothing: 9/10", user_id: 2, team_id: 1, project_id: 2, evaluated_user: 1)
+@peerEval17 = PeerEval.create(score: 10, comment: "Nothing: 10/10", user_id: 2, team_id: 1, project_id: 2, evaluated_user: 3)
+@peerEval18 = PeerEval.create(score: 5, comment: "Nothing: 5/10", user_id: 3, team_id: 1, project_id: 2, evaluated_user: 1)
+
+
+
 #User-Course relations
 @user1.courses << @course1
 @user1.courses << @course2
