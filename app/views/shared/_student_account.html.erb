@@ -29,7 +29,9 @@
     <ul>
         <% @admins.each do |ac| %>
             <% ac.each do |a| %>
-                <li><%= a.user.name%> | <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).name %></li>
+                <% if a.user %>
+                    <li><%= a.user.name %> | <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).name %></li>
+                <% end %>
             <% end %>
         <% end %>
         <% if @admins.length == 0 %>
