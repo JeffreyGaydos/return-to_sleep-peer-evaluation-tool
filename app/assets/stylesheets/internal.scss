@@ -176,6 +176,14 @@ span.email {
     color: $theme-color-1;
 }
 
+span.pe-complete {
+    color: darkgreen;
+}
+
+span.pe-pending {
+    color: orange;
+}
+
 .cancel {
     border-color: $theme-color-1;
     color: $theme-color-1;

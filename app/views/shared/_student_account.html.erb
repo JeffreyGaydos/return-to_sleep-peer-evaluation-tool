@@ -43,14 +43,16 @@
     <h1>Peer Evaluation Status:</h1>
     <div class="divider"></div>
     <ul>
-        <% @teams.each do |team|%>
-            <li><%= team.name %>
-                <ul>
-                    <% team.projects.each do |proj|%>
-                        <li><%= proj.name %> : <%= "Pending" if proj.peer_evals.each %></li>
-                    <% end %>
-                </ul>
-            </li>
+        <% @teams.each_with_index do |team, i|%>
+            <% if team.projects.length > 0 %>
+                <li><%= team.name %>
+                    <ul>
+                            <% team.projects.each_with_index do |proj, j|%>
+                                <li><%= proj.name %> : <span class="pe-pending"><%= "Pending" if @project_status[i][j] == 0 %></span><span class="pe-complete"><%= "Complete" if @project_status[i][j] == 1 %></span></li>
+                            <% end %>
+                    </ul>
+                </li>
+            <% end %>
         <% end %>
     </ul>
 </div>

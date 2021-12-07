@@ -57,14 +57,15 @@
     <h1>Peer Evaluation Status:</h1>
     <div class="divider"></div>
     <ul>
-        <% @managed_teams.each do |team_c|%>
-            <% team_c.each do |team| %>
+        <% @managed_teams.each_with_index do |team_c, o|%>
+            <% team_c.each_with_index do |team, i| %>
                 <li><%= team.name %>
                     <ul>
-                        <% team.projects.each do |proj|%>
-                            <li><%= proj.name %> : <%= "Pending" if proj.peer_evals.each %></li>
-                        <% end %>
+                        <% team.projects.each_with_index do |proj, j|%>
+                            <li><%= proj.name %> : <span class="pe-pending"><%= "Pending" if @project_status[@project_team_index][j] == 0 %></span><span class="pe-complete"><%= "Complete" if @project_status[@project_team_index][j] == 1 %></span></li>
+                        <% end %>                        
                     </ul>
+                    <% @project_team_index += 1 %>
                 </li>
             <% end %>
         <% end %>
