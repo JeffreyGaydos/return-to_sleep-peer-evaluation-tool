@@ -46,6 +46,14 @@ img.prof-pic {
     margin: 10px;
 }
 
+span.pe-complete {
+    color: darkgreen;
+}
+
+span.pe-pending {
+    color: orange;
+}
+
 p.faded {
     color: rgba(0, 0, 0, 0.5);
 }
@@ -105,6 +113,7 @@ div.left-pannel.peer-eval-column {
     }
 
     div.left-pannel.peer-eval-column {
+        width: max-content;
         margin: auto;
         text-align: left;
     }
@@ -174,14 +183,6 @@ div.da-container {
 
 span.email {
     color: $theme-color-1;
-}
-
-span.pe-complete {
-    color: darkgreen;
-}
-
-span.pe-pending {
-    color: orange;
 }
 
 .cancel {
