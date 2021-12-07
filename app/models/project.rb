@@ -4,4 +4,7 @@ class Project < ApplicationRecord
   belongs_to :team, required: true
   
   has_many :peer_evals
+
+  attribute :needs_eval, :boolean, default: -> { false }
+  validates :needs_eval, inclusion: { in: [ true, false ] }
 end
