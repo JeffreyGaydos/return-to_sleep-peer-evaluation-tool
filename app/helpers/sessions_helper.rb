@@ -7,15 +7,9 @@ module SessionsHelper
     end
 
     def current_user
-
-        # This fixes the issue of calling a method from a null class when we purge,reset our database
-        begin
         if session[:user_id]
             @admin_rights = User.find_by(id: session[:user_id])[:admin_id] #strict ordering
             @current_user ||= User.find_by(id: session[:user_id])
-        end
-        rescue
-            nil
         end
     end
 

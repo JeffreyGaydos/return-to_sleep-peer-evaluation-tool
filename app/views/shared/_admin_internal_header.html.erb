@@ -15,9 +15,6 @@
                     <li>
                         <a class="nav-link" href="/courses/new">Add Course</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="/about">Students</a>
-                    </li>
                 <% end %>
                 <li class="nav-item">
                     <%= link_to "Account", "/users/#{@current_user[:id]}", class: "nav-link" %>
@@ -39,9 +36,6 @@
         <% else %>
             <li>
                 <a class="nav-link" href="/courses/new">Add Course</a>  
-            </li>
-            <li>
-                <a class="nav-link" href="/about">Students</a>
             </li>
         <% end %>
         <li class="nav-item">
