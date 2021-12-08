@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   post '/courses/kick-student', to: 'courses#kick_student'
 
   resources :users
-  resources :admins
   resources :courses
-  resources :institutions
   get 'delete_account', to: 'users#delete_account'
   delete 'delete_account', to: 'users#delete_confirmed'
 
