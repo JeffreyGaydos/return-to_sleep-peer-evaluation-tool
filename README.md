@@ -2,13 +2,13 @@
 Final project for 3901. A peer evaluation tool based on past ways of evaluating team members for 3901.
 
 ## How to Run:
-* Clone repo
-* Run "bundle"
-* Run "yarn install --check-files" to get necessary node_modules
-  * Use Node v12.22.5 and yarn 1.22.11 if you run into an issue here
+* Clone repo.
+* Run "bundle".
+* Run "yarn install --check-files" to get necessary node_modules.
+  * Use Node v12.22.5 and yarn 1.22.11 if you run into an issue here.
 * Ensure you have ruby 2.7.0 installed. If not, use this to do so: https://gist.github.com/esteedqueen/b605cdf78b0060299322033b6a60afc3
-* Ensure that a recent version of rails is installed (tested on rails 6.0.4.1)
-* [CHANGE: may be deployed using Heroku]Run "rails server", then go to https://localhost/3000 to view the site
+* Ensure that a recent version of rails is installed (tested on rails 6.0.4.1).
+* [CHANGE: may be deployed using Heroku]Run "rails server", then go to https://localhost/3000 to view the site.
   * If you recieve "show-stopper" errors, try running these commands: "bundle clean --force" and then "bundle install --without production"
 
 ## How to Use:  
@@ -27,19 +27,36 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
   * The admin will see: managed courses, managed teams, co-administrators, and peer evaluations
 * The courses tab allows users to find new courses and enroll in them. Admins can simply add new courses.
 * The teams tab allows users to view the teams and projects they have been assigned to. In addition admins have complete control of editing teams and projects.
-* You will likely find the links on the dashboard to be most intuitive
+* To start a peer evaluation you have to view a team and then view an associated project.
+  * This can be done quickly thru the 'Account' tab, or more slowly thru the 'Team' tab.
+* There are three states to the peer evaluations:
+  * (Blank): It has not been started.
+  * Pending: Waiting for feedback.
+  * Completed: Recieved feedback.
+* You will likely find the links on the dashboard/account page to be most intuitive
   * if you ever get lost, click the "Account" button in the header of the page
   * Also, see the "Routes Reference" section below
+## Adding Students to a Course
+* We set it up so users are the only ones able to add themselves to classes.
+  * This was intentional so that admins do not need to go thru and manually enter each student.
 
 ## Requirements Completed:
 * Seperate admin interface:
-  * Admins can view scores given to teams and students related to peer evaluations for multiple projects
-  * Admins initiate peer evaluation availability
-* Admins can create classes and teams, and add students to both
-* Students have a way to add peer evaluations for multiple projects for each student
+  * Admins can view scores given to teams and students related to peer evaluations for multiple projects.
+  * Admins initiate peer evaluation availability.
+* Admins can create classes and teams.
+* Students have a way to add peer evaluations for multiple projects for each student.
+
 ## Extra Features Completed:
-* Authentication, login, and accounts prevent students from accessing admin features
-* Students can add and drop classes at will
+* Authentication, login, and accounts prevent students from accessing admin features.
+* Students can add and drop classes at will.
+* The login system is done using bcrypt.
+* Institutions verfication for the admins.
+* An access denied page when trying to visit pages a visitor shouldn't.
+* Changing enrollment. Students might add or drop the course.
+* Support for multiple group structures. A student may belong to multiple groups simultaneously.
+* Admin dashboard to monitor submission of peer evaluations.
+
 
 ## Resources Used:
 Markdown Compilation for home page:
