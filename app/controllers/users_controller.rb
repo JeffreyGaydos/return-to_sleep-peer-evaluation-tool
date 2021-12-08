@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        User.find(params[:id]).destroy
+        User.find(params[:id].to_i).destroy
         flash[:success] = "Your account has been successfully deleted"
         redirect_to "/"
     end
