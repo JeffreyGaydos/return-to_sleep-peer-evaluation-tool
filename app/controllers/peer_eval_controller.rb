@@ -6,12 +6,8 @@ class PeerEvalController < ApplicationController
   # end
 
   def index
-    @peer_evals = PeerEval.all.select { |eval| eval.project_id == params[:project_id].to_i }
     @peer_eval = PeerEval
     @project_name = Project.find_by(id: params[:project_id].to_i).name
-    @url = "/teams/#{params[:team_id]}/projects/#{params[:project_id]}/peer_eval/new"
-    @users = User.all
-    @current_user = current_user
     @team_users = Team.find_by(id: params[:team_id].to_i).users.select { |user| user.id != current_user[:id]  }
   end
 

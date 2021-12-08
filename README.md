@@ -11,6 +11,20 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
 * [CHANGE: may be deployed using Heroku]Run "rails server", then go to https://localhost/3000 to view the site
   * If you recieve "show-stopper" errors, try running these commands: "bundle clean --force" and then "bundle install --without production"
 
+## How to Use:  
+* We reccomend preloading users with the seed file 
+  * To do so run: rails db:reset
+* Adding more accounts with sign-up:
+    * User info needed: name, email and password
+    * Admin info needed: name, email, password, and institutions
+* Institutions must be hardcoded into the DB
+  * The seed file has: 'OSU', 'LSU', and 'Xichigan'    
+* Account is the hub of the web application. It's a snapshot of information pertinant to you. It alows the user to edit information related to them.
+  * The user will see: enrolled courses, teams, administrators, and peer evaluations
+  * The admin will see: managed courses, managed teams, co-administrators, and peer evaluations
+* The courses tab allows users to find new courses and enroll in them. Admins can simply add new courses.
+* The teams tab allows users to view the teams and projects they have been assigned to. In addition admins have complete control of editing teams and projects.
+
 ## Requirements Completed:
 * Seperate admin interface:
   * Admins can view scores given to teams and students related to peer evaluations for multiple projects

@@ -1,5 +1,5 @@
 <% provide(:title, 'Course SHOW') %>
-<%if logged_in? && current_user.courses.include?(Course.find(params[:id]))%>
+<%if logged_in? && (current_user.courses.include?(Course.find(params[:id])) || @admin_rights)%>
     <%if logged_in?%>
         <div class="card center-c" style="width: 50vw;">
             <h1 class="card-header"> Course: <%=@course.name %></h1>

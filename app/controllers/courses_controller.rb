@@ -4,7 +4,6 @@ class CoursesController < ApplicationController
         @users = @course.users
 
         render(:layout => "internal.html.erb")
-       
     end 
 
     def index
@@ -42,7 +41,7 @@ class CoursesController < ApplicationController
 
 
     def destroy
-        @course = Course.find(params[:id])
+        @course = Course.find(params[:id].to_i)
         @course.destroy
 
         redirect_to user_path(current_user)
