@@ -28,7 +28,7 @@ class UsersController < ApplicationController
                     team_p_status = []
                     team.projects.each do |project|
                         if project.needs_eval
-                            if project.peer_evals.length == (team.users.length - 1) * team.users.length
+                            if project.peer_evals.length == (team.users.select{|user| !user.admin}.length - 1) * team.users.select{|user| !user.admin}.length
                                 team_p_status << 1 #denotes all students completed all peer evals
                             else
                                 team_p_status << 0 #denotes incomplete peer evals
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
                 team_p_status = [];
                 team.projects.each do |project|
                     if project.needs_eval
-                        if project.peer_evals.select{|x| x.user_id == user.id}.length == @project.team.users.select{|user| !user.admin}.length - 1
+                        if project.peer_evals.select{|x| x.user_id == current_user.id}.length == project.team.users.select{|user| !user.admin}.length - 1
                             team_p_status << 1 #denotes completed all peer evals
                         else
                             team_p_status << 0 #denotes incomplete peer evals
