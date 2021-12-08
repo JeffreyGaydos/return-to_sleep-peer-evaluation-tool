@@ -33,13 +33,13 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
 
 ## Adding Students to a Course
 * We set it up so users are the only ones able to add themselves to classes.
-* This was intentional so that admins do not need to go thru and manually enter each student.
+  * This was intentional so that admins do not need to go thru and manually enter each student.
 
 ## Requirements Completed:
 * Seperate admin interface:
   * Admins can view scores given to teams and students related to peer evaluations for multiple projects.
   * Admins initiate peer evaluation availability.
-* Admins can create classes and teams, and add students to both.
+* Admins can create classes and teams.
 * Students have a way to add peer evaluations for multiple projects for each student.
 
 ## Extra Features Completed:
@@ -47,7 +47,11 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
 * Students can add and drop classes at will.
 * The login system is done using bcrypt.
 * Institutions verfication for the admins.
-* An access denied page when trying to visit pages a visitor shouldn't. 
+* An access denied page when trying to visit pages a visitor shouldn't.
+* Changing enrollment. Students might add or drop the course.
+* Support for multiple group structures. A student may belong to multiple groups simultaneously.
+* Admin dashboard to monitor submission of peer evaluations.
+
 
 ## Resources Used:
 Markdown Compilation for home page:
