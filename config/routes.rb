@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     resources :projects
   end
 
+  patch '/teams/:team_id/projects/:id/toggle_eval', to: 'projects#set_needs_eval'
+
   # resources :teams do
   #   resources :projects do
   #     resources :peer_eval do
