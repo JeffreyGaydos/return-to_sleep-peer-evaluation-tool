@@ -20,9 +20,13 @@ class AdminsController < ApplicationController
             @admin = Admin.new(institution_id: @institution[:id], user_id: request.params[:user_id], institution: @institution, user: User.find_by(id: request.params[:user_id]))
             if @admin.save
                 flash[:success] = "Admin Account Created successfully. Welcome to return to_sleep's Peer Evaluation Tool!"
-                log_in User.find_by "id", @admin[:user_id]
+                log_in User.find_by(id: @admin[:user_id])
+                id_temp =  @admin[:user_id]
                 #render('show', :layout => 'internal.html.erb')
-                redirect_to "/users/#{@admin[:user_id]}"
+                # redirect_to "/users/#{@admin[:user_id]}"
+                redirect_to user_path(User.find_by(id: @admin[:user_id]))
+                # log_out
+                # log_in User.find_by "id", params[:user_id]
             else
                 render('new', :layout => 'authentication.html.erb')
             end
