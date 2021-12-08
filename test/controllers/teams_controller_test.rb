@@ -30,7 +30,6 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     assert session[:user_id]
   end
 
-
   test 'should get index' do
     get teams_url
     assert_response :success

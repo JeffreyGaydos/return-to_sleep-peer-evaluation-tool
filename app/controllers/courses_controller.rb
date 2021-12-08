@@ -1,6 +1,10 @@
 class CoursesController < ApplicationController
     def show
+        @course = Course.find(params[:id])
+        @users = @course.users
+
         render(:layout => "internal.html.erb")
+       
     end 
 
     def index
@@ -36,11 +40,22 @@ class CoursesController < ApplicationController
         end
     end
 
+
     def destroy
         @course = Course.find(params[:id])
         @course.destroy
 
         redirect_to user_path(current_user)
+    end
+
+    def kick_student
+        UserCourse.find_by(course_id: params[:course], user_id: params[:kick]).destroy
+        flash[:danger] = "#{User.find(params[:kick]).name} was removed from #{Course.find(params[:course]).name}"
+        if !current_user.admin
+            redirect_to "/users/#{current_user.id}" 
+        else
+            redirect_to "/courses/#{params[:course]}"
+        end
     end
 
     private
