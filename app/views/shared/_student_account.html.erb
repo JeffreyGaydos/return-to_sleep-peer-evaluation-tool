@@ -27,13 +27,36 @@
     <h1>Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <% @admins.each do |ac| %>
-            <% ac.each do |a| %>
-                <li><%= a.user.name%> | <%= Course.find(CourseAdmin.find_by(admin_id: ac.first.id)[:course_id]).name %></li>
+        <% @admins.each_index do |i| %>
+            <% @admins[i].each do |a| %>
+                <% if a.user %>
+                    <li><%= a.user.name%> | <%= @courses[i].name %></li>
+                <% end %>
             <% end %>
         <% end %>
         <% if @admins.length == 0 %>
             <p class="faded">No Related Admins</p>
+        <% end %>
+    </ul>
+</div>
+<div class="left-pannel peer-eval-column">
+    <h1>Peer Evaluation Status:</h1>
+    <div class="divider"></div>
+    <ul>
+        <% @teams.each_with_index do |team, i|%>
+            <% if team.projects.length > 0 %>
+                <li><%= team.name %>
+                    <ul>
+                            <% team.projects.each_with_index do |proj, j|%>
+                                <li><%= proj.name %> : 
+                                <span class="pe-pending"><%= "Pending" if @project_status[i][j] == 0 %></span>
+                                <span class="pe-complete"><%= "Complete" if @project_status[i][j] == 1 %></span>
+                                 | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
+                                </li>
+                            <% end %>
+                    </ul>
+                </li>
+            <% end %>
         <% end %>
     </ul>
 </div>

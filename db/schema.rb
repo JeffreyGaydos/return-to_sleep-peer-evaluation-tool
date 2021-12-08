@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_000621) do
+ActiveRecord::Schema.define(version: 2021_12_07_235428) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "user_id"
@@ -53,8 +53,15 @@ ActiveRecord::Schema.define(version: 2021_12_01_000621) do
   create_table "peer_evals", force: :cascade do |t|
     t.integer "score"
     t.string "comment"
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "evaluated_user"
+    t.index ["project_id"], name: "index_peer_evals_on_project_id"
+    t.index ["team_id"], name: "index_peer_evals_on_team_id"
+    t.index ["user_id"], name: "index_peer_evals_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -62,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_000621) do
     t.integer "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "needs_eval"
   end
 
   create_table "teams", force: :cascade do |t|
