@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     set_as_admin
 
     if @project.save
-      redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
+      redirect_to "/teams/#{params[:team_id].to_s}/projects/#{@project.id.to_s}"
     else
       render 'projects/new'
     end
@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
     set_as_admin
 
     if @project.update(get_project_params)
-      redirect_to '/teams/' + params[:team_id].to_s + '/projects/' + @project.id.to_s
+      redirect_to "/teams/#{params[:team_id].to_s}/projects/#{@project.id.to_s}"
     else
       render 'projects/edit'
     end
@@ -84,10 +84,18 @@ class ProjectsController < ApplicationController
   # Patch
   def set_needs_eval
     @project= Project.find(params[:id])
+
+    # Set all of the peer evals to be 0.
+    unless @project.needs_eval
+      @project.peer_evals.each(&:destroy)
+    end
+
+    # Toggle needs_eval and save
     @project.needs_eval = !@project.needs_eval
     @project.save
-    team = Team.find(params[:team_id])
 
+    # Redirect to the correct project page by giving team and project
+    team = Team.find(params[:team_id])
     redirect_to team_project_path(team, @project)
   end
 end
