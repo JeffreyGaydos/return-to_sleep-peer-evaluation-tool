@@ -13,7 +13,7 @@ class UsersController < ApplicationController
             @has_co_admins = false;
             @managed_courses.each do |mcourse|
                 @managed_teams.push(mcourse.teams)
-                course_admin_list = mcourse.admins.select {|admin| admin.user_id != @user.id }
+                course_admin_list = mcourse.admins.select {|admin| (admin.user_id != @user.id && admin.user)}
                 @co_admins.push(course_admin_list)
                 if course_admin_list.length > 0
                     @has_co_admins = true;
@@ -22,14 +22,6 @@ class UsersController < ApplicationController
             #at this point @co_admins has the current admin in it
             #we avoid this issue in the view
             #@managed_teams is now a collection of lists of teams, organized by class
-            
-            @co_admins_present = false;
-            @co_admins.each do |c_co|
-                if c_co.select{|adm| adm.user != nil }.length > 1
-                    @co_admins_present = true;
-                    break
-                end
-            end
 
             @managed_teams.each do |mc_teams|
                 mc_teams.each do |team|

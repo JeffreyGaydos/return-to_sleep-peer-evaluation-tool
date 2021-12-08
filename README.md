@@ -38,7 +38,8 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
   * Also, see the "Routes Reference" section below
 ## Adding Students to a Course
 * We set it up so users are the only ones able to add themselves to classes.
-  * This was intentional so that admins do not need to go thru and manually enter each student.
+  * This was intentional so that admins do not need to go through and manually enter each student.
+  * Admins do however, create teams and assign users there as well as manually start peer evaluation sessions
 
 ## Requirements Completed:
 * Seperate admin interface:

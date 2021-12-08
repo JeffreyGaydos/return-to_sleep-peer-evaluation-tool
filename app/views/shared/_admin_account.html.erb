@@ -33,7 +33,7 @@
     <h1>Co-Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <% if !@co_admins_present || (@co_admins.length == 0 || !@has_co_admins) %>
+        <% if @co_admins.length == 0 || !@has_co_admins %>
             <p class="faded">No Co-Admins</p>
         <% else %>
             <% @co_admins.each_index do |i| %>
