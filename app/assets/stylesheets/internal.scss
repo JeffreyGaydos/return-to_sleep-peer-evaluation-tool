@@ -121,10 +121,24 @@ div.left-pannel.peer-eval-column {
 
 //Course pages
 
+.display {
+    justify-content: left !important;
+}
+
 h1{
     text-align: center;
     margin-bottom: 25px;
 }
+
+h3.header{
+    text-align: center;
+}
+
+.center-c{
+    margin: auto;
+}
+
+
 
 p.no-course{
     color: rgba(0, 0, 0, 0.5);
