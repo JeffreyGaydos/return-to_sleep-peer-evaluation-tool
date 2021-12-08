@@ -102,7 +102,12 @@ class TeamsController < ApplicationController
     set_as_admin
     @team = Team.find(params[:id])
     curr_user = User.find_by(id: params[:user_id])
-    @team.users.delete(curr_user)
+    TeamsUser.find_by(user_id: curr_user.id, team_id: @team.id).destroy
+
+    @team.peer_evals.each do |p|
+      p.destroy if (p.user_id == curr_user.id || p.evaluated_user == curr_user.id)
+    end
+
     redirect_to "#{team_path(@team)}/students/"
   end
 end
