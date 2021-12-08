@@ -4,7 +4,12 @@ class CoursesController < ApplicationController
         @users = @course.users
 
         render(:layout => "internal.html.erb")
-    end 
+    end
+    
+    def add_students
+        @course = Course.all
+        render(:layout => "internal.html.erb")
+    end
 
     def index
         @course = Course.all
