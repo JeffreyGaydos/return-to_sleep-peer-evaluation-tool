@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/about', to: 'home_page#about'
   post '/courses/add', to: 'courses#add'
   post '/courses/kick-student', to: 'courses#kick_student'
-  get '/add_students', to: 'courses#add_students'
 
   resources :users
   resources :admins

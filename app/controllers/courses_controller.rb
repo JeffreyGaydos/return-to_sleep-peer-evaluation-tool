@@ -5,11 +5,6 @@ class CoursesController < ApplicationController
 
         render(:layout => "internal.html.erb")
     end
-    
-    def add_students
-        @course = Course.all
-        render(:layout => "internal.html.erb")
-    end
 
     def index
         @course = Course.all
