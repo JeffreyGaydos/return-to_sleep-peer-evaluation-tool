@@ -4,7 +4,6 @@ class CoursesController < ApplicationController
         @users = @course.users
 
         render(:layout => "internal.html.erb")
-       
     end 
 
     def index
