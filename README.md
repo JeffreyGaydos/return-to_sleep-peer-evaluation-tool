@@ -8,7 +8,7 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
   * Use Node v12.22.5 and yarn 1.22.11 if you run into an issue here.
 * Ensure you have ruby 2.7.0 installed. If not, use this to do so: https://gist.github.com/esteedqueen/b605cdf78b0060299322033b6a60afc3
 * Ensure that a recent version of rails is installed (tested on rails 6.0.4.1).
-* [CHANGE: may be deployed using Heroku]Run "rails server", then go to https://localhost/3000 to view the site.
+* Run "rails server", then go to https://localhost/3000 to view the site.
   * If you recieve "show-stopper" errors, try running these commands: "bundle clean --force" and then "bundle install --without production"
 
 ## How to Use:  
@@ -52,7 +52,7 @@ Final project for 3901. A peer evaluation tool based on past ways of evaluating 
 * Students can add and drop classes at will.
 * The login system is done using bcrypt.
 * Institutions verfication for the admins.
-* An access denied page when trying to visit pages a visitor shouldn't.
+* An access denied page when trying to visit pages a visitor shouldn't. (usually)
 * Changing enrollment. Students might add or drop the course.
 * Support for multiple group structures. A student may belong to multiple groups simultaneously.
 * Admin dashboard to monitor submission of peer evaluations.
@@ -86,49 +86,5 @@ If you get really lost, here are the urls directly:
 * '/courses/add' - for admins, allows them to create a course
 * '/courses' - Lists all courses available to enroll in as a user
 * '/users/{user id}' - The account page for a user (only viewable if logged in)
-
-  resources :users
-  resources :admins
-  resources :courses
-  resources :institutions
-  get 'delete_account', to: 'users#delete_account'
-  delete 'delete_account', to: 'users#delete_confirmed'
-
-  resources :teams
-
-  # For acessing specific users that are part of a team.
-  resources :teams do
-    resources :teams_user
-  end
-
-  # Route for adding students to a team
-  get '/teams/:id/students', to: 'teams#students', as: 'team_students_get'
-  # POST for adding a new student.
-  patch '/teams/:id/students/', to: 'teams#students_patch', as: 'team_students_patch'
-  delete '/teams/:id/students/', to: 'teams#students_delete', as: 'team_students_delete'
-
-  # Routes for accessing projects for a team
-  resources :teams do
-    resources :projects
-  end
-
-  patch '/teams/:team_id/projects/:id/toggle_eval', to: 'projects#set_needs_eval'
-
-  # resources :teams do
-  #   resources :projects do
-  #     resources :peer_eval do
-  #         get 'teams/:id/projects/:id/peer_eval/:id', to: 'peer_eval#test'
-  #       end
-  #   end
-  # end
-
-  resources :teams do
-    resources :projects do
-      resources :peer_eval
-    end
-  end
-
-post '/teams/:team_id/projects/:project_id/peer_eval/:id', to: 'peer_eval#create'
-
-end
+* '/teams/{team id}' - The team page for a user (if allowed to be viewed)
 
