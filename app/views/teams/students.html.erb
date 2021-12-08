@@ -37,6 +37,27 @@
           <% end%>
         </tr>
       <% end %>
+      <%# @team.course.admins.each do |admin| %>
+        <%# if current_user.admin != admin %>
+<!--          <tr>-->
+<!--            <td>-->
+              <%#= admin.user.name %>
+<!--            </td>-->
+<!--            <td>-->
+              <%#= admin.user.id %>
+<!--            </td>-->
+            <%# if not @team.course.admins.include? admin%>
+<!--              <td>-->
+                <%#= link_to "Add Instructor/TA", '/teams/' + @team.id.to_s + '/students/?admin_id=' + admin.user.id.to_s, method: :patch %>
+<!--              </td>-->
+            <%# else %>
+<!--              <td>-->
+                <%#= link_to "Delete Instructor/TA", '/teams/' + @team.id.to_s + '/students/?user_id=' + admin.user.id.to_s, method: :delete, data: {confirm: "Are you sure you want to delete user " + admin.user.name+ "?"},:class => 'text-danger' %>
+<!--              </td>-->
+            <%# end%>
+<!--          </tr>-->
+        <%# end %>
+      <%# end %>
       </tbody>
     </table>
     <%= link_to "Back", teams_path, :class => 'btn btn-primary'%>
