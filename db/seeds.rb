@@ -124,3 +124,14 @@
 @team6.users << @user8
 @team7.users << @user9
 @team8.users << @user10
+
+
+@team1.course.admins.each{|admin| @team1.users << admin.user}
+@team2.course.admins.each{|admin| @team2.users << admin.user}
+@team3.course.admins.each{|admin| @team3.users << admin.user}
+@team4.course.admins.each{|admin| @team4.users << admin.user}
+@team5.course.admins.each{|admin| @team5.users << admin.user}
+@team6.course.admins.each{|admin| @team6.users << admin.user}
+@team7.course.admins.each{|admin| @team7.users << admin.user}
+@team8.course.admins.each{|admin| @team8.users << admin.user}
+

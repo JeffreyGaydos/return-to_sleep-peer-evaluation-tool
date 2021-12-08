@@ -8,6 +8,12 @@
   <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
   <%= link_to "To Peer Evals", "#{@project.id}/peer_eval", :class => 'btn btn-primary'%>
   <% if @admin_rights %>
+
+    <% if !@project.needs_eval %>
+      <%= link_to "Start Evaluations", team_project_path(team_id: @project.team.id, id: @project.id) + "/toggle_eval", method: :patch, :class => 'btn btn-success'%>
+    <% else %>
+      <%= link_to "End Evaluations", team_project_path(team_id: @project.team.id, id: @project.id) + "/toggle_eval", method: :patch, :class => 'btn btn-danger'%>
+    <% end %>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -23,7 +29,7 @@
               <%= user.name %>
             </td>
             <td>
-              <%= user.peer_evals.select{|x| x.project_id == @project.id}.length - @project.team.users.length - 1%>
+              <%= @project.peer_evals.select{|x| x.user_id == user.id}.length %> /  <%= @project.team.users.select{|user| !user.admin}.length - 1 %>
             </td>
           </tr>
         <% end %>
