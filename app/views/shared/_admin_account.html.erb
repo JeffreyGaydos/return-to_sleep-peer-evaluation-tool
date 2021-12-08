@@ -55,6 +55,7 @@
     <h1>Peer Evaluation Status:</h1>
     <div class="divider"></div>
     <ul>
+    <%= @project_status %>
     <% if @project_status.flatten.length > 0 %>
         <% @managed_teams.each_with_index do |team_c, o|%>
             <% team_c.each_with_index do |team, i| %>
