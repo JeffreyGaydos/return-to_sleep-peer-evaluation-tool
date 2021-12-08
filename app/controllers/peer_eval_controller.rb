@@ -12,7 +12,7 @@ class PeerEvalController < ApplicationController
     @url = "/teams/#{params[:team_id]}/projects/#{params[:project_id]}/peer_eval/new"
     @users = User.all
     @current_user = current_user
-    @team_users = Team.find_by(id: params[:team_id].to_i).users
+    @team_users = Team.find_by(id: params[:team_id].to_i).users.select { |user| user.id != current_user[:id]  }
   end
 
   def new
@@ -20,8 +20,6 @@ class PeerEvalController < ApplicationController
     @peer_eval = PeerEval.new
     @user = current_user
     session[:eval_user_id] = params[:evaluated_user_id] 
-    # filter out by peer evals that already exist as well as current user, need to filter to ones just within team
-    @users = User.all.select { |user| user.id != current_user[:id] && !PeerEval.exists?(user_id: user.id) }
 
   end
 

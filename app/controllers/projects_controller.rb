@@ -46,8 +46,7 @@ class ProjectsController < ApplicationController
     # @projects_for_team = Project.find
 
     set_as_admin
-    team_id = params[:team_id]
-    @team = Team.find_by(id: team_id)
+    @team = Team.find_by(params[:team_id])
 
     #Get all projects associated with team
   end
@@ -59,7 +58,6 @@ class ProjectsController < ApplicationController
     set_as_admin
     @project = Project.find(params[:id])
   end
-
 
   # Gets called when we want to patch
   def update
@@ -81,5 +79,15 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     redirect_to team_projects_path
+  end
+
+  # Patch
+  def set_needs_eval
+    @project= Project.find(params[:id])
+    @project.needs_eval = !@project.needs_eval
+    @project.save
+    team = Team.find(params[:team_id])
+
+    redirect_to team_project_path(team, @project)
   end
 end
