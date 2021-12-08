@@ -14,11 +14,15 @@
     <% else %>
       <%= link_to "End Evaluations", team_project_path(team_id: @project.team.id, id: @project.id) + "/toggle_eval", method: :patch, :class => 'btn btn-danger'%>
     <% end %>
+
+    <h2> Peer Evaluation Summary </h2>
+
     <table class="table table-striped">
       <thead>
       <tr>
         <th>Student Name</th>
         <th>Peer Evals Completed</th>
+        <th>Average Score</th>
       </tr>
       </thead>
       <tbody>
@@ -31,15 +35,82 @@
             <td>
               <%= @project.peer_evals.select{|x| x.user_id == user.id}.length %> /  <%= @project.team.users.select{|user| !user.admin}.length - 1 %>
             </td>
+            <% @score = 0 %>
+            <% @project.peer_evals.select{|x| x.user_id == user.id}.each do |eval| %>
+              <% @score += eval.score %>
+            <% end %>
+            <td>
+              <%= (@score.to_f / @project.peer_evals.select{|x| x.user_id == user.id}.length).truncate(1) %>
+            </td>
           </tr>
         <% end %>
       <% end %>
       </tbody>
     </table>
+    <h2> Peer Evaluation Breakdown </h2>
+    
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Evaluated Student Name</th>
+        <th>Score</th>
+        <th>Comment</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @project.peer_evals.each do |eval| %>
+        <tr>
+          <td> <%=eval.user.name %></td>
+          <td> <%=@project.team.users.find_by(id: eval.evaluated_user.to_i).name %> </td>
+          <td> <%= eval.score %></td>
+          <td><%= eval.comment %></td>
+        </tr>
+    
+      <% end %>
+        
+      </tbody>
+
+    </table>
+
+
+    
+
   <% else %>
 
 <!--  Student view-->
+  <h2> My Comments </h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th> Score </th>
+          <th> Comment </th>
+        </tr>
+      </thead>
 
+      <tbody>
+      <% @score_count = 0%>
+      <% @score = 0 %>
+      <% @current_user.peer_evals.each do |eval| %>
+        <% if eval.project_id == @project.id%>
+        <tr> 
+          <td> <%= eval.score %> </td>
+          <td> <%= eval.comment %> </td>
+        </tr>
+        <% @score += eval.score %>
+        <% @score_count += 1%>
+        <% end %>
+      <% end %>
+      </tbody>
 
+      <tfoot>
+        <tr>
+          <td> Average Score </td>
+          <td> <%= (@score / @score_count).to_f.truncate(1)%> </td>
+        </tr>
+      </tfoot>
+
+    </table>
   <% end %>
 </div>
