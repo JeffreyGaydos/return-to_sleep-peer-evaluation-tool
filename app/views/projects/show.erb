@@ -4,8 +4,32 @@
   </h1>
   <p>for team <%=@project.team.name %></p>
 
-<!--  Button here for peer evals for this project-->
+  <!--  Button here for peer evals for this project-->
   <%= link_to "To Projects Page", team_projects_path, :class => 'btn btn-primary'%>
   <%= link_to "To Peer Evals", "#{@project.id}/peer_eval", :class => 'btn btn-primary'%>
-
+  <% if @admin_rights %>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Peer Evals Completed</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @project.team.users.each do |user| %>
+        <% if !user.admin%>
+          <tr>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= user.peer_evals.select{|x| x.project_id == @project.id}.length - @project.team.users.length - 1%>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+  <% end %>
 </div>
