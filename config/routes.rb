@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/sign_up/institution_auth', to: 'admins#create'
   get '/about', to: 'home_page#about'
   post '/courses/add', to: 'courses#add'
+  post '/courses/kick-student', to: 'courses#kick_student'
 
   resources :users
   resources :admins

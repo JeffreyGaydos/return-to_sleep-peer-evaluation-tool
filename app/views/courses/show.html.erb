@@ -1,4 +1,40 @@
-<% provide(:title, 'Course (SHOW)') %>
-
-<h1>SHOW</h1>
+<% provide(:title, 'Course SHOW') %>
+<%if logged_in? && current_user.courses.include?(Course.find(params[:id]))%>
+    <%if logged_in?%>
+        <div class="card center-c" style="width: 50vw;">
+            <h1 class="card-header"> Course: <%=@course.name %></h1>
+            <br/>
+            <h3 class="header"> ID: <%=@course.class_number %></h3>
+            <br/>
+            <h3 class="header"> Cteated: <%=@course.created_at %></h3>        
+        </div>
+        <!--  Button here for peer evals for this project-->
+        <br/><br/>
+        <h1> Enrolled Students: </h1>
+        <%if !@admin_rights%>
+            <div class="well">
+                <h3 class="wrap-name"><%= User.find(session[:user_id]).name %> </h3>
+                <%= form_for :course, local: true, scope: :session, url:"/courses/kick-student?kick=#{User.find(session[:user_id]).id}&course=#{@course[:id]}" do |f| %>
+                    <%= f.submit "Unenroll", class: 'btn btn-primary course-btn' %> 
+                <%end%>
+            </div>
+            <hr />
+        <%end%>
+        <% @users.each do |user| %> 
+                <%if user.id != session[:user_id]%>   
+                    <div class="well">
+                            <h3 class="wrap-name"><%= user.name %> </h3>
+                            <% if @admin_rights %>
+                                <%= form_for :course, local: true, scope: :session, url:"/courses/kick-student?kick=#{user[:id]}&course=#{@course[:id]}" do |f| %>
+                                    <%= f.submit "Kick", class: 'btn btn-primary course-btn' %> 
+                                <%end%>
+                            <%end%>
+                    </div>
+                    <hr />
+                <%end%>
+        <%end%>
+    <%end%>
+<%else%>
+    <%= render "/shared/permission_denied"%>
+<%end%>
 
