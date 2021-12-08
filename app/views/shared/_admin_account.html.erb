@@ -55,21 +55,28 @@
     <h1>Peer Evaluation Status:</h1>
     <div class="divider"></div>
     <ul>
+    <%= @project_status %>
+    <% if @project_status.flatten.length > 0 %>
         <% @managed_teams.each_with_index do |team_c, o|%>
             <% team_c.each_with_index do |team, i| %>
+                <% if @project_status[@project_team_index].length > 0%>
                 <li><%= team.name %>
                     <ul>
                         <% team.projects.each_with_index do |proj, j|%>
-                            <li><%= proj.name %> : 
+                            <li><%= proj.name %> <% ":" if @project_status[@project_team_index][j] != -1 %>
                             <span class="pe-pending"><%= "Pending" if @project_status[@project_team_index][j] == 0 %></span>
                             <span class="pe-complete"><%= "Complete" if @project_status[@project_team_index][j] == 1 %></span>
-                             | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
+                            | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
                             </li>
                         <% end %>                        
                     </ul>
                     <% @project_team_index += 1 %>
                 </li>
+                <% end %>
             <% end %>
         <% end %>
+    <% else %>
+        <p class="faded">No Active Peer Evals!</p>
+    <% end %>
     </ul>
 </div>

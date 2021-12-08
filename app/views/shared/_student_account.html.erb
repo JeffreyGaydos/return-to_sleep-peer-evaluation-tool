@@ -3,7 +3,7 @@
     <div class="divider"></div>
     <ul>
         <% @courses.each do |c| %>
-            <li><%= c.name %> | <%= c.class_number%></li>
+            <li><%= c.name %> (<%= c.class_number%>) | <%= link_to "View", "/courses/#{c.id}"%></li>
         <% end %>
         <% if @courses.length == 0 %>
             <p class="faded">No Courses</p>
@@ -13,7 +13,7 @@
     <div class="divider"></div>
     <ul>
         <% @teams.each do |t| %>
-            <li><%= t.name%></li>
+            <li><%= t.name%> | <%= link_to "View", "/teams/#{t.id}"%></li>
             <ul>
                 <% t.users.each do |tu| %>
                     <li><%= tu.name%></li>
@@ -43,20 +43,26 @@
     <h1>Peer Evaluation Status:</h1>
     <div class="divider"></div>
     <ul>
+    <% if @project_status.flatten.length > 0 %>
         <% @teams.each_with_index do |team, i|%>
             <% if team.projects.length > 0 %>
-                <li><%= team.name %>
-                    <ul>
+                <% if @project_status[@project_team_index].length > 0%>
+                    <li><%= team.name %>
+                        <ul>
                             <% team.projects.each_with_index do |proj, j|%>
                                 <li><%= proj.name %> : 
                                 <span class="pe-pending"><%= "Pending" if @project_status[i][j] == 0 %></span>
                                 <span class="pe-complete"><%= "Complete" if @project_status[i][j] == 1 %></span>
-                                 | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
+                                    | <%= link_to "View", "/teams/#{team.id}/projects/#{proj.id}" %>
                                 </li>
                             <% end %>
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                <% end %>
             <% end %>
         <% end %>
+    <% else %>
+        <p class="faded">No Active Peer Evals!</p>
+    <% end %>
     </ul>
 </div>
