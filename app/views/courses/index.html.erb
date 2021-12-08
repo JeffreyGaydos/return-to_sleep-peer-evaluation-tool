@@ -1,5 +1,5 @@
+<% provide(:title, 'Courses')%>
 <%if logged_in? && !@admin_rights%>
-    <% provide(:title, 'Courses')%> 
     <h1> Courses </h1>
     <%if @course.length == current_user.courses.length%>
         <p class="no-course">There are no more courses left to enroll in. Please check with an admin, if this does not seem correct.</p>
@@ -15,5 +15,7 @@
             <hr />
         <% end %>
     <%end%>
+<%else%>
+    <%= render "/shared/permission_denied"%>
 <%end%>
 

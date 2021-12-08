@@ -35,3 +35,8 @@ Illustration on home page:
 * Profile images
 * Public profiles
 * Greater security and email validation, especially for institution validation
+
+## How to use: 
+We're assuming that you're starting at the 
+
+### Creating a user account

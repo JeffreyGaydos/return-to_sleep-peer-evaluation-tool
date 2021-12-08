@@ -9,12 +9,12 @@ class User < ApplicationRecord
 
     belongs_to :admin, optional: true
     #The following 2 lines are required to set up the many_to_many relationship between Courses and Users
-    has_many :user_course
+    has_many :user_course, dependent: :destroy
     has_many :courses, through: :user_course
 
     #The following 2 lines are required to set up the many_to_many relationship between Teams and Users
-    has_many :teams_user
+    has_many :teams_user, dependent: :destroy
     has_many :teams, through: :teams_user
 
-    has_many :peer_evals
+    has_many :peer_evals, dependent: :destroy
 end
