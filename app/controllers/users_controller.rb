@@ -27,10 +27,12 @@ class UsersController < ApplicationController
                 mc_teams.each do |team|
                     team_p_status = []
                     team.projects.each do |project|
-                        if project.peer_evals.length == (team.users.length - 1) * team.users.length
-                            team_p_status << 1 #denotes all students completed all peer evals
-                        else
-                            team_p_status << 0 #denotes incomplete peer evals
+                        if project.needs_eval
+                            if project.peer_evals.length == (team.users.length - 1) * team.users.length
+                                team_p_status << 1 #denotes all students completed all peer evals
+                            else
+                                team_p_status << 0 #denotes incomplete peer evals
+                            end
                         end
                     end
                     @project_status << team_p_status
@@ -49,10 +51,12 @@ class UsersController < ApplicationController
             @teams.each do |team|
                 team_p_status = [];
                 team.projects.each do |project|
-                    if project.peer_evals.select { |ev| ev.user_id == @user.id }.length == team.users.length - 1
-                        team_p_status << 1 #denotes completed all peer evals
-                    else
-                        team_p_status << 0 #denotes incomplete peer evals
+                    if project.needs_eval
+                        if project.peer_evals.select { |ev| ev.user_id == @user.id }.length == team.users.length - 1
+                            team_p_status << 1 #denotes completed all peer evals
+                        else
+                            team_p_status << 0 #denotes incomplete peer evals
+                        end
                     end
                 end
                 @project_status << team_p_status
