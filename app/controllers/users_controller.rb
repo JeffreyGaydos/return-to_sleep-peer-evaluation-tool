@@ -22,6 +22,14 @@ class UsersController < ApplicationController
             #at this point @co_admins has the current admin in it
             #we avoid this issue in the view
             #@managed_teams is now a collection of lists of teams, organized by class
+            
+            @co_admins_present = false;
+            @co_admins.each do |c_co|
+                if c_co.select{|adm| adm.user != nil }.length > 1
+                    @co_admins_present = true;
+                    break
+                end
+            end
 
             @managed_teams.each do |mc_teams|
                 mc_teams.each do |team|
@@ -87,13 +95,15 @@ class UsersController < ApplicationController
         render(:layout => 'internal.html.erb')
     end
 
-    def delete_confirmed
-        log_out
-        User.find_by(id: params[:user].to_i).destroy(params[:user].to_i)
-    end
-
     def destroy
+        if User.find_by(params[:id]).admin
+            User.find_by(params[:id]).admin.courses.each do |course|
+                CourseAdmin.find_by(admin_id: User.find_by(params[:id]).admin.id, course_id: course.id).destroy
+            end
+            User.find_by(params[:id]).admin.destroy
+        end
         User.find(params[:id].to_i).destroy
+        log_out
         flash[:success] = "Your account has been successfully deleted"
         redirect_to "/"
     end

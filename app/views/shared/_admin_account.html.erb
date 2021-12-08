@@ -33,17 +33,19 @@
     <h1>Co-Administrators:</h1>
     <div class="divider"></div>
     <ul>
-        <% if @co_admins.length == 0 || !@has_co_admins%>
+        <% if !@co_admins_present || (@co_admins.length == 0 || !@has_co_admins) %>
             <p class="faded">No Co-Admins</p>
         <% else %>
             <% @co_admins.each_index do |i| %>
-                <% if @co_admins[i].length > 0%>
+                <% if @co_admins[i].length > 0 && @co_admins[i].select{|adm| adm.user != nil }.length > 0%>
                     <li><%= @managed_courses[i].class_number %></li>
                     <ul>
                         <% @co_admins[i].each do |a|%>
-                            <li>
-                                <%= a.user.name%>
-                            </li>
+                            <% if a.user %>
+                                <li>
+                                    <%= a.user.name%>
+                                </li>
+                            <% end %>
                         <% end %>
                     </ul>
                 <% end %>
