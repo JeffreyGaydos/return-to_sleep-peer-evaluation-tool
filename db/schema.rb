@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_000621) do
+ActiveRecord::Schema.define(version: 2021_12_07_192343) do
 
   create_table "admins", force: :cascade do |t|
     t.integer "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_000621) do
     t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "evaluated_user"
     t.index ["project_id"], name: "index_peer_evals_on_project_id"
     t.index ["team_id"], name: "index_peer_evals_on_team_id"
     t.index ["user_id"], name: "index_peer_evals_on_user_id"

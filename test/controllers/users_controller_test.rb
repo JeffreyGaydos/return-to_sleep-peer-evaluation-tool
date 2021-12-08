@@ -131,10 +131,42 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert session[:user_id]
 
     #Testing that the account page is valid
-    assert_select "li", "Example Course Name | 123"
-    assert_select "li", "Example Team Name"
-    assert_select "li", "Example Instructor2"
+    assert_select "li", {:count=>1, :text=>"Example Instructor2"}
     assert_select "li", {:count=>0, :text=>"Example Instructor"} #ourself is not a co-admin...
+  end
+
+  ###############################################################################
+  # Delete/Update Account Tests
+  ###############################################################################
+  test "Unsuccessful account edits" do
+    get "/users/#{@student.id}/edit"
+    assert_template "users/edit"
+    patch "/users/#{@student.id}", params: { user: { name: "", email: "", password: "", password_confirmation: "" } }
+    assert_template "users/edit"
+  end
+
+  test "Successful account edits" do
+    get "/users/#{@student.id}/edit"
+    assert_template "users/edit"
+    patch "/users/#{@student.id}", params: { user: { name: "Example User2", email: "user@example.com", password: "Something", password_confirmation: "Something" } }
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    assert User.find_by(name: "Example User2")
+  end
+
+  test "Get Delete account page" do
+    get "/delete_account?user=#{@student.id}"
+    assert_response :success
+  end
+
+  test "Delete account" do
+    get "/delete_account?user=#{@student.id}"
+    assert_response :success
+    assert_difference 'User.count', -1 do
+      delete "/users/#{@student.id}"
+    end
+
   end
 
 end
