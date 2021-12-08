@@ -16,8 +16,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @admin = Admin.create(user: @instructor, user_id: 1, institution: @institution, institution_id: 1)
 
     @student = User.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+    @student1 = User.create(name: "Example User2", email: "user2@example.com", password: "foobar", password_confirmation: "foobar")
     @course = Course.create(name: "Example Course Name", class_number: 123)
     @team = Team.create(name: "Example Team Name", course: @course)
+    @project1 = Project.create(name: "Game of Set", team: @team)
+
+    @peer_eval = PeerEval.create(score: 10, comment: "Nothing", team_id: 1, user_id: 1, project_id: 1, evaluated_user: 3)
   end
 
   ###############################################################################
@@ -90,8 +94,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert session[:user_id]
 
     #Testing that the account page is valid
-    assert_select "li", "Example Team Name"
-    assert_select "li", "Example Course Name | 123"
+    assert_select "li", "Example Team Name | View"
+    assert_select "li", "Example Course Name (123) | View"
     assert_select "li", "Example Instructor | Example Course Name"
   end
 
@@ -115,7 +119,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "Account page shows relevant data when present for admin user" do
     #setting up "relevant data"
     @instructor2 = User.new(name: "Example Instructor2", email: "instructor2@example.com", password: "foobar", password_confirmation: "foobar")
-    @admin2 = Admin.create(user: @instructor2, user_id: 3, institution: @institution, institution_id: 1)
+    @admin2 = Admin.create(user: @instructor2, user_id: 4, institution: @institution, institution_id: 1)
     @course.admins << @admin
     @course.admins << @admin2
     @course.teams << @team
@@ -166,7 +170,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', -1 do
       delete "/users/#{@student.id}"
     end
-
   end
 
 end
