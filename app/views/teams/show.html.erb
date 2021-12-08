@@ -36,4 +36,17 @@
     <%= link_to "Create new project", new_team_project_url(params[:id]), :class => 'btn btn-primary'%>
   <% end %>
   <%= link_to "To Project Page", team_projects_path(team_id: params[:id]), :class => 'btn btn-primary'%>
+
+  
+  <% if @admin_rights%>
+    <% @team.projects.each do |project| %>
+      
+      <% project.peer_evals.each do |eval| %>
+      <% @score += eval.score %>
+      <% @score_count += 1%>
+      <% end %>
+    <% end %>
+    <h2> Team Average: <%= (@score.to_f / @score_count).truncate(2) %> </h2>
+  <% end %>
+
 </div>

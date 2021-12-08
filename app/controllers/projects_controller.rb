@@ -34,6 +34,9 @@ class ProjectsController < ApplicationController
   # Show a specific project page #
   def show
     @project = Project.find(params[:id])
+    @score
+    @score_count
+    @current_user = current_user
     set_as_admin
   end
 

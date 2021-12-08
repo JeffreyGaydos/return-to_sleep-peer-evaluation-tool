@@ -37,7 +37,8 @@ class TeamsController < ApplicationController
   # Show a specific team page #
   def show
     @team = Team.find(params[:id])
-
+    @score = 0
+    @score_count = 0
     set_as_admin
   end
 
