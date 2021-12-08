@@ -1,11 +1,5 @@
 # This seed file sets up the peer evaluation file with various objects that will allow
-# you to login and view various features of the tool. These objects can also be found in
-# the seeds.exel file included adjacent to this file in our submission.
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# you to login and view various features of the tool.
 
 # Institution Objects:
 @institution1 = Institution.create(name_id: "OSU")
